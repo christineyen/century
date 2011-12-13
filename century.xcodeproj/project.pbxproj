@@ -17,6 +17,12 @@
 		97D7797A1496E125005F4CFB /* icon-city.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779781496E125005F4CFB /* icon-city.png */; };
 		97D7797B1496E125005F4CFB /* icon-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779791496E125005F4CFB /* icon-map.png */; };
 		97D7797F1496E16E005F4CFB /* icon-film-roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D7797E1496E16E005F4CFB /* icon-film-roll.png */; };
+		97D779851496E571005F4CFB /* PersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779841496E571005F4CFB /* PersonListViewController.m */; };
+		97D779881496E5AA005F4CFB /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779871496E5AA005F4CFB /* PhotoListViewController.m */; };
+		97D7798B1496E733005F4CFB /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D7798A1496E733005F4CFB /* PhotoDetailViewController.m */; };
+		97D7798E1496E748005F4CFB /* PhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D7798D1496E748005F4CFB /* PhotoEditViewController.m */; };
+		97D779911496E77D005F4CFB /* FlickrListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779901496E77D005F4CFB /* FlickrListViewController.m */; };
+		97D779941496E7DC005F4CFB /* RandomMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779931496E7DC005F4CFB /* RandomMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,18 @@
 		97D779781496E125005F4CFB /* icon-city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-city.png"; sourceTree = "<group>"; };
 		97D779791496E125005F4CFB /* icon-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-map.png"; sourceTree = "<group>"; };
 		97D7797E1496E16E005F4CFB /* icon-film-roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-film-roll.png"; sourceTree = "<group>"; };
+		97D779831496E571005F4CFB /* PersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonListViewController.h; sourceTree = "<group>"; };
+		97D779841496E571005F4CFB /* PersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonListViewController.m; sourceTree = "<group>"; };
+		97D779861496E5AA005F4CFB /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		97D779871496E5AA005F4CFB /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		97D779891496E733005F4CFB /* PhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailViewController.h; sourceTree = "<group>"; };
+		97D7798A1496E733005F4CFB /* PhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailViewController.m; sourceTree = "<group>"; };
+		97D7798C1496E748005F4CFB /* PhotoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditViewController.h; sourceTree = "<group>"; };
+		97D7798D1496E748005F4CFB /* PhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoEditViewController.m; sourceTree = "<group>"; };
+		97D7798F1496E77D005F4CFB /* FlickrListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrListViewController.h; sourceTree = "<group>"; };
+		97D779901496E77D005F4CFB /* FlickrListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrListViewController.m; sourceTree = "<group>"; };
+		97D779921496E7DC005F4CFB /* RandomMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomMapViewController.h; sourceTree = "<group>"; };
+		97D779931496E7DC005F4CFB /* RandomMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +122,18 @@
 		97D779771496DF21005F4CFB /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				97D779831496E571005F4CFB /* PersonListViewController.h */,
+				97D779841496E571005F4CFB /* PersonListViewController.m */,
+				97D779861496E5AA005F4CFB /* PhotoListViewController.h */,
+				97D779871496E5AA005F4CFB /* PhotoListViewController.m */,
+				97D779891496E733005F4CFB /* PhotoDetailViewController.h */,
+				97D7798A1496E733005F4CFB /* PhotoDetailViewController.m */,
+				97D7798C1496E748005F4CFB /* PhotoEditViewController.h */,
+				97D7798D1496E748005F4CFB /* PhotoEditViewController.m */,
+				97D7798F1496E77D005F4CFB /* FlickrListViewController.h */,
+				97D779901496E77D005F4CFB /* FlickrListViewController.m */,
+				97D779921496E7DC005F4CFB /* RandomMapViewController.h */,
+				97D779931496E7DC005F4CFB /* RandomMapViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -194,6 +224,12 @@
 			files = (
 				97D779611496DE19005F4CFB /* main.m in Sources */,
 				97D779651496DE19005F4CFB /* CenturyAppDelegate.m in Sources */,
+				97D779851496E571005F4CFB /* PersonListViewController.m in Sources */,
+				97D779881496E5AA005F4CFB /* PhotoListViewController.m in Sources */,
+				97D7798B1496E733005F4CFB /* PhotoDetailViewController.m in Sources */,
+				97D7798E1496E748005F4CFB /* PhotoEditViewController.m in Sources */,
+				97D779911496E77D005F4CFB /* FlickrListViewController.m in Sources */,
+				97D779941496E7DC005F4CFB /* RandomMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
