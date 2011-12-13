@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		97D779551496DE19005F4CFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779541496DE19005F4CFB /* UIKit.framework */; };
+		97D779571496DE19005F4CFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779561496DE19005F4CFB /* Foundation.framework */; };
+		97D779591496DE19005F4CFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779581496DE19005F4CFB /* CoreGraphics.framework */; };
+		97D7795F1496DE19005F4CFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97D7795D1496DE19005F4CFB /* InfoPlist.strings */; };
+		97D779611496DE19005F4CFB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779601496DE19005F4CFB /* main.m */; };
+		97D779651496DE19005F4CFB /* CenturyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779641496DE19005F4CFB /* CenturyAppDelegate.m */; };
+		97D779681496DE19005F4CFB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D779661496DE19005F4CFB /* MainStoryboard.storyboard */; };
+		97D7796B1496DE19005F4CFB /* CenturyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D7796A1496DE19005F4CFB /* CenturyViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		97D779501496DE19005F4CFB /* century.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = century.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97D779541496DE19005F4CFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		97D779561496DE19005F4CFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		97D779581496DE19005F4CFB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		97D7795C1496DE19005F4CFB /* century-Info.plist */ = {isa = PBXFileReference; path = "century-Info.plist"; sourceTree = "<group>"; };
+		97D7795E1496DE19005F4CFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		97D779601496DE19005F4CFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		97D779621496DE19005F4CFB /* century-Prefix.pch */ = {isa = PBXFileReference; path = "century-Prefix.pch"; sourceTree = "<group>"; };
+		97D779631496DE19005F4CFB /* CenturyAppDelegate.h */ = {isa = PBXFileReference; path = CenturyAppDelegate.h; sourceTree = "<group>"; };
+		97D779641496DE19005F4CFB /* CenturyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenturyAppDelegate.m; sourceTree = "<group>"; };
+		97D779671496DE19005F4CFB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		97D779691496DE19005F4CFB /* CenturyViewController.h */ = {isa = PBXFileReference; path = CenturyViewController.h; sourceTree = "<group>"; };
+		97D7796A1496DE19005F4CFB /* CenturyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenturyViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97D7794D1496DE19005F4CFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97D779551496DE19005F4CFB /* UIKit.framework in Frameworks */,
+				97D779571496DE19005F4CFB /* Foundation.framework in Frameworks */,
+				97D779591496DE19005F4CFB /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97D779451496DE19005F4CFB = {
+			isa = PBXGroup;
+			children = (
+				97D7795A1496DE19005F4CFB /* century */,
+				97D779531496DE19005F4CFB /* Frameworks */,
+				97D779511496DE19005F4CFB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97D779511496DE19005F4CFB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97D779501496DE19005F4CFB /* century.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97D779531496DE19005F4CFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97D779541496DE19005F4CFB /* UIKit.framework */,
+				97D779561496DE19005F4CFB /* Foundation.framework */,
+				97D779581496DE19005F4CFB /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97D7795A1496DE19005F4CFB /* century */ = {
+			isa = PBXGroup;
+			children = (
+				97D779631496DE19005F4CFB /* CenturyAppDelegate.h */,
+				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
+				97D779661496DE19005F4CFB /* MainStoryboard.storyboard */,
+				97D779691496DE19005F4CFB /* CenturyViewController.h */,
+				97D7796A1496DE19005F4CFB /* CenturyViewController.m */,
+				97D7795B1496DE19005F4CFB /* Supporting Files */,
+			);
+			path = century;
+			sourceTree = "<group>";
+		};
+		97D7795B1496DE19005F4CFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				97D7795C1496DE19005F4CFB /* century-Info.plist */,
+				97D7795D1496DE19005F4CFB /* InfoPlist.strings */,
+				97D779601496DE19005F4CFB /* main.m */,
+				97D779621496DE19005F4CFB /* century-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97D7794F1496DE19005F4CFB /* century */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97D7796E1496DE19005F4CFB /* Build configuration list for PBXNativeTarget "century" */;
+			buildPhases = (
+				97D7794C1496DE19005F4CFB /* Sources */,
+				97D7794D1496DE19005F4CFB /* Frameworks */,
+				97D7794E1496DE19005F4CFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = century;
+			productName = century;
+			productReference = 97D779501496DE19005F4CFB /* century.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97D779471496DE19005F4CFB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = MIT;
+			};
+			buildConfigurationList = 97D7794A1496DE19005F4CFB /* Build configuration list for PBXProject "century" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 97D779451496DE19005F4CFB;
+			productRefGroup = 97D779511496DE19005F4CFB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97D7794F1496DE19005F4CFB /* century */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97D7794E1496DE19005F4CFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97D7795F1496DE19005F4CFB /* InfoPlist.strings in Resources */,
+				97D779681496DE19005F4CFB /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97D7794C1496DE19005F4CFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97D779611496DE19005F4CFB /* main.m in Sources */,
+				97D779651496DE19005F4CFB /* CenturyAppDelegate.m in Sources */,
+				97D7796B1496DE19005F4CFB /* CenturyViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		97D7795D1496DE19005F4CFB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97D7795E1496DE19005F4CFB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		97D779661496DE19005F4CFB /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97D779671496DE19005F4CFB /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		97D7796C1496DE19005F4CFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		97D7796D1496DE19005F4CFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97D7796F1496DE19005F4CFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "century/century-Prefix.pch";
+				INFOPLIST_FILE = "century/century-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		97D779701496DE19005F4CFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "century/century-Prefix.pch";
+				INFOPLIST_FILE = "century/century-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97D7794A1496DE19005F4CFB /* Build configuration list for PBXProject "century" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97D7796C1496DE19005F4CFB /* Debug */,
+				97D7796D1496DE19005F4CFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97D7796E1496DE19005F4CFB /* Build configuration list for PBXNativeTarget "century" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97D7796F1496DE19005F4CFB /* Debug */,
+				97D779701496DE19005F4CFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97D779471496DE19005F4CFB /* Project object */;
+}
