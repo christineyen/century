@@ -14,6 +14,5 @@
 }
 
 - (NSArray *)fetchAnnotationsForLat:(double)lat andLongitude:(double)lng;
-- (void)setIsLoading:(BOOL)loading;
 
 @end

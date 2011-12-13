@@ -8,6 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "RandomMapViewController.h"
+#import "SVProgressHUD.h"
 
 #define k4sqAuthToken @"44AIQ2GRI2FXJWKJBJI1S3S0V1MYKBEFYQLB2NCBDGU5D4II&v=20111204"
 #define k4sqAPIFormat @"https://api.foursquare.com/v2/venues/search?ll=%f,%f&oauth_token=%@"
@@ -73,7 +74,7 @@
 {
     [super viewDidLoad];
     
-    [self setIsLoading:YES];
+    [SVProgressHUD showWithStatus:@"Loading..." networkIndicator:YES];
     // Just delays this heavy work to the next run loop, so the UI appears
     [self performSelector:@selector(initializeLocationManager) withObject:nil afterDelay:0.0];
 }
@@ -110,7 +111,7 @@
                                      andLongitude:newLocation.coordinate.longitude];
     
     // Hide spinner & manipulate map
-    [self setIsLoading:NO];
+    [SVProgressHUD dismiss];
     [mapView addAnnotations:annos];
     
     float minLat = 150, minLng = 150, maxLat = -150, maxLng = -150;
@@ -165,13 +166,6 @@
     }
     
     return annos;
-}
-
-
-
-
-- (void)setIsLoading:(BOOL)loading {
-    
 }
 
 @end

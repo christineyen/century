@@ -8,6 +8,7 @@
 
 #import "PhotoDetailViewController.h"
 #import "PhotoEditViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation PhotoDetailViewController
 @synthesize photo=_photo;
@@ -49,14 +50,14 @@
     if (uiImg != nil) {
         self.imageView.image = uiImg;
     } else if (self.photo.url != nil) {
-        NSLog(@"need progress hud...");
+        [SVProgressHUD showWithStatus:@"Snatching..." networkIndicator:YES];
         
         dispatch_queue_t bg_queue = dispatch_queue_create("Fetch Photo via URL", NULL);
         dispatch_async(bg_queue, ^{
             self.photo.data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.photo.url]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.imageView.image = [UIImage imageWithData:self.photo.data];
-                NSLog(@"here's where i'd hide the progress hud");
+                [SVProgressHUD dismiss];
             });
         });
         dispatch_release(bg_queue);
