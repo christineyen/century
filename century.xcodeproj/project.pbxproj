@@ -22,14 +22,14 @@
 		97D779541496DE19005F4CFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97D779561496DE19005F4CFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		97D779581496DE19005F4CFB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		97D7795C1496DE19005F4CFB /* century-Info.plist */ = {isa = PBXFileReference; path = "century-Info.plist"; sourceTree = "<group>"; };
+		97D7795C1496DE19005F4CFB /* century-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "century-Info.plist"; sourceTree = "<group>"; };
 		97D7795E1496DE19005F4CFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		97D779601496DE19005F4CFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		97D779621496DE19005F4CFB /* century-Prefix.pch */ = {isa = PBXFileReference; path = "century-Prefix.pch"; sourceTree = "<group>"; };
-		97D779631496DE19005F4CFB /* CenturyAppDelegate.h */ = {isa = PBXFileReference; path = CenturyAppDelegate.h; sourceTree = "<group>"; };
+		97D779621496DE19005F4CFB /* century-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "century-Prefix.pch"; sourceTree = "<group>"; };
+		97D779631496DE19005F4CFB /* CenturyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenturyAppDelegate.h; sourceTree = "<group>"; };
 		97D779641496DE19005F4CFB /* CenturyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenturyAppDelegate.m; sourceTree = "<group>"; };
 		97D779671496DE19005F4CFB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		97D779691496DE19005F4CFB /* CenturyViewController.h */ = {isa = PBXFileReference; path = CenturyViewController.h; sourceTree = "<group>"; };
+		97D779691496DE19005F4CFB /* CenturyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenturyViewController.h; sourceTree = "<group>"; };
 		97D7796A1496DE19005F4CFB /* CenturyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenturyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

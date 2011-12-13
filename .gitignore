@@ -1,0 +1,11 @@
+.DS_STORE
+build/
+
+# xcode noise
+*.mode1v3
+*.pbxuser
+*.perspective
+*.perspectivev3
+*/xcuserdata
+*/project.xcworkspace
+*/*.pbxproj
