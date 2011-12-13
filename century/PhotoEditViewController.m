@@ -111,8 +111,6 @@
 }
 
 - (void)keyboardWasShown:(NSNotification *)notification {
-    NSLog(@"keyboard was shown?");
-    
     NSDictionary *info = [notification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     

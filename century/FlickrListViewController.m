@@ -41,9 +41,9 @@
 {
     [super viewDidLoad];
     if (self.person == nil) {
-        NSLog(@"person was nil, loading fake person");
         self.person = [Person flickrRecentsPerson];
     }
+    
     if ([self.person.photos count] == 0) {
         [self refresh];
     }
@@ -69,7 +69,6 @@
     dispatch_async(person_queue, ^{
         if ([self.person fetchMorePhotos] > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"reloading tableview!");
                 [self.tableView reloadData];
             });
         } // else, no need to refresh
