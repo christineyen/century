@@ -11,9 +11,20 @@
 
 @protocol PhotoEditViewControllerDelegate;
 
-@interface PhotoEditViewController : UIViewController
+@interface PhotoEditViewController : UIViewController<UITextFieldDelegate> {
+    BOOL keyboardVisible;
+
+    UITextField *activeField;
+    
+    IBOutlet UINavigationBar *navBar;
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIImageView *imageView;
+    IBOutlet UILabel *pathLabel;
+    IBOutlet UILabel *personLabel;
+}
 @property (strong, nonatomic) Photo *photo;
 @property (weak, nonatomic) id <PhotoEditViewControllerDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 - (IBAction)cancel:(id)sender;
