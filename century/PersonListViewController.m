@@ -163,16 +163,12 @@
 }
 */
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    PhotoListViewController *photoViewController = [[PhotoListViewController alloc] init];
-    photoViewController.person = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    [self.navigationController pushViewController:photoViewController animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PickPerson"]) {
+        PhotoListViewController *photoViewController = segue.destinationViewController;
+        photoViewController.person = [self.fetchedResultsController objectAtIndexPath:
+                                      [self.tableView indexPathForSelectedRow]];
+    }
 }
 
 #pragma mark - FetchedResultsController delegate

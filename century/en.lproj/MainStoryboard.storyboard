@@ -43,7 +43,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="SaV-ak-fEx" kind="push" id="hAB-KP-3sy"/>
+                                    <segue destination="SaV-ak-fEx" kind="push" identifier="PickPerson" id="hAB-KP-3sy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
