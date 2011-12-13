@@ -7,13 +7,89 @@
 //
 
 #import "CenturyAppDelegate.h"
+#import "FlickrFetcher.h"
+
+#import "PersonListViewController.h"
+#import "FlickrListViewController.h"
+#import "RandomMapViewController.h"
+
+#import "Photo.h"
+#import "Person.h"
+
+#define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 \
+    green:((c>>16)&0xFF)/255.0 \
+    blue:((c>>8)&0xFF)/255.0 \
+    alpha:((c)&0xFF)/255.0]
+
+
+@interface CenturyAppDelegate() {
+    FlickrFetcher *fetcher;
+}
+@end
 
 @implementation CenturyAppDelegate
 
 @synthesize window = _window;
 
+- (int)loadDatabaseWithDefaults {
+    fetcher = [FlickrFetcher sharedInstance];
+    if (![fetcher databaseExists]) {
+        NSString *thePath = [[NSBundle mainBundle] pathForResource:@"Photos" ofType:@"plist"];
+        NSArray *db = [[NSArray alloc] initWithContentsOfFile:thePath];
+        
+        NSMutableDictionary *namePersonDict = [[NSMutableDictionary alloc] init];
+        Person *person;
+        NSString *personName;
+        
+        NSManagedObjectContext *context = [fetcher managedObjectContext];
+        Photo *photoObj;
+        
+        for (NSDictionary *photo in db) {
+            photoObj = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
+            photoObj.name = [photo objectForKey:@"name"];
+            photoObj.path = [photo objectForKey:@"path"];
+            personName = [photo objectForKey:@"user"];
+            
+            person = [namePersonDict objectForKey:personName];
+            if (person == nil) {
+                person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:context];
+                person.name = personName;
+                
+                [namePersonDict setObject:person forKey:personName];
+            }
+            photoObj.person = person;
+        }
+        
+        if (![context save:NULL]) {
+            NSLog(@"FAILED TO SAVE!!");
+        }
+        
+        return [db count];
+    }
+    return 0;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    int loaded = [self loadDatabaseWithDefaults];
+    NSLog(@"Read and loaded %d rows from the .plist", loaded);
+    
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    
+    UINavigationController *peopleNavController = (UINavigationController *)[[tabBarController viewControllers]
+                                                                             objectAtIndex:0];
+    peopleNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
+    UINavigationController *recentsNavController = (UINavigationController *)[[tabBarController viewControllers]
+                                                                              objectAtIndex:1];
+    recentsNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
+    
+    // Set up Contacts tab
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"name != %@", [Person flickrRecentsName]];
+	PersonListViewController *personListController = [[peopleNavController viewControllers] objectAtIndex:0];
+    personListController.fetchedResultsController = [fetcher fetchedResultsControllerForEntity:@"Person"
+                                                                                 withPredicate:pred];
+    personListController.fetcher = fetcher;
+    
     // Override point for customization after application launch.
     return YES;
 }

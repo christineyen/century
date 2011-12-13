@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Person.h"
 
 @interface PhotoListViewController : UITableViewController
+@property (nonatomic, strong) Person *person;
 
 @end

@@ -10,6 +10,7 @@
 
 
 @implementation PhotoListViewController
+@synthesize person=_person;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

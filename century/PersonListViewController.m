@@ -7,9 +7,19 @@
 //
 
 #import "PersonListViewController.h"
+#import "PhotoListViewController.h"
+#import "Photo.h"
+
+#define kPhotoCellIdentifier @"PhotoCell"
+#define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 \
+    green:((c>>16)&0xFF)/255.0 \
+    blue:((c>>8)&0xFF)/255.0 \
+    alpha:((c)&0xFF)/255.0]
 
 
 @implementation PersonListViewController
+@synthesize fetchedResultsController=_fetchedResultsController;
+@synthesize fetcher=_fetcher;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,7 +42,15 @@
 
 - (void)viewDidLoad
 {
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);
+    }
+    self.fetchedResultsController.delegate = self;
+    
     [super viewDidLoad];
+    self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,8 +62,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.fetchedResultsController = nil;
+    self.fetcher = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,28 +96,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPhotoCellIdentifier];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    Person *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Photo *photo = [person.photos anyObject];
     
-    // Configure the cell...
+    UILabel *textLabel = (UILabel *)[cell viewWithTag:100];
+    UILabel *detailLabel = (UILabel *)[cell viewWithTag:101];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:102];
+    
+    textLabel.text = person.name;
+    detailLabel.text = [NSString stringWithFormat:@"%d Photos", [person.photos count]];
+    NSLog(@"photo p ath: %@", photo.path);
+    imageView.image = [UIImage imageNamed:photo.path];
     
     return cell;
 }
@@ -147,13 +167,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    PhotoListViewController *photoViewController = [[PhotoListViewController alloc] init];
+    photoViewController.person = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    [self.navigationController pushViewController:photoViewController animated:YES];
+}
+
+#pragma mark - FetchedResultsController delegate
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
 }
 
 @end

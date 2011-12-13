@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>path</key>
+		<string>enjoy.jpg</string>
+		<key>name</key>
+		<string>Enjoy Your Life</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>eyes.jpg</string>
+		<key>name</key>
+		<string>Eyes Open</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>fall.jpg</string>
+		<key>name</key>
+		<string>Fallscape</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>forestdark.jpg</string>
+		<key>name</key>
+		<string>Forest Through The Trees</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>forestlight.jpg</string>
+		<key>name</key>
+		<string>Forest Light</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>going.jpg</string>
+		<key>name</key>
+		<string>Going Home</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>paper.jpg</string>
+		<key>name</key>
+		<string>Paper Swan</string>
+		<key>user</key>
+		<string>Goofy</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>apples.jpg</string>
+		<key>name</key>
+		<string>Apples to Apples</string>
+		<key>user</key>
+		<string>Mickey</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>bananas.jpg</string>
+		<key>name</key>
+		<string>Fresh Bananas</string>
+		<key>user</key>
+		<string>Mickey</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>caged.jpg</string>
+		<key>name</key>
+		<string>Caged</string>
+		<key>user</key>
+		<string>Mickey</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>caged3.jpg</string>
+		<key>name</key>
+		<string>Caged Closeup</string>
+		<key>user</key>
+		<string>Mickey</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>drive.jpg</string>
+		<key>name</key>
+		<string>Just Drive</string>
+		<key>user</key>
+		<string>Mickey</string>
+	</dict>
+	<dict>
+		<key>path</key>
+		<string>dust.jpg</string>
+		<key>name</key>
+		<string>Dust</string>
+		<key>user</key>
+		<string>Mickey</string>
+	</dict>
+</array>
+</plist>
