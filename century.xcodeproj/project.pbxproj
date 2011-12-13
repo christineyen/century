@@ -14,7 +14,9 @@
 		97D779611496DE19005F4CFB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779601496DE19005F4CFB /* main.m */; };
 		97D779651496DE19005F4CFB /* CenturyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779641496DE19005F4CFB /* CenturyAppDelegate.m */; };
 		97D779681496DE19005F4CFB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D779661496DE19005F4CFB /* MainStoryboard.storyboard */; };
-		97D7796B1496DE19005F4CFB /* CenturyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D7796A1496DE19005F4CFB /* CenturyViewController.m */; };
+		97D7797A1496E125005F4CFB /* icon-city.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779781496E125005F4CFB /* icon-city.png */; };
+		97D7797B1496E125005F4CFB /* icon-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779791496E125005F4CFB /* icon-map.png */; };
+		97D7797F1496E16E005F4CFB /* icon-film-roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D7797E1496E16E005F4CFB /* icon-film-roll.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +31,9 @@
 		97D779631496DE19005F4CFB /* CenturyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenturyAppDelegate.h; sourceTree = "<group>"; };
 		97D779641496DE19005F4CFB /* CenturyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenturyAppDelegate.m; sourceTree = "<group>"; };
 		97D779671496DE19005F4CFB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		97D779691496DE19005F4CFB /* CenturyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenturyViewController.h; sourceTree = "<group>"; };
-		97D7796A1496DE19005F4CFB /* CenturyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenturyViewController.m; sourceTree = "<group>"; };
+		97D779781496E125005F4CFB /* icon-city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-city.png"; sourceTree = "<group>"; };
+		97D779791496E125005F4CFB /* icon-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-map.png"; sourceTree = "<group>"; };
+		97D7797E1496E16E005F4CFB /* icon-film-roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-film-roll.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +83,9 @@
 				97D779631496DE19005F4CFB /* CenturyAppDelegate.h */,
 				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
 				97D779661496DE19005F4CFB /* MainStoryboard.storyboard */,
-				97D779691496DE19005F4CFB /* CenturyViewController.h */,
-				97D7796A1496DE19005F4CFB /* CenturyViewController.m */,
+				97D779771496DF21005F4CFB /* View Controllers */,
 				97D7795B1496DE19005F4CFB /* Supporting Files */,
+				97D7797C1496E129005F4CFB /* Resources */,
 			);
 			path = century;
 			sourceTree = "<group>";
@@ -96,6 +99,31 @@
 				97D779621496DE19005F4CFB /* century-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		97D779771496DF21005F4CFB /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		97D7797C1496E129005F4CFB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97D7797D1496E136005F4CFB /* iconsandsuch */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		97D7797D1496E136005F4CFB /* iconsandsuch */ = {
+			isa = PBXGroup;
+			children = (
+				97D7797E1496E16E005F4CFB /* icon-film-roll.png */,
+				97D779781496E125005F4CFB /* icon-city.png */,
+				97D779791496E125005F4CFB /* icon-map.png */,
+			);
+			name = iconsandsuch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +179,9 @@
 			files = (
 				97D7795F1496DE19005F4CFB /* InfoPlist.strings in Resources */,
 				97D779681496DE19005F4CFB /* MainStoryboard.storyboard in Resources */,
+				97D7797A1496E125005F4CFB /* icon-city.png in Resources */,
+				97D7797B1496E125005F4CFB /* icon-map.png in Resources */,
+				97D7797F1496E16E005F4CFB /* icon-film-roll.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +194,6 @@
 			files = (
 				97D779611496DE19005F4CFB /* main.m in Sources */,
 				97D779651496DE19005F4CFB /* CenturyAppDelegate.m in Sources */,
-				97D7796B1496DE19005F4CFB /* CenturyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
