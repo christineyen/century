@@ -157,6 +157,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="fy5-y6-Vfb" id="ZUG-ZJ-LCZ"/>
+                        <outlet property="scrollView" destination="HNT-Yo-iWj" id="8Cg-jP-Z5o"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="2494" y="-58"/>
@@ -252,6 +256,9 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fTB-4R-VS5"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="uXo-gD-YXw"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="079-QL-0NQ" id="Y4c-s1-SNu"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="2923" y="-58"/>
@@ -401,30 +408,6 @@
         <image name="icon-film-roll.png" width="26" height="22"/>
         <image name="icon-map.png" width="26" height="21"/>
     </resources>
-    <classes>
-        <class className="FlickrListViewController" superclassName="PhotoListViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrListViewController.h"/>
-        </class>
-        <class className="PersonListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonListViewController.h"/>
-        </class>
-        <class className="PhotoDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoDetailViewController.h"/>
-        </class>
-        <class className="PhotoEditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="save:"/>
-            </relationships>
-        </class>
-        <class className="PhotoListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoListViewController.h"/>
-        </class>
-        <class className="RandomMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomMapViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

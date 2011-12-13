@@ -14,6 +14,7 @@
 @interface PhotoEditViewController : UIViewController
 @property (strong, nonatomic) Photo *photo;
 @property (weak, nonatomic) id <PhotoEditViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;

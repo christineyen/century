@@ -11,6 +11,8 @@
 
 @implementation PhotoDetailViewController
 @synthesize photo=_photo;
+@synthesize imageView=_imageView;
+@synthesize scrollView=_scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,9 +46,8 @@
     [super viewDidLoad];
     
     UIImage *uiImg = [self.photo getUIImage];
-    UIImageView *imageView = (UIImageView *)[self.view viewWithTag:301];
     if (uiImg != nil) {
-        imageView.image = uiImg;
+        self.imageView.image = uiImg;
     } else if (self.photo.url != nil) {
         NSLog(@"need progress hud...");
         
@@ -54,15 +55,14 @@
         dispatch_async(bg_queue, ^{
             self.photo.data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.photo.url]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                imageView.image = [UIImage imageWithData:self.photo.data];
+                self.imageView.image = [UIImage imageWithData:self.photo.data];
                 NSLog(@"here's where i'd hide the progress hud");
             });
         });
     }
     
-    UIScrollView *scrollView = (UIScrollView *)[self.view viewWithTag:300];
-    scrollView.maximumZoomScale = 10.0;
-    scrollView.delegate = self;
+    self.scrollView.maximumZoomScale = 10.0;
+    self.scrollView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

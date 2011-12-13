@@ -14,4 +14,6 @@
         PhotoEditViewControllerDelegate>
 
 @property (nonatomic, strong) Photo *photo;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
