@@ -9,6 +9,7 @@
 #import "PhotoDetailViewController.h"
 
 @implementation PhotoDetailViewController
+@synthesize photo=_photo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

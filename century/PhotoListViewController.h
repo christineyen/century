@@ -11,5 +11,7 @@
 
 @interface PhotoListViewController : UITableViewController
 @property (nonatomic, strong) Person *person;
+@property (nonatomic, weak) UILabel *photoCountLabel;
 
+- (BOOL)isLastCell:(NSIndexPath *)indexPath;
 @end

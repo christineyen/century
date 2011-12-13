@@ -7,10 +7,20 @@
 //
 
 #import "PhotoListViewController.h"
+#import "PhotoDetailViewController.h"
+#import "FlickrFetcher.h"
+#import "Photo.h"
 
+#define kPhotoCellIdentifier @"PhotoCell"
+#define kPhotoCountCellIdentifier @"PhotoCountCell"
+#define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 \
+    green:((c>>16)&0xFF)/255.0 \
+    blue:((c>>8)&0xFF)/255.0 \
+    alpha:((c)&0xFF)/255.0]
 
 @implementation PhotoListViewController
 @synthesize person=_person;
+@synthesize photoCountLabel=_photoCountLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,29 +39,32 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (BOOL)isLastCell:(NSIndexPath *)indexPath {
+    return indexPath.row == [self.person.photos count];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
+    
+    if (self.person != nil) {
+        self.title = self.person.name;
+    }
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.photoCountLabel = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -69,6 +82,12 @@
     [super viewDidDisappear:animated];
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    
+    [self.navigationItem setHidesBackButton:editing animated:YES];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -79,82 +98,73 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.person.photos count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    UITableViewCell *cell;
+    if ([self isLastCell:indexPath]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:kPhotoCountCellIdentifier];
+        
+        if (!self.photoCountLabel) {
+            self.photoCountLabel = (UILabel *)[cell viewWithTag:200];
+        }
+        self.photoCountLabel.text = [NSString stringWithFormat:@"%d", [self.person.photos count]];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:kPhotoCellIdentifier];
+        
+        Photo *photo = [self.person.photosAsArray objectAtIndex:indexPath.row];
+        
+        UILabel *textLabel = (UILabel *)[cell viewWithTag:100];
+        textLabel.text = photo.name;
+        
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:102];
+        imageView.image = [UIImage imageNamed:photo.path];
     }
-    
-    // Configure the cell...
-    
     return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return ![self isLastCell:indexPath];
 }
-*/
 
-/*
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        Photo *photo = [self.person.photosAsArray objectAtIndex:indexPath.row];
+        
+        NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
+        [context deleteObject:photo];
+        [context save:nil];
+        
+        // Update UI
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        self.photoCountLabel.text = [NSString stringWithFormat:@"%d", [self.person.photos count]];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PickPhoto"]) {
+        PhotoDetailViewController *photoViewController = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        photoViewController.photo = [self.person.photosAsArray objectAtIndex:indexPath.row];
+        photoViewController.wantsFullScreenLayout = YES;
+    }
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "PhotoListViewController.h"
 #import "Photo.h"
 
-#define kPhotoCellIdentifier @"PhotoCell"
+#define kPersonCellIdentifier @"PersonCell"
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 \
     green:((c>>16)&0xFF)/255.0 \
     blue:((c>>8)&0xFF)/255.0 \
@@ -107,7 +107,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPhotoCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPersonCellIdentifier];
     
     Person *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
     Photo *photo = [person.photos anyObject];
