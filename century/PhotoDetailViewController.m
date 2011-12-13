@@ -59,9 +59,12 @@
                 NSLog(@"here's where i'd hide the progress hud");
             });
         });
+        dispatch_release(bg_queue);
     }
     
+    self.scrollView.multipleTouchEnabled = YES;
     self.scrollView.maximumZoomScale = 10.0;
+    self.scrollView.contentSize = CGSizeMake(320, 460);
     self.scrollView.delegate = self;
 }
 
@@ -96,6 +99,11 @@
         editController.photo = self.photo;
         editController.delegate = self;
     }
+}
+
+#pragma mark - UIScrollViewDelegate methods
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.imageView;
 }
 
 #pragma mark - PhotoEditViewControllerDelegate methods
