@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface RandomMapViewController : UIViewController
+@interface RandomMapViewController : UIViewController<CLLocationManagerDelegate> {
+    IBOutlet MKMapView *mapView;
+}
+
+- (NSArray *)fetchAnnotationsForLat:(double)lat andLongitude:(double)lng;
+- (void)setIsLoading:(BOOL)loading;
 
 @end
