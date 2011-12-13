@@ -9,6 +9,8 @@
 #import "PhotoEditViewController.h"
 
 @implementation PhotoEditViewController
+@synthesize photo=_photo;
+@synthesize delegate=_delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +57,18 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)cancel:(id)sender {
+    [self.delegate photoEditviewDidCancel];
+}
+
+- (IBAction)save:(id)sender {
+    [self.delegate photoEditViewDidSave:self];
+}
+
+- (UITextField *)nameTextField {
+    return (UITextField *)[self.view viewWithTag:400];
 }
 
 @end

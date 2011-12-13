@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoEditViewController.h"
 #import "Photo.h"
 
-@interface PhotoDetailViewController : UIViewController
+@interface PhotoDetailViewController : UIViewController<UIScrollViewDelegate,
+        PhotoEditViewControllerDelegate>
 
 @property (nonatomic, strong) Photo *photo;
 @end
