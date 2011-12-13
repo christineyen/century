@@ -169,4 +169,10 @@
     }
 }
 
+#pragma mark - PullToRefresh Overrides
+
+- (void)refresh {
+    [self stopLoading];
+}
+
 @end

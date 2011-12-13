@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "FlickrFetcher.h"
 
-@interface PersonListViewController : UITableViewController<UITableViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDataSource>
+@interface PersonListViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) FlickrFetcher *fetcher;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;

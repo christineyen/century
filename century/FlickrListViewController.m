@@ -27,19 +27,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)refresh {
-    dispatch_queue_t person_queue = dispatch_queue_create("Fetch Flickr Person", NULL);
-    dispatch_async(person_queue, ^{
-        if ([self.person fetchMorePhotos] > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"reloading tableview!");
-                [self.tableView reloadData];
-            });
-        } // else, no need to refresh
-    });
-    dispatch_release(person_queue);
-}
-
 #pragma mark - View lifecycle
 
 /*
@@ -73,6 +60,28 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - PullToRefresh Overrides
+
+- (void)refresh {
+    dispatch_queue_t person_queue = dispatch_queue_create("Fetch Flickr Person", NULL);
+    dispatch_async(person_queue, ^{
+        if ([self.person fetchMorePhotos] > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"reloading tableview!");
+                [self.tableView reloadData];
+            });
+        } // else, no need to refresh
+    });
+    dispatch_release(person_queue);
+    [self stopLoading];
+}
+
+- (void)setupStrings {
+    textPull = [[NSString alloc] initWithString:@"Pull down to PULL FROM FLICKR..."];
+    textRelease = [[NSString alloc] initWithString:@"Release to GET FROM FLICKR..."];
+    textLoading = [[NSString alloc] initWithString:@"Loading FROM FLICKR..."];
 }
 
 @end

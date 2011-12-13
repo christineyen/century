@@ -320,7 +320,7 @@
                 <navigationController id="60D-6k-3ID" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="People" image="icon-film-roll.png" id="PTO-vi-nQQ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="naL-xp-E5H">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="naL-xp-E5H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -338,7 +338,7 @@
                 <navigationController id="2AT-On-doV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Flickr Users" image="icon-city.png" id="7qQ-rF-eSJ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WH4-IF-K2e">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WH4-IF-K2e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -453,8 +453,11 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
-        <class className="PhotoListViewController" superclassName="UITableViewController">
+        <class className="PhotoListViewController" superclassName="PullRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoListViewController.h"/>
+        </class>
+        <class className="PullRefreshTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
         </class>
         <class className="RandomMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomMapViewController.h"/>

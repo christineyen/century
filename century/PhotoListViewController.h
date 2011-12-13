@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
 #import "Person.h"
 
-@interface PhotoListViewController : UITableViewController
+@interface PhotoListViewController : PullRefreshTableViewController
 @property (nonatomic, strong) Person *person;
 @property (nonatomic, weak) UILabel *photoCountLabel;
 
