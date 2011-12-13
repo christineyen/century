@@ -32,14 +32,15 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
+- (void)toggleNavigationBar:(BOOL)hidden {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2];
+    
+    [self.navigationController setNavigationBarHidden:hidden animated:YES];
+    [UIView commitAnimations];
 }
-*/
+
+#pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -63,10 +64,23 @@
         dispatch_release(bg_queue);
     }
     
-    self.scrollView.multipleTouchEnabled = YES;
-    self.scrollView.maximumZoomScale = 10.0;
-    self.scrollView.contentSize = CGSizeMake(320, 460);
+    // Set up ScrollView
     self.scrollView.delegate = self;
+    
+    // Handle gestures
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self
+                                         action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self
+                                         action:@selector(handleDoubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    
+    // Single taps are only recognized if a double tap definitely doesn't occur
+    [singleTap requireGestureRecognizerToFail:doubleTap];
+    
+    [self.imageView addGestureRecognizer:singleTap];
+    [self.imageView addGestureRecognizer:doubleTap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -119,5 +133,36 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - UITapGesture Handlers
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {
+    BOOL hidden = !self.navigationController.navigationBarHidden;
+    [self toggleNavigationBar:hidden];
+}
+
+- (void)handleDoubleTap:(UIGestureRecognizer *)gestureRecognizer {
+    float zoomScale = [self.scrollView zoomScale];
+    if (zoomScale != 1.0) {
+        [self.scrollView zoomToRect:[self.scrollView frame] animated:YES];
+    } else {
+        CGRect zoomRect = [self zoomRectWithCenter:[gestureRecognizer locationInView:gestureRecognizer.view]];
+        [self.scrollView zoomToRect:zoomRect animated:YES];
+    }
+}
+
+#pragma mark - Utility methods
+- (CGRect)zoomRectWithCenter:(CGPoint) center {
+    CGRect zoomRect;
+    
+    // the zoom rect is within the content view's coordinates.
+    //   as the zoom scale increases beyond the default 1.0, less content is visible /
+    //   / the size of the zoom rect shrinks.
+    zoomRect.size.height = [self.scrollView frame].size.height / 2.0;
+    zoomRect.size.width = [self.scrollView frame].size.width / 2.0;
+    
+    zoomRect.origin.x = center.x - (zoomRect.size.width / 2.0);
+    zoomRect.origin.y = center.y - (zoomRect.size.height / 2.0);
+    
+    return zoomRect;
+}
 
 @end

@@ -16,4 +16,6 @@
 @property (nonatomic, strong) Photo *photo;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+- (CGRect)zoomRectWithCenter:(CGPoint) center;
 @end
