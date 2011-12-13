@@ -50,6 +50,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
     
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     if (self.person != nil) {
         self.title = self.person.name;
     }
