@@ -23,6 +23,11 @@
 		97D7798E1496E748005F4CFB /* PhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D7798D1496E748005F4CFB /* PhotoEditViewController.m */; };
 		97D779911496E77D005F4CFB /* FlickrListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779901496E77D005F4CFB /* FlickrListViewController.m */; };
 		97D779941496E7DC005F4CFB /* RandomMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779931496E7DC005F4CFB /* RandomMapViewController.m */; };
+		97D7799714970006005F4CFB /* People.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97D7799514970006005F4CFB /* People.xcdatamodeld */; };
+		97D779A4149702DC005F4CFB /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779A3149702DC005F4CFB /* Person.m */; };
+		97D779A7149702DC005F4CFB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779A6149702DC005F4CFB /* Photo.m */; };
+		97D779A91497035A005F4CFB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779A81497035A005F4CFB /* CoreData.framework */; };
+		97D779AD14970445005F4CFB /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779AC14970445005F4CFB /* FlickrFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +57,14 @@
 		97D779901496E77D005F4CFB /* FlickrListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrListViewController.m; sourceTree = "<group>"; };
 		97D779921496E7DC005F4CFB /* RandomMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomMapViewController.h; sourceTree = "<group>"; };
 		97D779931496E7DC005F4CFB /* RandomMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomMapViewController.m; sourceTree = "<group>"; };
+		97D7799614970006005F4CFB /* People.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = People.xcdatamodel; sourceTree = "<group>"; };
+		97D779A2149702DC005F4CFB /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		97D779A3149702DC005F4CFB /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		97D779A5149702DC005F4CFB /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		97D779A6149702DC005F4CFB /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		97D779A81497035A005F4CFB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		97D779AB14970445005F4CFB /* FlickrFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFetcher.h; sourceTree = "<group>"; };
+		97D779AC14970445005F4CFB /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97D779A91497035A005F4CFB /* CoreData.framework in Frameworks */,
 				97D779551496DE19005F4CFB /* UIKit.framework in Frameworks */,
 				97D779571496DE19005F4CFB /* Foundation.framework in Frameworks */,
 				97D779591496DE19005F4CFB /* CoreGraphics.framework in Frameworks */,
@@ -71,6 +85,7 @@
 		97D779451496DE19005F4CFB = {
 			isa = PBXGroup;
 			children = (
+				97D779A81497035A005F4CFB /* CoreData.framework */,
 				97D7795A1496DE19005F4CFB /* century */,
 				97D779531496DE19005F4CFB /* Frameworks */,
 				97D779511496DE19005F4CFB /* Products */,
@@ -98,10 +113,13 @@
 		97D7795A1496DE19005F4CFB /* century */ = {
 			isa = PBXGroup;
 			children = (
+				97D7799514970006005F4CFB /* People.xcdatamodeld */,
+				97D7799E1497023A005F4CFB /* Model */,
 				97D779631496DE19005F4CFB /* CenturyAppDelegate.h */,
 				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
 				97D779661496DE19005F4CFB /* MainStoryboard.storyboard */,
 				97D779771496DF21005F4CFB /* View Controllers */,
+				97D779AA1497042F005F4CFB /* External Libraries */,
 				97D7795B1496DE19005F4CFB /* Supporting Files */,
 				97D7797C1496E129005F4CFB /* Resources */,
 			);
@@ -154,6 +172,26 @@
 				97D779791496E125005F4CFB /* icon-map.png */,
 			);
 			name = iconsandsuch;
+			sourceTree = "<group>";
+		};
+		97D7799E1497023A005F4CFB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97D779A5149702DC005F4CFB /* Photo.h */,
+				97D779A6149702DC005F4CFB /* Photo.m */,
+				97D779A2149702DC005F4CFB /* Person.h */,
+				97D779A3149702DC005F4CFB /* Person.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		97D779AA1497042F005F4CFB /* External Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				97D779AB14970445005F4CFB /* FlickrFetcher.h */,
+				97D779AC14970445005F4CFB /* FlickrFetcher.m */,
+			);
+			name = "External Libraries";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +268,10 @@
 				97D7798E1496E748005F4CFB /* PhotoEditViewController.m in Sources */,
 				97D779911496E77D005F4CFB /* FlickrListViewController.m in Sources */,
 				97D779941496E7DC005F4CFB /* RandomMapViewController.m in Sources */,
+				97D7799714970006005F4CFB /* People.xcdatamodeld in Sources */,
+				97D779A4149702DC005F4CFB /* Person.m in Sources */,
+				97D779A7149702DC005F4CFB /* Photo.m in Sources */,
+				97D779AD14970445005F4CFB /* FlickrFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +385,20 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		97D7799514970006005F4CFB /* People.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				97D7799614970006005F4CFB /* People.xcdatamodel */,
+			);
+			currentVersion = 97D7799614970006005F4CFB /* People.xcdatamodel */;
+			name = People.xcdatamodeld;
+			path = ../People.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 97D779471496DE19005F4CFB /* Project object */;
 }

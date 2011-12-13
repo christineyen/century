@@ -324,7 +324,7 @@
                             <outlet property="delegate" destination="yrY-K7-hgn" id="km5-Q1-o4s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xLk-9m-JV6"/>
+                    <navigationItem key="navigationItem" title="Flickr Users" id="xLk-9m-JV6"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1530" y="-58"/>
