@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableArray *dataArray;
+@property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
 
 - (void)setUpDataFakeMethodName:(NSDate *)start endDate:(NSDate *)end;
 @end

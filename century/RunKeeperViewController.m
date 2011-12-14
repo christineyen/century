@@ -9,9 +9,11 @@
 #import "RunKeeperViewController.h"
 #import "NSDate+TKCategory.h"
 
+
 @implementation RunKeeperViewController
 @synthesize dataDictionary=_dataDictionary;
 @synthesize dataArray=_dataArray;
+@synthesize rkCell=_rkCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,10 +40,13 @@
     self.dataArray = [NSMutableArray array];
     self.dataDictionary = [NSMutableDictionary dictionary];
     
+    NSArray *arr = [NSArray arrayWithObject:@"pfft"];
+    
     NSDate *date = start;
+    
     while ([date compare:end] != NSOrderedDescending) {
         if (arc4random() % 2 == 0) {
-            [self.dataDictionary setObject:[NSArray array] forKey:date];
+            [self.dataDictionary setObject:arr forKey:date];
             [self.dataArray addObject:[NSNumber numberWithBool:YES]];
         } else {
             [self.dataArray addObject:[NSNumber numberWithBool:NO]];
@@ -91,6 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray *ar = [self.dataDictionary objectForKey:[self.monthView dateSelected]];
+    
     if (ar == nil) {
         return 0;
     }
@@ -99,8 +105,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RunKeeperTableViewCell"];
+    if (cell == nil) {
+        [[NSBundle mainBundle] loadNibNamed:@"RunKeeperTableViewCell" owner:self options:nil];
+        cell = self.rkCell;
+        self.rkCell = nil;
+    }
     
-    return nil;
+    return cell;
 }
 
 
