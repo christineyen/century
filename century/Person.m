@@ -44,7 +44,7 @@
     return [self.name isEqualToString:Person.flickrRecentsName];
 }
 
-- (int)fetchMorePhotos {
+- (BOOL)fetchMorePhotosWithError:(NSError **)error {
     FlickrFetcher *fetcher = [FlickrFetcher sharedInstance];
     
     NSUInteger oldCount = [self.photos count];
@@ -52,20 +52,11 @@
     // Fetch items from Flickr, within reason
     NSManagedObjectContext *context = [fetcher managedObjectContext];
     
-    // TODO: actually handle errors more gracefully, somewhere
     NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:kFlickrInterestingUrl]];
-    NSError *error = nil;
-    NSArray *items = [[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error]
+    NSError *flickrError = nil;
+    NSArray *items = [[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&flickrError]
                       objectForKey:@"items"];
-    
-    
-    
-    // check me!.
-    
-    
-    
     Photo *photo;
-    NSString *flickrUrl;
     
     for (NSDictionary *photoAttrs in items) {
         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo"
@@ -73,20 +64,20 @@
         photo.name = [photoAttrs objectForKey:@"title"];
         photo.person = self;
         
-        flickrUrl = [[photoAttrs objectForKey:@"media"] objectForKey:@"m"];
-        photo.url = [flickrUrl stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_z.jpg"];
+        photo.url = [[[photoAttrs objectForKey:@"media"] objectForKey:@"m"]
+                     stringByReplacingOccurrencesOfString:@"_m.jpg" withString:@"_z.jpg"];
     }
     
     [context save:nil];
     
-    NSUInteger diff = [self.photos count] - oldCount;
-    if (diff == 0) {
-        NSLog(@"ERROR SUSPECTED: %@, %@", error, [error userInfo]);
-        return 0;
-    } 
+    if (flickrError != nil) {
+        *error = flickrError;
+        return NO;
+    }
     
+    NSUInteger diff = [self.photos count] - oldCount;
     NSLog(@"%d photos pulled from Flickr", diff);
-    return diff;
+    return YES;
 }
 
 

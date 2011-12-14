@@ -7,6 +7,7 @@
 //
 
 #import "FlickrListViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation FlickrListViewController
 
@@ -65,13 +66,21 @@
 #pragma mark - PullToRefresh Overrides
 
 - (void)refresh {
+    [SVProgressHUD show];
+    
     dispatch_queue_t person_queue = dispatch_queue_create("Fetch Flickr Person", NULL);
     dispatch_async(person_queue, ^{
-        if ([self.person fetchMorePhotos] > 0) {
+        NSError *error;
+        if ([self.person fetchMorePhotosWithError:&error]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
+                [SVProgressHUD dismiss];
             });
-        } // else, no need to refresh
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismissWithError:[[error userInfo] objectForKey:@"NSDebugDescription"]];
+            });
+        }
     });
     dispatch_release(person_queue);
     [self stopLoading];
