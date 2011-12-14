@@ -309,6 +309,7 @@
                         <segue destination="60D-6k-3ID" kind="relationship" relationship="viewControllers" id="HVO-rW-fLc"/>
                         <segue destination="2AT-On-doV" kind="relationship" relationship="viewControllers" id="qk6-7z-hnk"/>
                         <segue destination="EKG-eN-NZS" kind="relationship" relationship="viewControllers" id="HHv-rL-aCy"/>
+                        <segue destination="ueg-zd-2ny" kind="relationship" relationship="viewControllers" id="Dzr-sI-NK5"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -420,6 +421,35 @@
             </objects>
             <point key="canvasLocation" x="1530" y="-58"/>
         </scene>
+        <scene sceneID="AuU-bs-IY5">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3yM-Wd-0Ka" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="TtD-b5-Ylh" customClass="RunKeeperViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V7u-2Q-UPc" customClass="RunKeeperView">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="580-1d-znf"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1604" y="1191"/>
+        </scene>
+        <scene sceneID="e7D-qH-YdM">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nx4-xj-TOH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="ueg-zd-2ny" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="RunKeeper" id="bJ0-A6-oYZ"/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JJN-F6-0AQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TtD-b5-Ylh" kind="relationship" relationship="rootViewController" id="rtz-fN-FLs"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="1070" y="1191"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon-city.png" width="23" height="27"/>
@@ -464,6 +494,15 @@
             <relationships>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
+        </class>
+        <class className="RunKeeperViewController" superclassName="TKCalendarMonthTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RunKeeperViewController.h"/>
+        </class>
+        <class className="TKCalendarMonthTableViewController" superclassName="TKCalendarMonthViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TKCalendarMonthTableViewController.h"/>
+        </class>
+        <class className="TKCalendarMonthViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TKCalendarMonthViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
