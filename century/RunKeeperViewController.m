@@ -11,6 +11,7 @@
 
 @implementation RunKeeperViewController
 @synthesize dataDictionary=_dataDictionary;
+@synthesize dataArray=_dataArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +28,29 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)setUpDataFakeMethodName:(NSDate *)start endDate:(NSDate *)end {
+    // this function sets up dataArray & dataDictionary
+    // dataArray: has boolean markers for each day to pass to the calendar view (via the delegate function)
+    // dataDictionary: has items that are associated with date keys (for tableview)
+    
+    self.dataArray = [NSMutableArray array];
+    self.dataDictionary = [NSMutableDictionary dictionary];
+    
+    NSDate *date = start;
+    while ([date compare:end] != NSOrderedDescending) {
+        if (arc4random() % 2 == 0) {
+            [self.dataDictionary setObject:[NSArray array] forKey:date];
+            [self.dataArray addObject:[NSNumber numberWithBool:YES]];
+        } else {
+            [self.dataArray addObject:[NSNumber numberWithBool:NO]];
+        }
+        
+        TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone systemTimeZone]];
+        info.day++;
+        date = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone systemTimeZone]];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -62,7 +86,6 @@
 #pragma mark - UITableViewController Data Source / Delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
@@ -84,18 +107,17 @@
 #pragma mark - TKCalendarMonthTableViewController delegate methods
 
 - (NSArray *)calendarMonthView:(TKCalendarMonthView *)monthView marksFromDate:(NSDate *)startDate toDate:(NSDate *)lastDate {
+    [self setUpDataFakeMethodName:startDate endDate:lastDate];
     
-    
-    return [NSArray array];
+    return self.dataArray;
 }
 
 - (void)calendarMonthView:(TKCalendarMonthView *)monthView didSelectDate:(NSDate *)date {
-    NSLog(@"mer");
-//    TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone systemTimeZone]];
-//    NSDate *myTimeZoneDay = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone systemTimeZone]];
-//    
-//    NSLog(@"Date selected: %@", myTimeZoneDay);
-//    [self.tableView reloadData];
+    TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone systemTimeZone]];
+    NSDate *myTimeZoneDay = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone systemTimeZone]];
+    
+    NSLog(@"Date selected: %@", myTimeZoneDay);
+    [self.tableView reloadData];
 }
 
 - (void)calendarMonthView:(TKCalendarMonthView *)monthView monthDidChange:(NSDate *)month animated:(BOOL)animated {

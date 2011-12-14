@@ -430,7 +430,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="580-1d-znf"/>
+                    <navigationItem key="navigationItem" title="RunKeeper activity" id="580-1d-znf"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1604" y="1191"/>

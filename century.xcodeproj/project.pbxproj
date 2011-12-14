@@ -14,6 +14,7 @@
 		97CF91E214983AC000425E72 /* TKGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D914983AC000425E72 /* TKGlobal.m */; };
 		97CF91E314983AC000425E72 /* UIImage+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91DB14983AC000425E72 /* UIImage+TKCategory.m */; };
 		97CF91E414983AC000425E72 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91DD14983AC000425E72 /* UIView+TKCategory.m */; };
+		97CF91F2149843F200425E72 /* RunKeeperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */; };
 		97D779551496DE19005F4CFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779541496DE19005F4CFB /* UIKit.framework */; };
 		97D779571496DE19005F4CFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779561496DE19005F4CFB /* Foundation.framework */; };
 		97D779591496DE19005F4CFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779581496DE19005F4CFB /* CoreGraphics.framework */; };
@@ -77,6 +78,7 @@
 		97CF91DB14983AC000425E72 /* UIImage+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TKCategory.m"; sourceTree = "<group>"; };
 		97CF91DC14983AC000425E72 /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
 		97CF91DD14983AC000425E72 /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
+		97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunKeeperTableViewCell.xib; sourceTree = "<group>"; };
 		97D779501496DE19005F4CFB /* century.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = century.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D779541496DE19005F4CFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97D779561496DE19005F4CFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -159,6 +161,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97CF91F0149843DB00425E72 /* View Elements */ = {
+			isa = PBXGroup;
+			children = (
+				97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */,
+			);
+			name = "View Elements";
+			sourceTree = "<group>";
+		};
 		97D779451496DE19005F4CFB = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +209,7 @@
 				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
 				97D779661496DE19005F4CFB /* MainStoryboard.storyboard */,
 				97D779771496DF21005F4CFB /* View Controllers */,
+				97CF91F0149843DB00425E72 /* View Elements */,
 				97D779AA1497042F005F4CFB /* External Libraries */,
 				97D7795B1496DE19005F4CFB /* Supporting Files */,
 				97D7797C1496E129005F4CFB /* Resources */,
@@ -412,6 +423,7 @@
 				97D779F21498327A005F4CFB /* icon-runner.png in Resources */,
 				97D779F5149833A9005F4CFB /* runkeeper_login.png in Resources */,
 				97D77A0B1498377C005F4CFB /* TapkuLibrary.bundle in Resources */,
+				97CF91F2149843F200425E72 /* RunKeeperTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
