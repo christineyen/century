@@ -28,7 +28,7 @@
     return _calendar;
 }
 
-- (NSDate *)day {
+- (NSDate *)date {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *components = [self.calendar components:unitFlags fromDate:self.startTime];
     return [self.calendar dateFromComponents:components];

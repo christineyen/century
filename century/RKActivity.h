@@ -21,6 +21,6 @@
 
 @property (nonatomic, retain) NSCalendar *calendar;
 
-- (NSDate *)day;
+- (NSDate *)date;
 
 @end
