@@ -11,8 +11,17 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="person" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="photos" inverseEntity="Person" syncable="YES"/>
     </entity>
+    <entity name="RKActivity" representedClassName="RKActivity" syncable="YES">
+        <attribute name="distanceInMeters" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="durationInSeconds" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fetchedTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rkURI" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Person" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Photo" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="RKActivity" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>

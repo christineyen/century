@@ -15,6 +15,7 @@
 		97CF91E314983AC000425E72 /* UIImage+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91DB14983AC000425E72 /* UIImage+TKCategory.m */; };
 		97CF91E414983AC000425E72 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91DD14983AC000425E72 /* UIView+TKCategory.m */; };
 		97CF91F2149843F200425E72 /* RunKeeperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */; };
+		97CF91F914996D6700425E72 /* RKActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91F814996D6700425E72 /* RKActivity.m */; };
 		97D779551496DE19005F4CFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779541496DE19005F4CFB /* UIKit.framework */; };
 		97D779571496DE19005F4CFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779561496DE19005F4CFB /* Foundation.framework */; };
 		97D779591496DE19005F4CFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779581496DE19005F4CFB /* CoreGraphics.framework */; };
@@ -79,6 +80,8 @@
 		97CF91DC14983AC000425E72 /* UIView+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TKCategory.h"; sourceTree = "<group>"; };
 		97CF91DD14983AC000425E72 /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
 		97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunKeeperTableViewCell.xib; sourceTree = "<group>"; };
+		97CF91F714996D6700425E72 /* RKActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKActivity.h; sourceTree = "<group>"; };
+		97CF91F814996D6700425E72 /* RKActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKActivity.m; sourceTree = "<group>"; };
 		97D779501496DE19005F4CFB /* century.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = century.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D779541496DE19005F4CFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97D779561496DE19005F4CFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,7 +206,6 @@
 		97D7795A1496DE19005F4CFB /* century */ = {
 			isa = PBXGroup;
 			children = (
-				97D7799514970006005F4CFB /* People.xcdatamodeld */,
 				97D7799E1497023A005F4CFB /* Model */,
 				97D779631496DE19005F4CFB /* CenturyAppDelegate.h */,
 				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
@@ -275,6 +277,9 @@
 		97D7799E1497023A005F4CFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				97D7799514970006005F4CFB /* People.xcdatamodeld */,
+				97CF91F714996D6700425E72 /* RKActivity.h */,
+				97CF91F814996D6700425E72 /* RKActivity.m */,
 				97D779A5149702DC005F4CFB /* Photo.h */,
 				97D779A6149702DC005F4CFB /* Photo.m */,
 				97D779A2149702DC005F4CFB /* Person.h */,
@@ -456,6 +461,7 @@
 				97CF91E214983AC000425E72 /* TKGlobal.m in Sources */,
 				97CF91E314983AC000425E72 /* UIImage+TKCategory.m in Sources */,
 				97CF91E414983AC000425E72 /* UIView+TKCategory.m in Sources */,
+				97CF91F914996D6700425E72 /* RKActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

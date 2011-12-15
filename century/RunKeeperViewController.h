@@ -9,6 +9,37 @@
 #import <UIKit/UIKit.h>
 #import "TKCalendarMonthTableViewController.h"
 
+#define kFakeRunKeeperActivityJSON @"{ \
+    'size': 40, \
+    'items': \
+    [ { 'type': 'Running', \
+    'start_time': 'Tue, 1 Mar 2011 07:00:00', \
+    'total_distance': 3492.27648, \
+    'duration': 1437, \
+    'uri': '/activities/40' }, \
+    { 'type': 'Running', \
+    'start_time': 'Thu, 3 Mar 2011 07:00:00', \
+    'total_distance': 5310.8352, \
+    'duration': 2278, \
+    'uri': '/activities/39' }, \
+    { 'type': 'Running', \
+    'start_time': 'Sat, 9 Apr 2011 11:00:00', \
+    'total_distance': 12939.1258, \
+    'duration': 5043, \
+    'uri': '/activities/38' }, \
+    { 'type': 'Running', \
+    'start_time': 'Sat, 9 Apr 2011 14:00:00', \
+    'total_distance': 2939.1258, \
+    'duration': 3043, \
+    'uri': '/activities/37' }, \
+    { 'type': 'Running', \
+    'start_time': 'Mon, 9 May 2011 07:00:00', \
+    'total_distance': 6839.712, \
+    'duration': 2570, \
+    'uri': '/activities/36' }], \
+    'previous': 'https://api.runkeeper.com/user/1234567890/activities?page=2&pageSize=4' \
+    }"
+
 @interface RunKeeperViewController : TKCalendarMonthTableViewController<
         TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource>
 
@@ -16,5 +47,5 @@
 @property (strong, nonatomic) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
 
-- (void)setUpDataFakeMethodName:(NSDate *)start endDate:(NSDate *)end;
+- (void)refreshRunKeeperData:(NSDate *)start endDate:(NSDate *)end;
 @end

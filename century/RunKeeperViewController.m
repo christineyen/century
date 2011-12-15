@@ -9,7 +9,6 @@
 #import "RunKeeperViewController.h"
 #import "NSDate+TKCategory.h"
 
-
 @implementation RunKeeperViewController
 @synthesize dataDictionary=_dataDictionary;
 @synthesize dataArray=_dataArray;
@@ -32,7 +31,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)setUpDataFakeMethodName:(NSDate *)start endDate:(NSDate *)end {
+- (void)refreshRunKeeperData:(NSDate *)start endDate:(NSDate *)end {
     // this function sets up dataArray & dataDictionary
     // dataArray: has boolean markers for each day to pass to the calendar view (via the delegate function)
     // dataDictionary: has items that are associated with date keys (for tableview)
@@ -119,7 +118,7 @@
 #pragma mark - TKCalendarMonthTableViewController delegate methods
 
 - (NSArray *)calendarMonthView:(TKCalendarMonthView *)monthView marksFromDate:(NSDate *)startDate toDate:(NSDate *)lastDate {
-    [self setUpDataFakeMethodName:startDate endDate:lastDate];
+    [self refreshRunKeeperData:startDate endDate:lastDate];
     
     return self.dataArray;
 }
