@@ -51,9 +51,9 @@
             [self.dataArray addObject:[NSNumber numberWithBool:NO]];
         }
         
-        TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone systemTimeZone]];
+        TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
         info.day++;
-        date = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone systemTimeZone]];
+        date = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
 }
 
@@ -124,8 +124,8 @@
 }
 
 - (void)calendarMonthView:(TKCalendarMonthView *)monthView didSelectDate:(NSDate *)date {
-    TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone systemTimeZone]];
-    NSDate *myTimeZoneDay = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone systemTimeZone]];
+    TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone  timeZoneForSecondsFromGMT:0]];
+    NSDate *myTimeZoneDay = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     NSLog(@"Date selected: %@", myTimeZoneDay);
     [self.tableView reloadData];

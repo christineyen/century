@@ -23,6 +23,7 @@
 - (NSCalendar *)calendar {
     if (!_calendar) {
         _calendar = [NSCalendar currentCalendar];
+        [_calendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
     return _calendar;
 }
