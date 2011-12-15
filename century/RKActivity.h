@@ -22,5 +22,9 @@
 @property (nonatomic, retain) NSCalendar *calendar;
 
 - (NSDate *)date;
+- (NSString *)imageName;
+- (double)distanceInMiles;
+- (NSString *)durationInHHmmss;
+- (NSString *)pace;
 
 @end

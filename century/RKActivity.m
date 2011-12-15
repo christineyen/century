@@ -8,6 +8,13 @@
 
 #import "RKActivity.h"
 
+#define kRKTypeRunningIcon @"icon-runner.png"
+#define kRKTypeWalkingIcon @"icon-walking.png"
+#define kRKTypeCyclingIcon @"icon-cycling.png"
+
+#define kMetersPerMile 1609.344
+#define kHour 3600.0
+#define kMinute 60.0
 
 @implementation RKActivity
 
@@ -32,6 +39,41 @@
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *components = [self.calendar components:unitFlags fromDate:self.startTime];
     return [self.calendar dateFromComponents:components];
+}
+
+- (NSString *)imageName {
+    if ([self.type isEqualToString:@"Running"]) {
+        return kRKTypeRunningIcon;
+    } else if ([self.type isEqualToString:@"Cycling"]) {
+        return kRKTypeCyclingIcon;
+    } else if ([self.type isEqualToString:@"Walking"]) {
+        return kRKTypeWalkingIcon;
+    }
+    return nil;
+}
+- (double)distanceInMiles {
+    return [self.distanceInMeters doubleValue] / kMetersPerMile;
+}
+
+- (NSString *)durationInHHmmss {
+    int seconds = [self.durationInSeconds intValue];
+    
+    int hours = seconds / kHour;
+    seconds -= hours * kHour;
+    
+    int minutes = seconds / kMinute;
+    seconds -= minutes * kMinute;
+    
+    return [NSString stringWithFormat:@"%02d:%02d:%02d", hours, minutes, seconds];
+}
+
+- (NSString *)pace {
+    double minutes = [self.durationInSeconds intValue] / kMinute;
+    double miles = [self distanceInMiles];
+    int pace = (minutes / miles);
+    int remainderSeconds = ((minutes / miles) - pace) * kMinute;
+    
+    return [NSString stringWithFormat:@"%d:%02d min/mi", pace, remainderSeconds];
 }
 
 @end

@@ -26,12 +26,12 @@
     \"total_distance\": 12939.1258, \
     \"duration\": 5043, \
     \"uri\": \"/activities/38\" }, \
-    { \"type\": \"Running\", \
+    { \"type\": \"Walking\", \
     \"start_time\": \"Fri, 9 Dec 2011 14:00:00\", \
     \"total_distance\": 2939.1258, \
     \"duration\": 3043, \
     \"uri\": \"/activities/37\" }, \
-    { \"type\": \"Running\", \
+    { \"type\": \"Cycling\", \
     \"start_time\": \"Fri, 9 Dec 2011 07:00:00\", \
     \"total_distance\": 6839.712, \
     \"duration\": 2570, \

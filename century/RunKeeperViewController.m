@@ -35,7 +35,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (NSDictionary *)fetchRunKeeperData {
+- (NSDictionary *)fetchAndSaveRunKeeperData {
     // "Fetch" JSON data from RunKeeper API
     
     NSData *jsonData = [kFakeRunKeeperActivityJSON dataUsingEncoding:NSUTF8StringEncoding];
@@ -125,12 +125,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *arr = [self.dataDictionary objectForKey:[self.monthView dateSelected]];
+    RKActivity *activity = [arr objectAtIndex:indexPath.row];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RunKeeperTableViewCell"];
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"RunKeeperTableViewCell" owner:self options:nil];
         cell = self.rkCell;
         self.rkCell = nil;
     }
+    
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:500];
+    UILabel *mileLabel = (UILabel *)[cell viewWithTag:501];
+    UILabel *durationLabel = (UILabel *)[cell viewWithTag:502];
+    UILabel *timestampLabel = (UILabel *)[cell viewWithTag:503];
+    UILabel *paceLabel = (UILabel *)[cell viewWithTag:504];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM dd, YYYY (EEE) @ hh:mma"];
+    
+    imageView.image = [UIImage imageNamed:[activity imageName]];
+    mileLabel.text = [NSString stringWithFormat:@"%.2f miles", [activity distanceInMiles]];
+    durationLabel.text = [NSString stringWithFormat:@"for %@", [activity durationInHHmmss]];
+    timestampLabel.text = [dateFormatter stringFromDate:activity.startTime];
+    paceLabel.text = [NSString stringWithFormat:@"(%@)", [activity pace]];
     
     return cell;
 }
@@ -147,7 +164,7 @@
     self.dataDictionary = [NSMutableDictionary dictionary];
     
     [SVProgressHUD showWithStatus:@"Fetching from RunKeeper..."];
-    NSDictionary *activitiesByDate = [self fetchRunKeeperData];
+    NSDictionary *activitiesByDate = [self fetchAndSaveRunKeeperData];
     if (activitiesByDate) {
         NSLog(@"SUCCESS! Got %d RunKeeper days", [activitiesByDate count]);
         [SVProgressHUD dismissWithSuccess:@"SUCCESS!"];
