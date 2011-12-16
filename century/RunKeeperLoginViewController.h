@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GTMOAuth2Authentication.h"
 
 @interface RunKeeperLoginViewController : UIViewController
+@property (strong, nonatomic) GTMOAuth2Authentication *mAuth;
 @property (weak, nonatomic) IBOutlet UIView *darkBackgroundView;
 @property (weak, nonatomic) IBOutlet UIImageView *welcomeImageView;
 

@@ -445,24 +445,20 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="login:" destination="wBy-YF-40X" eventType="touchUpInside" id="H9Y-TI-1EJ"/>
-                                            <segue destination="TtD-b5-Ylh" kind="push" id="exO-rf-Zcy"/>
+                                            <action selector="login:" destination="wBy-YF-40X" eventType="touchUpInside" id="Cf7-tW-b23"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="imagine
-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iRy-iz-abD">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="imagine " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iRy-iz-abD">
                                 <rect key="frame" x="218" y="17" width="91" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="some very generic, pretty, brand-building
-
-text here" lineBreakMode="wordWrap" numberOfLines="8" minimumFontSize="10" id="U4b-o2-bMo">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="some very generic, pretty, brand-building  text here" lineBreakMode="wordWrap" numberOfLines="8" minimumFontSize="10" id="U4b-o2-bMo">
                                 <rect key="frame" x="218" y="57" width="91" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -484,10 +480,25 @@ text here" lineBreakMode="wordWrap" numberOfLines="8" minimumFontSize="10" id="U
                     <connections>
                         <outlet property="darkBackgroundView" destination="scb-yH-teE" id="f31-Ws-32G"/>
                         <outlet property="welcomeImageView" destination="PS1-e5-MAt" id="0bl-Jh-52e"/>
+                        <segue destination="TtD-b5-Ylh" kind="push" identifier="RunKeeperAuthenticated" id="fX3-cs-jsZ"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1549" y="1191"/>
+        </scene>
+        <scene sceneID="Opr-Ac-b9u">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vih-Gx-TFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="coR-H2-igw" customClass="GTMOAuthViewControllerTouch" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9MZ-tv-MLY">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="M53-1m-yTU"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1792" y="565"/>
         </scene>
         <scene sceneID="AuU-bs-IY5">
             <objects>
@@ -501,7 +512,7 @@ text here" lineBreakMode="wordWrap" numberOfLines="8" minimumFontSize="10" id="U
                     <navigationItem key="navigationItem" title="RunKeeper activity" id="580-1d-znf"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2007" y="1191"/>
+            <point key="canvasLocation" x="2046" y="1191"/>
         </scene>
         <scene sceneID="e7D-qH-YdM">
             <objects>
