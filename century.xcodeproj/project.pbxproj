@@ -18,6 +18,9 @@
 		97CF91F914996D6700425E72 /* RKActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91F814996D6700425E72 /* RKActivity.m */; };
 		97CF91FB14998E3500425E72 /* icon-walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91FA14998E3500425E72 /* icon-walking.png */; };
 		97CF91FD14998E6B00425E72 /* icon-cycling.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91FC14998E6B00425E72 /* icon-cycling.png */; };
+		97CF9207149ABBA600425E72 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CF9206149ABBA600425E72 /* tiles.png */; };
+		97CF920B149ABBF800425E72 /* littleupset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97CF920A149ABBF800425E72 /* littleupset.jpg */; };
+		97CF920E149ABDE500425E72 /* RunKeeperLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */; };
 		97D779551496DE19005F4CFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779541496DE19005F4CFB /* UIKit.framework */; };
 		97D779571496DE19005F4CFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779561496DE19005F4CFB /* Foundation.framework */; };
 		97D779591496DE19005F4CFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779581496DE19005F4CFB /* CoreGraphics.framework */; };
@@ -86,6 +89,10 @@
 		97CF91F814996D6700425E72 /* RKActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKActivity.m; sourceTree = "<group>"; };
 		97CF91FA14998E3500425E72 /* icon-walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-walking.png"; sourceTree = "<group>"; };
 		97CF91FC14998E6B00425E72 /* icon-cycling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cycling.png"; sourceTree = "<group>"; };
+		97CF9206149ABBA600425E72 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
+		97CF920A149ABBF800425E72 /* littleupset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = littleupset.jpg; sourceTree = "<group>"; };
+		97CF920C149ABDE500425E72 /* RunKeeperLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunKeeperLoginViewController.h; sourceTree = "<group>"; };
+		97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunKeeperLoginViewController.m; sourceTree = "<group>"; };
 		97D779501496DE19005F4CFB /* century.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = century.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D779541496DE19005F4CFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97D779561496DE19005F4CFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +183,15 @@
 			name = "View Elements";
 			sourceTree = "<group>";
 		};
+		97CF9209149ABBA900425E72 /* graphicelements */ = {
+			isa = PBXGroup;
+			children = (
+				97CF920A149ABBF800425E72 /* littleupset.jpg */,
+				97CF9206149ABBA600425E72 /* tiles.png */,
+			);
+			name = graphicelements;
+			sourceTree = "<group>";
+		};
 		97D779451496DE19005F4CFB = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +265,8 @@
 				97D779901496E77D005F4CFB /* FlickrListViewController.m */,
 				97D779921496E7DC005F4CFB /* RandomMapViewController.h */,
 				97D779931496E7DC005F4CFB /* RandomMapViewController.m */,
+				97CF920C149ABDE500425E72 /* RunKeeperLoginViewController.h */,
+				97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */,
 				97D779F61498348B005F4CFB /* RunKeeperViewController.h */,
 				97D779F71498348B005F4CFB /* RunKeeperViewController.m */,
 			);
@@ -258,6 +276,7 @@
 		97D7797C1496E129005F4CFB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				97CF9209149ABBA900425E72 /* graphicelements */,
 				97D779CA1497564C005F4CFB /* photos */,
 				97D779AE149755B1005F4CFB /* Photos.plist */,
 				97D7797D1496E136005F4CFB /* iconsandsuch */,
@@ -437,6 +456,8 @@
 				97CF91F2149843F200425E72 /* RunKeeperTableViewCell.xib in Resources */,
 				97CF91FB14998E3500425E72 /* icon-walking.png in Resources */,
 				97CF91FD14998E6B00425E72 /* icon-cycling.png in Resources */,
+				97CF9207149ABBA600425E72 /* tiles.png in Resources */,
+				97CF920B149ABBF800425E72 /* littleupset.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +491,7 @@
 				97CF91E314983AC000425E72 /* UIImage+TKCategory.m in Sources */,
 				97CF91E414983AC000425E72 /* UIView+TKCategory.m in Sources */,
 				97CF91F914996D6700425E72 /* RKActivity.m in Sources */,
+				97CF920E149ABDE500425E72 /* RunKeeperLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
