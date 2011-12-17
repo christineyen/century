@@ -9,6 +9,7 @@
 #import "RunKeeperLoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "GTMOAuth2ViewControllerTouch.h"
+#import "RunKeeperViewController.h"
 
 @implementation RunKeeperLoginViewController
 @synthesize mAuth;
@@ -23,6 +24,8 @@ static NSString *const kRunKeeperAccessTokenURL = @"https://runkeeper.com/apps/t
 static NSString *const kRunKeeperAuthorizationURL = @"https://runkeeper.com/apps/authorize";
 // Callback doesn't need to be an actual page; it won't be loaded
 static NSString *const kRunKeeperCallbackURL = @"http://example.com/OAuthCallback";
+
+static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -88,6 +91,23 @@ static NSString *const kRunKeeperCallbackURL = @"http://example.com/OAuthCallbac
     return auth;
 }
 
+- (IBAction)login:(id)sender {
+    NSString *authorizeStr = [NSString stringWithFormat:@"%@?response_type=code&redirect_uri=%@&client_id=%@",
+                              kRunKeeperAuthorizationURL,
+                              kRunKeeperCallbackURL,
+                              kRunKeeperClientId];
+    
+    GTMOAuth2Authentication *auth = [self authForRunKeeper];
+
+    GTMOAuth2ViewControllerTouch *viewController;
+    viewController = [[GTMOAuth2ViewControllerTouch alloc] initWithAuthentication:auth
+                                                                 authorizationURL:[NSURL URLWithString:authorizeStr]
+                                                                 keychainItemName:kRunKeeperKeychainItemName
+                                                                         delegate:self
+                                                                 finishedSelector:@selector(viewController:finishedWithAuth:error:)];
+    [self presentModalViewController:viewController animated:YES];
+}
+
 - (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
       finishedWithAuth:(GTMOAuth2Authentication *)auth
                  error:(NSError *)error {
@@ -100,27 +120,18 @@ static NSString *const kRunKeeperCallbackURL = @"http://example.com/OAuthCallbac
         }
         self.mAuth = nil;
     } else {
-        NSLog(@"authenticated!!!");
-        
         self.mAuth = auth;
+        
+        [self dismissModalViewControllerAnimated:YES];
+        [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
     }
 }
 
-- (IBAction)login:(id)sender {
-    NSString *authorizeStr = [NSString stringWithFormat:@"%@?response_type=code&redirect_uri=%@&client_id=%@",
-                              kRunKeeperAuthorizationURL,
-                              kRunKeeperCallbackURL,
-                              kRunKeeperClientId];
-    
-    GTMOAuth2Authentication *auth = [self authForRunKeeper];
-    
-    GTMOAuth2ViewControllerTouch *viewController;
-    viewController = [[GTMOAuth2ViewControllerTouch alloc] initWithAuthentication:auth
-                                                                 authorizationURL:[NSURL URLWithString:authorizeStr]
-                                                                 keychainItemName:kRunKeeperKeychainItemName
-                                                                         delegate:self
-                                                                 finishedSelector:@selector(viewController:finishedWithAuth:error:)];
-    [[self navigationController] pushViewController:viewController animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:kRunKeeperAuthenticatedSegue]) {
+        RunKeeperViewController *runKeeperController = segue.destinationViewController;
+        runKeeperController.auth = self.mAuth;
+    }
 }
 
 @end

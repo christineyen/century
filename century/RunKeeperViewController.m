@@ -16,6 +16,7 @@
 @implementation RunKeeperViewController
 @synthesize dataDictionary=_dataDictionary;
 @synthesize dataArray=_dataArray;
+@synthesize auth=_auth;
 @synthesize rkCell=_rkCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

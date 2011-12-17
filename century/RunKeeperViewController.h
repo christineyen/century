@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TKCalendarMonthTableViewController.h"
+#import "GTMOAuth2Authentication.h"
+
 #define kFakeRunKeeperActivityJSON @"{ \
     \"size\": 40, \
     \"items\": \
@@ -44,6 +46,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableArray *dataArray;
+@property (strong, nonatomic) GTMOAuth2Authentication *auth;
 @property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
 
 - (NSDictionary *)fetchAndSaveRunKeeperData;
