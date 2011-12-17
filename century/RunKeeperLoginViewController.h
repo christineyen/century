@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UIView *darkBackgroundView;
 @property (weak, nonatomic) IBOutlet UIImageView *welcomeImageView;
 
+- (GTMOAuth2Authentication *)authForRunKeeper;
 @end

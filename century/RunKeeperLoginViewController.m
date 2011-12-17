@@ -31,7 +31,6 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -53,6 +52,15 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 }
 */
 
+- (void)awakeFromNib {
+    GTMOAuth2Authentication *auth = [self authForRunKeeper];
+    if (auth) {
+        [GTMOAuth2ViewControllerTouch authorizeFromKeychainForName:kRunKeeperKeychainItemName
+                                                    authentication:auth];
+    }
+    self.mAuth = auth;
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -61,6 +69,10 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
                                                [UIImage imageNamed:@"tiles.png"]];
     self.welcomeImageView.layer.borderColor = [UIColor blackColor].CGColor;
     self.welcomeImageView.layer.borderWidth = 7.0;
+    
+    if ([self.mAuth canAuthorize]) {
+        [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
+    }
 }
 
 - (void)viewDidUnload
@@ -92,6 +104,11 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 }
 
 - (IBAction)login:(id)sender {
+    if ([self.mAuth canAuthorize]) {
+        [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
+        return;
+    }
+    
     NSString *authorizeStr = [NSString stringWithFormat:@"%@?response_type=code&redirect_uri=%@&client_id=%@",
                               kRunKeeperAuthorizationURL,
                               kRunKeeperCallbackURL,
