@@ -8,7 +8,7 @@
 
 #import "RKActivity.h"
 
-#define kRKTypeRunningIcon @"icon-runner.png"
+#define kRKTypeRunningIcon @"icon-running.png"
 #define kRKTypeWalkingIcon @"icon-walking.png"
 #define kRKTypeCyclingIcon @"icon-cycling.png"
 

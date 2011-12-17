@@ -16,8 +16,6 @@
 		97CF91E414983AC000425E72 /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91DD14983AC000425E72 /* UIView+TKCategory.m */; };
 		97CF91F2149843F200425E72 /* RunKeeperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */; };
 		97CF91F914996D6700425E72 /* RKActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91F814996D6700425E72 /* RKActivity.m */; };
-		97CF91FB14998E3500425E72 /* icon-walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91FA14998E3500425E72 /* icon-walking.png */; };
-		97CF91FD14998E6B00425E72 /* icon-cycling.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CF91FC14998E6B00425E72 /* icon-cycling.png */; };
 		97CF9207149ABBA600425E72 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CF9206149ABBA600425E72 /* tiles.png */; };
 		97CF920B149ABBF800425E72 /* littleupset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97CF920A149ABBF800425E72 /* littleupset.jpg */; };
 		97CF920E149ABDE500425E72 /* RunKeeperLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */; };
@@ -70,10 +68,13 @@
 		97D779DB1497F475005F4CFB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779DA1497F475005F4CFB /* QuartzCore.framework */; };
 		97D779E31497F96D005F4CFB /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779E21497F96D005F4CFB /* PullRefreshTableViewController.m */; };
 		97D779E51497FEBF005F4CFB /* icon-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779E41497FEBF005F4CFB /* icon-arrow.png */; };
-		97D779F21498327A005F4CFB /* icon-runner.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779F11498327A005F4CFB /* icon-runner.png */; };
 		97D779F5149833A9005F4CFB /* runkeeper_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 97D779F4149833A9005F4CFB /* runkeeper_login.png */; };
 		97D779F81498348B005F4CFB /* RunKeeperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779F71498348B005F4CFB /* RunKeeperViewController.m */; };
 		97D77A0B1498377C005F4CFB /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97D77A041498377C005F4CFB /* TapkuLibrary.bundle */; };
+		97E432F1149C541A00F827FD /* icon-runkeeper.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F0149C541A00F827FD /* icon-runkeeper.png */; };
+		97E432F5149C544F00F827FD /* icon-cycling.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F2149C544F00F827FD /* icon-cycling.png */; };
+		97E432F6149C544F00F827FD /* icon-running.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F3149C544F00F827FD /* icon-running.png */; };
+		97E432F7149C544F00F827FD /* icon-walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F4149C544F00F827FD /* icon-walking.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,8 +95,6 @@
 		97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RunKeeperTableViewCell.xib; sourceTree = "<group>"; };
 		97CF91F714996D6700425E72 /* RKActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKActivity.h; sourceTree = "<group>"; };
 		97CF91F814996D6700425E72 /* RKActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKActivity.m; sourceTree = "<group>"; };
-		97CF91FA14998E3500425E72 /* icon-walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-walking.png"; sourceTree = "<group>"; };
-		97CF91FC14998E6B00425E72 /* icon-cycling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cycling.png"; sourceTree = "<group>"; };
 		97CF9206149ABBA600425E72 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
 		97CF920A149ABBF800425E72 /* littleupset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = littleupset.jpg; sourceTree = "<group>"; };
 		97CF920C149ABDE500425E72 /* RunKeeperLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunKeeperLoginViewController.h; sourceTree = "<group>"; };
@@ -168,11 +167,14 @@
 		97D779E11497F96D005F4CFB /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		97D779E21497F96D005F4CFB /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		97D779E41497FEBF005F4CFB /* icon-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow.png"; sourceTree = "<group>"; };
-		97D779F11498327A005F4CFB /* icon-runner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-runner.png"; sourceTree = "<group>"; };
 		97D779F4149833A9005F4CFB /* runkeeper_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runkeeper_login.png; sourceTree = "<group>"; };
 		97D779F61498348B005F4CFB /* RunKeeperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunKeeperViewController.h; sourceTree = "<group>"; };
 		97D779F71498348B005F4CFB /* RunKeeperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunKeeperViewController.m; sourceTree = "<group>"; };
 		97D77A041498377C005F4CFB /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapkuLibrary.bundle; sourceTree = "<group>"; };
+		97E432F0149C541A00F827FD /* icon-runkeeper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-runkeeper.png"; sourceTree = "<group>"; };
+		97E432F2149C544F00F827FD /* icon-cycling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cycling.png"; sourceTree = "<group>"; };
+		97E432F3149C544F00F827FD /* icon-running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-running.png"; sourceTree = "<group>"; };
+		97E432F4149C544F00F827FD /* icon-walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-walking.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,10 +327,11 @@
 		97D7797D1496E136005F4CFB /* iconsandsuch */ = {
 			isa = PBXGroup;
 			children = (
-				97CF91FC14998E6B00425E72 /* icon-cycling.png */,
-				97CF91FA14998E3500425E72 /* icon-walking.png */,
+				97E432F2149C544F00F827FD /* icon-cycling.png */,
+				97E432F3149C544F00F827FD /* icon-running.png */,
+				97E432F4149C544F00F827FD /* icon-walking.png */,
+				97E432F0149C541A00F827FD /* icon-runkeeper.png */,
 				97D779F4149833A9005F4CFB /* runkeeper_login.png */,
-				97D779F11498327A005F4CFB /* icon-runner.png */,
 				97D779E41497FEBF005F4CFB /* icon-arrow.png */,
 				97D7797E1496E16E005F4CFB /* icon-film-roll.png */,
 				97D779781496E125005F4CFB /* icon-city.png */,
@@ -489,15 +492,16 @@
 				97D779C91497563D005F4CFB /* going.jpg in Resources */,
 				97D779D81497F467005F4CFB /* SVProgressHUD.bundle in Resources */,
 				97D779E51497FEBF005F4CFB /* icon-arrow.png in Resources */,
-				97D779F21498327A005F4CFB /* icon-runner.png in Resources */,
 				97D779F5149833A9005F4CFB /* runkeeper_login.png in Resources */,
 				97D77A0B1498377C005F4CFB /* TapkuLibrary.bundle in Resources */,
 				97CF91F2149843F200425E72 /* RunKeeperTableViewCell.xib in Resources */,
-				97CF91FB14998E3500425E72 /* icon-walking.png in Resources */,
-				97CF91FD14998E6B00425E72 /* icon-cycling.png in Resources */,
 				97CF9207149ABBA600425E72 /* tiles.png in Resources */,
 				97CF920B149ABBF800425E72 /* littleupset.jpg in Resources */,
 				97CF9244149B414400425E72 /* GTMOAuth2ViewTouch.xib in Resources */,
+				97E432F1149C541A00F827FD /* icon-runkeeper.png in Resources */,
+				97E432F5149C544F00F827FD /* icon-cycling.png in Resources */,
+				97E432F6149C544F00F827FD /* icon-running.png in Resources */,
+				97E432F7149C544F00F827FD /* icon-walking.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

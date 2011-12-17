@@ -518,7 +518,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nx4-xj-TOH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="ueg-zd-2ny" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="RunKeeper" image="icon-runner.png" id="bJ0-A6-oYZ"/>
+                    <tabBarItem key="tabBarItem" title="RunKeeper" image="icon-runkeeper.png" id="bJ0-A6-oYZ"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JJN-F6-0AQ">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -534,7 +534,7 @@
         <image name="icon-city.png" width="23" height="27"/>
         <image name="icon-film-roll.png" width="26" height="22"/>
         <image name="icon-map.png" width="26" height="21"/>
-        <image name="icon-runner.png" width="18" height="25"/>
+        <image name="icon-runkeeper.png" width="16" height="24"/>
         <image name="littleupset.jpg" width="473" height="590"/>
         <image name="runkeeper_login.png" width="300" height="57"/>
     </resources>
