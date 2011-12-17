@@ -27,6 +27,20 @@
 
 @synthesize calendar=_calendar;
 
++ (RKActivity *)initWithJSON:(NSDictionary *)activityJSON
+           withDateFormatter:(NSDateFormatter *)dateFormatter
+                   inContext:(NSManagedObjectContext *)context {
+    RKActivity *activity = [NSEntityDescription insertNewObjectForEntityForName:@"RKActivity" inManagedObjectContext:context];
+    activity.type = [activityJSON objectForKey:@"type"];
+    
+    activity.startTime = [dateFormatter dateFromString:[activityJSON objectForKey:@"start_time"]];
+    activity.distanceInMeters = [activityJSON objectForKey:@"total_distance"];
+    activity.durationInSeconds = [activityJSON objectForKey:@"duration"];
+    activity.rkURI = [activityJSON objectForKey:@"uri"];
+    activity.fetchedTime = [NSDate date];
+    return activity;
+}
+
 - (NSCalendar *)calendar {
     if (!_calendar) {
         _calendar = [NSCalendar currentCalendar];

@@ -7,23 +7,38 @@
 //
 
 #import "RunKeeperLoginViewController.h"
+#import "RunKeeperViewController.h"
+#import "FlickrFetcher.h"
+#import "RKActivity.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import "GTMOAuth2ViewControllerTouch.h"
-#import "RunKeeperViewController.h"
+#import "SVProgressHUD.h"
+
+#define kNilOptions 0
+
+@interface RunKeeperLoginViewController()
+@property (strong, nonatomic) NSDictionary *userInfoTemporaryVariable;
+@property (strong, nonatomic) NSDictionary *canonicalDataTemporaryVariable;
+@end
 
 @implementation RunKeeperLoginViewController
-@synthesize mAuth;
+@synthesize mAuth=_mAuth;
 @synthesize darkBackgroundView;
 @synthesize welcomeImageView;
+@synthesize userInfoTemporaryVariable=_userInfoTemporaryVariable;
+@synthesize canonicalDataTemporaryVariable=_canonicalDataTemporaryVariable;
 
 static NSString *const kRunKeeperKeychainItemName = @"Century: RunKeeper";
 static NSString *const kRunKeeperServiceName = @"RunKeeper";
 static NSString *const kRunKeeperClientId = @"d60d7a275e884b7c82a43cac15caf2db";
 
-static NSString *const kRunKeeperAccessTokenURL = @"https://runkeeper.com/apps/token";
-static NSString *const kRunKeeperAuthorizationURL = @"https://runkeeper.com/apps/authorize";
+static NSString *const kRunKeeperAccessTokenURI = @"https://runkeeper.com/apps/token";
+static NSString *const kRunKeeperAuthorizationURI = @"https://runkeeper.com/apps/authorize";
 // Callback doesn't need to be an actual page; it won't be loaded
-static NSString *const kRunKeeperCallbackURL = @"http://example.com/OAuthCallback";
+static NSString *const kRunKeeperCallbackURI = @"http://example.com/OAuthCallback";
+static NSString *const kRunKeeperProfileURI = @"https://api.runkeeper.com/profile";
+static NSString *const kRunKeeperActivitiesURI = @"https://api.runkeeper.com/fitnessActivities";
 
 static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 
@@ -71,7 +86,7 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     self.welcomeImageView.layer.borderWidth = 7.0;
     
     if ([self.mAuth canAuthorize]) {
-        [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
+        [self readyToViewRunKeeperView];
     }
 }
 
@@ -90,14 +105,14 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Listeners and Handlers
+#pragma mark - OAuth Listeners and Handlers
 - (GTMOAuth2Authentication *)authForRunKeeper {
     NSString *clientSecret = @"15f2c8b8f1b24aed9a06481229045731";
     
     GTMOAuth2Authentication *auth;
     auth = [GTMOAuth2Authentication authenticationWithServiceProvider:kRunKeeperServiceName
-                                                             tokenURL:[NSURL URLWithString:kRunKeeperAccessTokenURL]
-                                                          redirectURI:kRunKeeperCallbackURL
+                                                             tokenURL:[NSURL URLWithString:kRunKeeperAccessTokenURI]
+                                                          redirectURI:kRunKeeperCallbackURI
                                                              clientID:kRunKeeperClientId
                                                          clientSecret:clientSecret];
     return auth;
@@ -105,13 +120,12 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 
 - (IBAction)login:(id)sender {
     if ([self.mAuth canAuthorize]) {
-        [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
-        return;
+        return [self readyToViewRunKeeperView];
     }
     
     NSString *authorizeStr = [NSString stringWithFormat:@"%@?response_type=code&redirect_uri=%@&client_id=%@",
-                              kRunKeeperAuthorizationURL,
-                              kRunKeeperCallbackURL,
+                              kRunKeeperAuthorizationURI,
+                              kRunKeeperCallbackURI,
                               kRunKeeperClientId];
     
     GTMOAuth2Authentication *auth = [self authForRunKeeper];
@@ -140,14 +154,108 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
         self.mAuth = auth;
         
         [self dismissModalViewControllerAnimated:YES];
-        [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
+        [self readyToViewRunKeeperView];
     }
+}
+
+#pragma mark - Data Fetching helpers
+
+- (void)runKeeperInitiateAPIFetch {
+    // Step 1 of the data fetching process - pull user profile information
+    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperProfileURI];
+    [fetcher setAuthorizer:self.mAuth];
+    
+    [SVProgressHUD showWithStatus:@"Fetching User Profile..."];
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error while fetching profile: %@", [error userInfo]);
+            [SVProgressHUD dismissWithError:@"Trouble loading user profile."];
+            return;
+        }
+        
+        NSError *parseError = nil;
+        NSDictionary *userObj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+        if (parseError) {
+            NSLog(@"Error while parsing profile: %@", [error userInfo]);
+            [SVProgressHUD dismissWithError:@"Trouble parsing user profile."];
+            return;
+        }
+        
+        self.userInfoTemporaryVariable = userObj;
+        [self runKeeperActivityFetchAndMaybeSegue];
+    }];
+}
+
+- (void)runKeeperActivityFetchAndMaybeSegue {
+    // Step 2 of the data fetching process. The user's profile has been passed in,
+    // and SVProgressHUD is still being shown.
+    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperActivitiesURI];
+    [fetcher setAuthorizer:self.mAuth];
+    
+    [SVProgressHUD setStatus:@"Fetching Activities..."];
+    //    NSData *jsonData = [kFakeRunKeeperActivityJSON dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error while fetching activities: %@", [error userInfo]);
+            [SVProgressHUD dismissWithError:@"Trouble loading user activities."];
+            return;
+        }
+        
+        NSError *parseError = nil;
+        NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+        if (parseError) {
+            NSLog(@"Error while parsing activities: %@", [error userInfo]);
+            [SVProgressHUD dismissWithError:@"Trouble parsing user activities."];
+            return;
+        }
+        
+        NSArray *items = [jsonObj objectForKey:@"items"];
+        NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionaryWithCapacity:[items count]];
+        
+        NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
+        
+        RKActivity *activity;
+        NSMutableArray *storedActivities;
+        
+        for (NSDictionary *activityJSON in items) {
+            activity = [RKActivity initWithJSON:activityJSON withDateFormatter:dateFormatter inContext:context];
+            storedActivities = [activitiesByDate objectForKey:[activity date]];
+            if (storedActivities == nil) {
+                storedActivities = [NSMutableArray arrayWithObject:activity];
+            } else {
+                [storedActivities addObject:activity];
+            }
+            [activitiesByDate setObject:storedActivities forKey:[activity date]];
+        }
+        
+        if ([context save:NULL]) { // context save == success
+            self.canonicalDataTemporaryVariable = activitiesByDate;
+            
+            NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
+            [SVProgressHUD dismissWithSuccess:@"Hooray!"];
+            
+            // Success - now we can segue.
+            [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
+        } else {
+            NSLog(@"WAHH FAILED");
+            [SVProgressHUD dismissWithError:@"WAHHH FAILED"];
+        }
+    }];
+}
+
+- (void)readyToViewRunKeeperView {
+    [SVProgressHUD showWithStatus:@"Fetching User info from RunKeeper..."];
+    [self runKeeperInitiateAPIFetch];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kRunKeeperAuthenticatedSegue]) {
         RunKeeperViewController *runKeeperController = segue.destinationViewController;
-        runKeeperController.auth = self.mAuth;
+        runKeeperController.canonicalDataTemporaryVariable = self.canonicalDataTemporaryVariable;
+        runKeeperController.nameTemporaryVariable = [self.userInfoTemporaryVariable objectForKey:@"name"];
     }
 }
 

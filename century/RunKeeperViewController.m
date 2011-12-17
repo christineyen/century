@@ -7,16 +7,18 @@
 //
 
 #import "RunKeeperViewController.h"
-#import "FlickrFetcher.h"
 #import "RKActivity.h"
 #import "SVProgressHUD.h"
 
+#import "GTMHTTPFetcher.h"
 #import "NSDate+TKCategory.h"
 
 @implementation RunKeeperViewController
 @synthesize dataDictionary=_dataDictionary;
 @synthesize dataArray=_dataArray;
-@synthesize auth=_auth;
+@synthesize nameTemporaryVariable=_nameTemporaryVariable;
+@synthesize canonicalDataTemporaryVariable=_canonicalDataTemporaryVariable;
+
 @synthesize rkCell=_rkCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,49 +36,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
-
-- (NSDictionary *)fetchAndSaveRunKeeperData {
-    // "Fetch" JSON data from RunKeeper API
-    
-    NSData *jsonData = [kFakeRunKeeperActivityJSON dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error = nil;
-    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    if (error) {
-        NSLog(@"JSON Parse Error! %@", [error userInfo]);
-    }
-    
-    NSArray *items = [jsonObj objectForKey:@"items"];
-    NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionaryWithCapacity:[items count]];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
-    
-    NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
-    RKActivity *activity;
-    NSMutableArray *storedActivities;
-    for (NSDictionary *activityJSON in items) {
-        activity = [NSEntityDescription insertNewObjectForEntityForName:@"RKActivity" inManagedObjectContext:context];
-        activity.type = [activityJSON objectForKey:@"type"];
-        
-        activity.startTime = [dateFormatter dateFromString:[activityJSON objectForKey:@"start_time"]];
-        activity.distanceInMeters = [activityJSON objectForKey:@"total_distance"];
-        activity.durationInSeconds = [activityJSON objectForKey:@"duration"];
-        activity.rkURI = [activityJSON objectForKey:@"uri"];
-        activity.fetchedTime = [NSDate date];
-        
-        storedActivities = [activitiesByDate objectForKey:[activity date]];
-        if (storedActivities == nil) {
-            storedActivities = [NSMutableArray arrayWithObject:activity];
-        } else {
-            [storedActivities addObject:activity];
-        }
-        [activitiesByDate setObject:storedActivities forKey:[activity date]];
-    }
-    if ([context save:NULL]) { // context save == success
-        return activitiesByDate;
-    }
-    
-    return nil;
 }
 
 #pragma mark - View lifecycle
@@ -160,25 +119,14 @@
     // this function sets up dataArray & dataDictionary
     // dataArray: has boolean markers for each day to pass to the calendar view (via the delegate function)
     // dataDictionary: has items that are associated with date keys (for tableview)
-    
     self.dataArray = [NSMutableArray array];
     self.dataDictionary = [NSMutableDictionary dictionary];
-    
-    [SVProgressHUD showWithStatus:@"Fetching from RunKeeper..."];
-    NSDictionary *activitiesByDate = [self fetchAndSaveRunKeeperData];
-    if (activitiesByDate) {
-        NSLog(@"SUCCESS! Got %d RunKeeper days", [activitiesByDate count]);
-        [SVProgressHUD dismissWithSuccess:@"SUCCESS!"];
-    } else {
-        NSLog(@"WAHH FAILED");
-        [SVProgressHUD dismissWithError:@"WAHHH FAILED"];
-    }
     
     // Set up the data in a format that the TKCalendarMonthView can handle
     NSDate *date = startDate;
     NSArray *activities;
     while ([date compare:lastDate] != NSOrderedDescending) {
-        activities = [activitiesByDate objectForKey:date];
+        activities = [self.canonicalDataTemporaryVariable objectForKey:date];
         if (activities) {
             [self.dataDictionary setObject:activities forKey:date];
             [self.dataArray addObject:[NSNumber numberWithBool:YES]];

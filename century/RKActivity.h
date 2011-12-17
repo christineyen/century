@@ -21,6 +21,10 @@
 
 @property (nonatomic, retain) NSCalendar *calendar;
 
++ (RKActivity *)initWithJSON:(NSDictionary *)activityJSON
+           withDateFormatter:(NSDateFormatter *)dateFormatter
+                   inContext:(NSManagedObjectContext *)context;
+
 - (NSDate *)date;
 - (NSString *)imageName;
 - (double)distanceInMiles;

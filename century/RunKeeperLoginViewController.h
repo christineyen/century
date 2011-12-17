@@ -11,8 +11,14 @@
 
 @interface RunKeeperLoginViewController : UIViewController
 @property (strong, nonatomic) GTMOAuth2Authentication *mAuth;
+
 @property (weak, nonatomic) IBOutlet UIView *darkBackgroundView;
 @property (weak, nonatomic) IBOutlet UIImageView *welcomeImageView;
 
 - (GTMOAuth2Authentication *)authForRunKeeper;
+- (void)readyToViewRunKeeperView;
+
+- (void)runKeeperInitiateAPIFetch;
+- (void)runKeeperActivityFetchAndMaybeSegue;
+
 @end

@@ -46,8 +46,9 @@
 
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableArray *dataArray;
-@property (strong, nonatomic) GTMOAuth2Authentication *auth;
-@property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
 
-- (NSDictionary *)fetchAndSaveRunKeeperData;
+@property (strong, nonatomic) NSString *nameTemporaryVariable;
+@property (strong, nonatomic) NSDictionary *canonicalDataTemporaryVariable;
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
 @end
