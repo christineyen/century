@@ -18,7 +18,7 @@
 - (GTMOAuth2Authentication *)authForRunKeeper;
 - (void)readyToViewRunKeeperView;
 
-- (void)runKeeperInitiateAPIFetch;
-- (void)runKeeperActivityFetchAndMaybeSegue;
+- (BOOL)runKeeperHandleProfileDataFetch:(NSData *)data withError:(NSError *)error;
+- (BOOL)runKeeperHandleActivityFetch:(NSData *)data withError:(NSError *)error;
 
 @end

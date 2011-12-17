@@ -160,95 +160,97 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 
 #pragma mark - Data Fetching helpers
 
-- (void)runKeeperInitiateAPIFetch {
+- (BOOL)runKeeperHandleProfileDataFetch:(NSData *)data withError:(NSError *)error {
     // Step 1 of the data fetching process - pull user profile information
-    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperProfileURI];
-    [fetcher setAuthorizer:self.mAuth];
+    // Return YES to continue into the next phase of data access; NO to indicate we errored out.
+    if (error) {
+        NSLog(@"Error while fetching profile: %@", [error userInfo]);
+        return NO;
+    }
+    
+    NSError *parseError = nil;
+    NSDictionary *userObj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+    if (parseError) {
+        NSLog(@"Error while parsing profile: %@", [error userInfo]);
+        return NO;
+    }
+    
+    self.userInfoTemporaryVariable = userObj;
+    return YES;
+}
+
+- (BOOL)runKeeperHandleActivityFetch:(NSData *)data withError:(NSError *)error {
+    // Step 2 of the data fetching process. The user's profile has been passed in,
+    // and SVProgressHUD is still being shown.
+    if (error) {
+        NSLog(@"Error while fetching activities: %@", [error userInfo]);
+        return NO;
+    }
+        
+    NSError *parseError = nil;
+    NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+    if (parseError) {
+        NSLog(@"Error while parsing activities: %@", [error userInfo]);
+        return NO;
+    }
+    
+    NSArray *items = [jsonObj objectForKey:@"items"];
+    NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionaryWithCapacity:[items count]];
+    
+    NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
+    
+    RKActivity *activity;
+    NSMutableArray *storedActivities;
+    
+    for (NSDictionary *activityJSON in items) {
+        activity = [RKActivity initWithJSON:activityJSON withDateFormatter:dateFormatter inContext:context];
+        storedActivities = [activitiesByDate objectForKey:[activity date]];
+        if (storedActivities == nil) {
+            storedActivities = [NSMutableArray arrayWithObject:activity];
+        } else {
+            [storedActivities addObject:activity];
+        }
+        [activitiesByDate setObject:storedActivities forKey:[activity date]];
+    }
+    
+    if (![context save:NULL]) {
+        NSLog(@"Error while saving NSManagedObjectContext");
+        return NO;
+    }
+    
+    self.canonicalDataTemporaryVariable = activitiesByDate;
+    NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
+    return YES;
+}
+
+- (void)readyToViewRunKeeperView {
+    GTMHTTPFetcher *profileFetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperProfileURI];
+    [profileFetcher setAuthorizer:self.mAuth];
+    GTMHTTPFetcher *activityFetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperActivitiesURI];
+    [activityFetcher setAuthorizer:self.mAuth];
     
     [SVProgressHUD showWithStatus:@"Fetching User Profile..."];
-    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error while fetching profile: %@", [error userInfo]);
+    
+    [profileFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (![self runKeeperHandleProfileDataFetch:data withError:error]) {
             [SVProgressHUD dismissWithError:@"Trouble loading user profile."];
             return;
         }
         
-        NSError *parseError = nil;
-        NSDictionary *userObj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-        if (parseError) {
-            NSLog(@"Error while parsing profile: %@", [error userInfo]);
-            [SVProgressHUD dismissWithError:@"Trouble parsing user profile."];
-            return;
-        }
-        
-        self.userInfoTemporaryVariable = userObj;
-        [self runKeeperActivityFetchAndMaybeSegue];
-    }];
-}
-
-- (void)runKeeperActivityFetchAndMaybeSegue {
-    // Step 2 of the data fetching process. The user's profile has been passed in,
-    // and SVProgressHUD is still being shown.
-    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperActivitiesURI];
-    [fetcher setAuthorizer:self.mAuth];
-    
-    [SVProgressHUD setStatus:@"Fetching Activities..."];
-    //    NSData *jsonData = [kFakeRunKeeperActivityJSON dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
-        if (error) {
-            NSLog(@"Error while fetching activities: %@", [error userInfo]);
-            [SVProgressHUD dismissWithError:@"Trouble loading user activities."];
-            return;
-        }
-        
-        NSError *parseError = nil;
-        NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-        if (parseError) {
-            NSLog(@"Error while parsing activities: %@", [error userInfo]);
-            [SVProgressHUD dismissWithError:@"Trouble parsing user activities."];
-            return;
-        }
-        
-        NSArray *items = [jsonObj objectForKey:@"items"];
-        NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionaryWithCapacity:[items count]];
-        
-        NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
-        
-        RKActivity *activity;
-        NSMutableArray *storedActivities;
-        
-        for (NSDictionary *activityJSON in items) {
-            activity = [RKActivity initWithJSON:activityJSON withDateFormatter:dateFormatter inContext:context];
-            storedActivities = [activitiesByDate objectForKey:[activity date]];
-            if (storedActivities == nil) {
-                storedActivities = [NSMutableArray arrayWithObject:activity];
-            } else {
-                [storedActivities addObject:activity];
+        [SVProgressHUD setStatus:@"Fetching Activities..."];
+        [activityFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+            if (![self runKeeperHandleActivityFetch:data withError:error]) {
+                [SVProgressHUD dismissWithError:@"Trouble loading activities."];
+                return;
             }
-            [activitiesByDate setObject:storedActivities forKey:[activity date]];
-        }
-        
-        if ([context save:NULL]) { // context save == success
-            self.canonicalDataTemporaryVariable = activitiesByDate;
-            
-            NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
-            [SVProgressHUD dismissWithSuccess:@"Hooray!"];
             
             // Success - now we can segue.
+            [SVProgressHUD dismissWithSuccess:@"Hooray!"];
             [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
-        } else {
-            NSLog(@"WAHH FAILED");
-            [SVProgressHUD dismissWithError:@"WAHHH FAILED"];
-        }
+        }];
     }];
-}
-
-- (void)readyToViewRunKeeperView {
-    [SVProgressHUD showWithStatus:@"Fetching User info from RunKeeper..."];
-    [self runKeeperInitiateAPIFetch];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
