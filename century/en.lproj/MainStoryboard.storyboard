@@ -486,20 +486,6 @@
             </objects>
             <point key="canvasLocation" x="1549" y="1191"/>
         </scene>
-        <scene sceneID="Opr-Ac-b9u">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vih-Gx-TFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="coR-H2-igw" customClass="GTMOAuthViewControllerTouch" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9MZ-tv-MLY">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="M53-1m-yTU"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1792" y="565"/>
-        </scene>
         <scene sceneID="AuU-bs-IY5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yM-Wd-0Ka" userLabel="First Responder" sceneMemberID="firstResponder"/>
