@@ -69,6 +69,21 @@
 	return [fetchedResultsController autorelease];
 }
 
+- (NSManagedObject *)fetchFirstManagedObjectForEntity:(NSString *)entityName withSortDescriptors:(NSArray *)sortDescriptors {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = entity;
+    request.fetchLimit = 1;
+    request.sortDescriptors = sortDescriptors;
+    
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    [request release];
+    
+    return [results lastObject];
+}
+
 - (NSArray *)fetchManagedObjectsForEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
 {
 	NSManagedObjectContext	*context = [self managedObjectContext];

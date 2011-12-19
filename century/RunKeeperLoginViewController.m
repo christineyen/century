@@ -19,6 +19,7 @@
 
 @implementation RunKeeperLoginViewController
 @synthesize mAuth=_mAuth;
+@synthesize fetcher=_fetcher;
 @synthesize darkBackgroundView;
 @synthesize welcomeImageView;
 
@@ -158,6 +159,13 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     return [[NSUserDefaults standardUserDefaults] objectForKey:kRKActivityUserInfoKey];
 }
 
+- (FlickrFetcher *)fetcher {
+    if (!_fetcher) {
+        _fetcher = [FlickrFetcher sharedInstance];
+    }
+    return _fetcher;
+}
+
 - (BOOL)runKeeperHandleProfileDataFetch:(NSData *)data withError:(NSError *)error {
     // Step 1 of the data fetching process - pull user profile information
     // Return YES to continue into the next phase of data access; NO to indicate we errored out.
@@ -178,8 +186,8 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     if ([self userInfo]) {
         NSString *oldName = [[self userInfo] objectForKey:@"name"];
         if (![[userObj objectForKey:@"name"] isEqualToString:oldName]) {
-            NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
-            NSArray *oldRKActivities = [[FlickrFetcher sharedInstance] fetchManagedObjectsForEntity:@"RKActivity" withPredicate:nil];
+            NSManagedObjectContext *context = [self.fetcher managedObjectContext];
+            NSArray *oldRKActivities = [self.fetcher fetchManagedObjectsForEntity:@"RKActivity" withPredicate:nil];
             for (RKActivity *activity in oldRKActivities) {
                 [context deleteObject:activity];
             }
@@ -211,11 +219,23 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     
     NSArray *items = [jsonObj objectForKey:@"items"];
     
-    NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
+    NSManagedObjectContext *context = [self.fetcher managedObjectContext];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
     
-    for (NSDictionary *activityJSON in items) {
+    // Fetch last stored activity for comparison
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:NO];
+    RKActivity *lastActivity = (RKActivity *)[self.fetcher fetchFirstManagedObjectForEntity:@"RKActivity"
+                                                                        withSortDescriptors:[NSArray arrayWithObject:descriptor]];
+    
+    for (NSDictionary *activityJSON in items) { // traversed in reverse chronological order
+        NSDate *jsonDate = [dateFormatter dateFromString:[activityJSON objectForKey:@"start_time"]];
+        if (lastActivity &&
+                [lastActivity.startTime compare:jsonDate] != NSOrderedAscending) {
+            // Break out of JSON parsing if there aren't any fresh activities
+            break;
+        }
+        
         [RKActivity initWithJSON:activityJSON withDateFormatter:dateFormatter inContext:context];
     }
     

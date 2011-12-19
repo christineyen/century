@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "GTMOAuth2Authentication.h"
+#import "FlickrFetcher.h"
 
 @interface RunKeeperLoginViewController : UIViewController
 @property (strong, nonatomic) GTMOAuth2Authentication *mAuth;
+@property (strong, nonatomic) FlickrFetcher *fetcher;
 
 @property (weak, nonatomic) IBOutlet UIView *darkBackgroundView;
 @property (weak, nonatomic) IBOutlet UIImageView *welcomeImageView;

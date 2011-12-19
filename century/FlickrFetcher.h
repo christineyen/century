@@ -25,6 +25,9 @@
 // Returns the NSManagedObjectContext for inserting and fetching objects into the store
 - (NSManagedObjectContext *)managedObjectContext;
 
+// Returns the first NSManagedObject already in the database for the given Eneity Name and sort order
+- (NSManagedObject *)fetchFirstManagedObjectForEntity:(NSString *)entityName withSortDescriptors:(NSArray *)sortDescriptors;
+
 // Returns an array of objects already in the database for the given Entity Name and Predicate
 - (NSArray *)fetchManagedObjectsForEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate;
 
