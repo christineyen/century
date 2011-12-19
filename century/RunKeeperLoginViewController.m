@@ -79,8 +79,8 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     self.welcomeImageView.layer.borderColor = [UIColor blackColor].CGColor;
     self.welcomeImageView.layer.borderWidth = 7.0;
     
-    if ([self.mAuth canAuthorize] && [self userInfo]) {
-        [self fetchLatestActivities:YES];
+    if ([self.mAuth canAuthorize]) {
+        [self fetchLatestActivitiesWithNewHUD:YES];
     }
 }
 
@@ -113,8 +113,8 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 }
 
 - (IBAction)login:(id)sender {
-    if ([self.mAuth canAuthorize] && [self userInfo]) {
-        [self fetchLatestActivities:YES];
+    if ([self.mAuth canAuthorize]) {
+        [self fetchLatestActivitiesWithNewHUD:YES];
         return;
     }
     
@@ -155,10 +155,6 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 
 #pragma mark - Data Fetching helpers
 
-- (NSDictionary *)userInfo {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kRKActivityUserInfoKey];
-}
-
 - (FlickrFetcher *)fetcher {
     if (!_fetcher) {
         _fetcher = [FlickrFetcher sharedInstance];
@@ -181,22 +177,6 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
         return NO;
     }
     
-    // If we already have data for a RunKeeper user in our NSUserDefaults and it _doesn't match_
-    // the user we just fetched, we should clear all activities before adding this new person.
-    if ([self userInfo]) {
-        NSString *oldName = [[self userInfo] objectForKey:@"name"];
-        if (![[userObj objectForKey:@"name"] isEqualToString:oldName]) {
-            NSManagedObjectContext *context = [self.fetcher managedObjectContext];
-            NSArray *oldRKActivities = [self.fetcher fetchManagedObjectsForEntity:@"RKActivity" withPredicate:nil];
-            for (RKActivity *activity in oldRKActivities) {
-                [context deleteObject:activity];
-            }
-            
-            if (![context save:NULL]) {
-                NSLog(@"Error while clearing database of RKActivities");
-            }
-        }
-    }
     // Store User Info into NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setObject:userObj forKey:kRKActivityUserInfoKey];
     return YES;
@@ -259,15 +239,15 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
             return;
         }
         
-        [self fetchLatestActivities:NO];
+        [self fetchLatestActivitiesWithNewHUD:NO];
     }];
 }
 
-- (void)fetchLatestActivities:(BOOL)showNewStatusHUD {
+- (void)fetchLatestActivitiesWithNewHUD:(BOOL)showNewHUD {
     GTMHTTPFetcher *activityFetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperActivitiesURI];
     [activityFetcher setAuthorizer:self.mAuth];
     
-    if (showNewStatusHUD) {
+    if (showNewHUD) {
         [SVProgressHUD showWithStatus:@"Fetching Activities..."];
     } else {
         [SVProgressHUD setStatus:@"Fetching Activities..."];
