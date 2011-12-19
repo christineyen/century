@@ -14,8 +14,8 @@
 #import "NSDate+TKCategory.h"
 
 @implementation RunKeeperViewController
-@synthesize dataDictionary=_dataDictionary;
-@synthesize dataArray=_dataArray;
+@synthesize monthDataDict=_monthDataDict;
+@synthesize monthDataArray=_monthDataArray;
 @synthesize userInfo=_userInfo;
 @synthesize databaseFetchTemporaryVariable=_databaseFetchTemporaryVariable;
 
@@ -92,7 +92,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *ar = [self.dataDictionary objectForKey:[self.monthView dateSelected]];
+    NSArray *ar = [self.monthDataDict objectForKey:[self.monthView dateSelected]];
     
     if (ar == nil) {
         return 0;
@@ -102,7 +102,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *arr = [self.dataDictionary objectForKey:[self.monthView dateSelected]];
+    NSArray *arr = [self.monthDataDict objectForKey:[self.monthView dateSelected]];
     RKActivity *activity = [arr objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RunKeeperTableViewCell"];
@@ -136,8 +136,8 @@
     // this function sets up dataArray & dataDictionary
     // dataArray: has boolean markers for each day to pass to the calendar view (via the delegate function)
     // dataDictionary: has items that are associated with date keys (for tableview)
-    self.dataArray = [NSMutableArray array];
-    self.dataDictionary = [NSMutableDictionary dictionary];
+    self.monthDataArray = [NSMutableArray array];
+    self.monthDataDict = [NSMutableDictionary dictionary];
     
     // Set up the data in a format that the TKCalendarMonthView can handle
     NSDate *date = startDate;
@@ -145,10 +145,10 @@
     while ([date compare:lastDate] != NSOrderedDescending) {
         activities = [self.databaseFetchTemporaryVariable objectForKey:date];
         if (activities) {
-            [self.dataDictionary setObject:activities forKey:date];
-            [self.dataArray addObject:[NSNumber numberWithBool:YES]];
+            [self.monthDataDict setObject:activities forKey:date];
+            [self.monthDataArray addObject:[NSNumber numberWithBool:YES]];
         } else {
-            [self.dataArray addObject:[NSNumber numberWithBool:NO]];
+            [self.monthDataArray addObject:[NSNumber numberWithBool:NO]];
         }
         
         TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
@@ -156,7 +156,7 @@
         date = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
     
-    return self.dataArray;
+    return self.monthDataArray;
 }
 
 - (void)calendarMonthView:(TKCalendarMonthView *)monthView didSelectDate:(NSDate *)date {

@@ -45,8 +45,8 @@
 @interface RunKeeperViewController : TKCalendarMonthTableViewController<
         TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource, NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) NSMutableDictionary *dataDictionary;
-@property (strong, nonatomic) NSMutableArray *dataArray;
+@property (strong, nonatomic) NSMutableDictionary *monthDataDict;
+@property (strong, nonatomic) NSMutableArray *monthDataArray;
 
 @property (strong, nonatomic) NSDictionary *userInfo;
 @property (strong, nonatomic) NSDictionary *databaseFetchTemporaryVariable;
