@@ -16,8 +16,8 @@
 @implementation RunKeeperViewController
 @synthesize dataDictionary=_dataDictionary;
 @synthesize dataArray=_dataArray;
-@synthesize nameTemporaryVariable=_nameTemporaryVariable;
-@synthesize canonicalDataTemporaryVariable=_canonicalDataTemporaryVariable;
+@synthesize userInfo=_userInfo;
+@synthesize databaseFetchTemporaryVariable=_databaseFetchTemporaryVariable;
 
 @synthesize rkCell=_rkCell;
 
@@ -51,14 +51,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionary];
+    NSMutableArray *storedActivities;
+    
+    NSArray *activities = [[FlickrFetcher sharedInstance] fetchManagedObjectsForEntity:@"RKActivity" withPredicate:nil];
+    for (RKActivity *activity in activities) {
+        storedActivities = [activitiesByDate objectForKey:[activity date]];
+        if (storedActivities) {
+            [storedActivities addObject:activity];
+        } else {
+            storedActivities = [NSMutableArray arrayWithObject:activity];
+        }
+        [activitiesByDate setObject:storedActivities forKey:[activity date]];
+    }
+    
+    NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
+    self.databaseFetchTemporaryVariable = activitiesByDate;
+    
     [self.monthView selectDate:[NSDate month]];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.databaseFetchTemporaryVariable = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -126,7 +143,7 @@
     NSDate *date = startDate;
     NSArray *activities;
     while ([date compare:lastDate] != NSOrderedDescending) {
-        activities = [self.canonicalDataTemporaryVariable objectForKey:date];
+        activities = [self.databaseFetchTemporaryVariable objectForKey:date];
         if (activities) {
             [self.dataDictionary setObject:activities forKey:date];
             [self.dataArray addObject:[NSNumber numberWithBool:YES]];

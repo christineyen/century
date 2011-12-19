@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TKCalendarMonthTableViewController.h"
 #import "GTMOAuth2Authentication.h"
+#import "FlickrFetcher.h"
 
 #define kFakeRunKeeperActivityJSON @"{ \
     \"size\": 40, \
@@ -42,13 +43,13 @@
     }"
 
 @interface RunKeeperViewController : TKCalendarMonthTableViewController<
-        TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource>
+        TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableArray *dataArray;
 
-@property (strong, nonatomic) NSString *nameTemporaryVariable;
-@property (strong, nonatomic) NSDictionary *canonicalDataTemporaryVariable;
+@property (strong, nonatomic) NSDictionary *userInfo;
+@property (strong, nonatomic) NSDictionary *databaseFetchTemporaryVariable;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
 @end

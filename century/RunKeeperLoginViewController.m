@@ -19,7 +19,6 @@
 
 @interface RunKeeperLoginViewController()
 @property (strong, nonatomic) NSDictionary *userInfoTemporaryVariable;
-@property (strong, nonatomic) NSDictionary *canonicalDataTemporaryVariable;
 @end
 
 @implementation RunKeeperLoginViewController
@@ -27,7 +26,6 @@
 @synthesize darkBackgroundView;
 @synthesize welcomeImageView;
 @synthesize userInfoTemporaryVariable=_userInfoTemporaryVariable;
-@synthesize canonicalDataTemporaryVariable=_canonicalDataTemporaryVariable;
 
 static NSString *const kRunKeeperKeychainItemName = @"Century: RunKeeper";
 static NSString *const kRunKeeperServiceName = @"RunKeeper";
@@ -195,24 +193,13 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     }
     
     NSArray *items = [jsonObj objectForKey:@"items"];
-    NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionaryWithCapacity:[items count]];
     
     NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss"];
     
-    RKActivity *activity;
-    NSMutableArray *storedActivities;
-    
     for (NSDictionary *activityJSON in items) {
-        activity = [RKActivity initWithJSON:activityJSON withDateFormatter:dateFormatter inContext:context];
-        storedActivities = [activitiesByDate objectForKey:[activity date]];
-        if (storedActivities == nil) {
-            storedActivities = [NSMutableArray arrayWithObject:activity];
-        } else {
-            [storedActivities addObject:activity];
-        }
-        [activitiesByDate setObject:storedActivities forKey:[activity date]];
+        [RKActivity initWithJSON:activityJSON withDateFormatter:dateFormatter inContext:context];
     }
     
     if (![context save:NULL]) {
@@ -220,8 +207,6 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
         return NO;
     }
     
-    self.canonicalDataTemporaryVariable = activitiesByDate;
-    NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
     return YES;
 }
 
@@ -256,8 +241,8 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kRunKeeperAuthenticatedSegue]) {
         RunKeeperViewController *runKeeperController = segue.destinationViewController;
-        runKeeperController.canonicalDataTemporaryVariable = self.canonicalDataTemporaryVariable;
-        runKeeperController.nameTemporaryVariable = [self.userInfoTemporaryVariable objectForKey:@"name"];
+        
+        
     }
 }
 
