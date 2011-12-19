@@ -17,15 +17,10 @@
 
 #define kNilOptions 0
 
-@interface RunKeeperLoginViewController()
-@property (strong, nonatomic) NSDictionary *userInfoTemporaryVariable;
-@end
-
 @implementation RunKeeperLoginViewController
 @synthesize mAuth=_mAuth;
 @synthesize darkBackgroundView;
 @synthesize welcomeImageView;
-@synthesize userInfoTemporaryVariable=_userInfoTemporaryVariable;
 
 static NSString *const kRunKeeperKeychainItemName = @"Century: RunKeeper";
 static NSString *const kRunKeeperServiceName = @"RunKeeper";
@@ -173,7 +168,8 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
         return NO;
     }
     
-    self.userInfoTemporaryVariable = userObj;
+    // Store User Info into NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] setObject:userObj forKey:kRKActivityUserInfoKey];
     return YES;
 }
 
@@ -236,14 +232,6 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
             [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
         }];
     }];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kRunKeeperAuthenticatedSegue]) {
-        RunKeeperViewController *runKeeperController = segue.destinationViewController;
-        
-        
-    }
 }
 
 @end

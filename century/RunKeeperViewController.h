@@ -48,7 +48,6 @@
 @property (strong, nonatomic) NSMutableDictionary *monthDataDict;
 @property (strong, nonatomic) NSMutableArray *monthDataArray;
 
-@property (strong, nonatomic) NSDictionary *userInfo;
 @property (strong, nonatomic) NSDictionary *databaseFetchTemporaryVariable;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;

@@ -16,7 +16,6 @@
 @implementation RunKeeperViewController
 @synthesize monthDataDict=_monthDataDict;
 @synthesize monthDataArray=_monthDataArray;
-@synthesize userInfo=_userInfo;
 @synthesize databaseFetchTemporaryVariable=_databaseFetchTemporaryVariable;
 
 @synthesize rkCell=_rkCell;
@@ -38,20 +37,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+- (NSDictionary *)fetchActivitiesFromCoreData {
     NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionary];
     NSMutableArray *storedActivities;
     
@@ -67,7 +53,26 @@
     }
     
     NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
-    self.databaseFetchTemporaryVariable = activitiesByDate;
+    return activitiesByDate;
+}
+
+#pragma mark - View lifecycle
+
+/*
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView
+{
+}
+*/
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.databaseFetchTemporaryVariable = [self fetchActivitiesFromCoreData];
+    
+    NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kRKActivityUserInfoKey];
+    self.title = [NSString stringWithFormat:@"%@'s Activities", [userInfo objectForKey:@"name"]];
     
     [self.monthView selectDate:[NSDate month]];
 }

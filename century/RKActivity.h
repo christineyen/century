@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define kRKActivityUserInfoKey @"RKActivity User Info Key"
 
 @interface RKActivity : NSManagedObject
 
