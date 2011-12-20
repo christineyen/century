@@ -120,9 +120,9 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
         activities = [self.databaseFetchTemporaryVariable objectForKey:date];
         if (activities) {
             [self.monthDataDict setObject:activities forKey:date];
-            [self.monthDataArray addObject:[NSNumber numberWithBool:YES]];
+            [self.monthDataArray addObject:[NSNumber numberWithInt:[activities count]]];
         } else {
-            [self.monthDataArray addObject:[NSNumber numberWithBool:NO]];
+            [self.monthDataArray addObject:[NSNumber numberWithInt:0]];
         }
         
         TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
