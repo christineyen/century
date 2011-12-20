@@ -69,29 +69,34 @@
 	return [fetchedResultsController autorelease];
 }
 
-- (NSManagedObject *)fetchFirstManagedObjectForEntity:(NSString *)entityName withSortDescriptors:(NSArray *)sortDescriptors {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entity;
-    request.fetchLimit = 1;
-    request.sortDescriptors = sortDescriptors;
-    
-    NSArray *results = [context executeFetchRequest:request error:nil];
-    [request release];
-    
-    return [results lastObject];
+- (NSManagedObject *)fetchFirstManagedObjectForEntity:(NSString *)entityName
+                                  withSortDescriptors:(NSArray *)sortDescriptors {
+    return [[self fetchManagedObjectsForEntity:entityName
+                                 withPredicate:nil
+                                     withLimit:1
+                           withSortDescriptors:sortDescriptors] lastObject];
 }
 
 - (NSArray *)fetchManagedObjectsForEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate
 {
+    return [self fetchManagedObjectsForEntity:entityName
+                                withPredicate:predicate
+                                    withLimit:0
+                          withSortDescriptors:nil];
+}
+
+- (NSArray *)fetchManagedObjectsForEntity:(NSString*)entityName
+                            withPredicate:(NSPredicate*)predicate
+                                withLimit:(NSUInteger)limit
+                      withSortDescriptors:(NSArray *)sortDescriptors {
 	NSManagedObjectContext	*context = [self managedObjectContext];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
 	
 	NSFetchRequest	*request = [[NSFetchRequest alloc] init];
 	request.entity = entity;
 	request.predicate = predicate;
+    request.fetchLimit = limit;
+    request.sortDescriptors = sortDescriptors;
 	
 	NSArray	*results = [context executeFetchRequest:request error:nil];
 	[request release];
