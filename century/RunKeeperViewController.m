@@ -41,7 +41,11 @@
     NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionary];
     NSMutableArray *storedActivities;
     
-    NSArray *activities = [[FlickrFetcher sharedInstance] fetchManagedObjectsForEntity:@"RKActivity" withPredicate:nil];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    NSArray *activities = [[FlickrFetcher sharedInstance] fetchManagedObjectsForEntity:@"RKActivity"
+                                                                         withPredicate:nil
+                                                                             withLimit:0
+                                                                   withSortDescriptors:[NSArray arrayWithObject:descriptor]];
     for (RKActivity *activity in activities) {
         storedActivities = [activitiesByDate objectForKey:[activity date]];
         if (storedActivities) {
