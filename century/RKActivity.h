@@ -26,6 +26,8 @@
            withDateFormatter:(NSDateFormatter *)dateFormatter
                    inContext:(NSManagedObjectContext *)context;
 
++ (NSDictionary *)allActivitiesByDate;
+
 - (NSDate *)date;
 - (NSString *)imageName;
 - (double)distanceInMiles;

@@ -7,6 +7,7 @@
 //
 
 #import "RKActivity.h"
+#import "FlickrFetcher.h"
 
 #define kRKTypeRunningIcon @"icon-running.png"
 #define kRKTypeWalkingIcon @"icon-walking.png"
@@ -39,6 +40,29 @@
     activity.rkURI = [activityJSON objectForKey:@"uri"];
     activity.fetchedTime = [NSDate date];
     return activity;
+}
+
++ (NSDictionary *)allActivitiesByDate {
+    NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionary];
+    NSMutableArray *storedActivities;
+    
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    NSArray *activities = [[FlickrFetcher sharedInstance] fetchManagedObjectsForEntity:@"RKActivity"
+                                                                         withPredicate:nil
+                                                                             withLimit:0
+                                                                   withSortDescriptors:[NSArray arrayWithObject:descriptor]];
+    for (RKActivity *activity in activities) {
+        storedActivities = [activitiesByDate objectForKey:[activity date]];
+        if (storedActivities) {
+            [storedActivities addObject:activity];
+        } else {
+            storedActivities = [NSMutableArray arrayWithObject:activity];
+        }
+        [activitiesByDate setObject:storedActivities forKey:[activity date]];
+    }
+    
+    NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
+    return activitiesByDate;
 }
 
 - (NSCalendar *)calendar {

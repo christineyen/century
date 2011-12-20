@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "TKCalendarMonthTableViewController.h"
 #import "GTMOAuth2Authentication.h"
-#import "FlickrFetcher.h"
 
 @interface RunKeeperViewController : TKCalendarMonthTableViewController<
         TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource, NSFetchedResultsControllerDelegate>

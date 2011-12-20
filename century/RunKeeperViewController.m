@@ -17,8 +17,9 @@
 @synthesize monthDataDict=_monthDataDict;
 @synthesize monthDataArray=_monthDataArray;
 @synthesize databaseFetchTemporaryVariable=_databaseFetchTemporaryVariable;
-
 @synthesize rkCell=_rkCell;
+
+static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,29 +38,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (NSDictionary *)fetchActivitiesFromCoreData {
-    NSMutableDictionary *activitiesByDate = [NSMutableDictionary dictionary];
-    NSMutableArray *storedActivities;
-    
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
-    NSArray *activities = [[FlickrFetcher sharedInstance] fetchManagedObjectsForEntity:@"RKActivity"
-                                                                         withPredicate:nil
-                                                                             withLimit:0
-                                                                   withSortDescriptors:[NSArray arrayWithObject:descriptor]];
-    for (RKActivity *activity in activities) {
-        storedActivities = [activitiesByDate objectForKey:[activity date]];
-        if (storedActivities) {
-            [storedActivities addObject:activity];
-        } else {
-            storedActivities = [NSMutableArray arrayWithObject:activity];
-        }
-        [activitiesByDate setObject:storedActivities forKey:[activity date]];
-    }
-    
-    NSLog(@"%d days of RunKeeper data fetched", [activitiesByDate count]);
-    return activitiesByDate;
-}
-
 #pragma mark - View lifecycle
 
 /*
@@ -73,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.databaseFetchTemporaryVariable = [self fetchActivitiesFromCoreData];
+    self.databaseFetchTemporaryVariable = [RKActivity allActivitiesByDate];
     
     NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kRKActivityUserInfoKey];
     self.title = [NSString stringWithFormat:@"%@'s Activities", [userInfo objectForKey:@"name"]];
@@ -114,9 +92,9 @@
     NSArray *arr = [self.monthDataDict objectForKey:[self.monthView dateSelected]];
     RKActivity *activity = [arr objectAtIndex:indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RunKeeperTableViewCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRunKeeperCellIdentifier];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"RunKeeperTableViewCell" owner:self options:nil];
+        [[NSBundle mainBundle] loadNibNamed:kRunKeeperCellIdentifier owner:self options:nil];
         cell = self.rkCell;
         self.rkCell = nil;
     }

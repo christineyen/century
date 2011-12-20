@@ -77,6 +77,7 @@
 		97E432F7149C544F00F827FD /* icon-walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F4149C544F00F827FD /* icon-walking.png */; };
 		97F89EAF14A0290200A5A975 /* icon-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F89EAE14A0290200A5A975 /* icon-calendar.png */; };
 		97F89EB214A0294D00A5A975 /* icon-notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F89EB114A0294D00A5A975 /* icon-notepad.png */; };
+		97F89EB814A02C7E00A5A975 /* RunKeeperListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +180,8 @@
 		97E432F4149C544F00F827FD /* icon-walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-walking.png"; sourceTree = "<group>"; };
 		97F89EAE14A0290200A5A975 /* icon-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar.png"; sourceTree = "<group>"; };
 		97F89EB114A0294D00A5A975 /* icon-notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-notepad.png"; sourceTree = "<group>"; };
+		97F89EB614A02C7E00A5A975 /* RunKeeperListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunKeeperListViewController.h; sourceTree = "<group>"; };
+		97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunKeeperListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +316,8 @@
 				97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */,
 				97D779F61498348B005F4CFB /* RunKeeperViewController.h */,
 				97D779F71498348B005F4CFB /* RunKeeperViewController.m */,
+				97F89EB614A02C7E00A5A975 /* RunKeeperListViewController.h */,
+				97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				97CF9241149B414400425E72 /* GTMOAuth2Authentication.m in Sources */,
 				97CF9242149B414400425E72 /* GTMOAuth2SignIn.m in Sources */,
 				97CF9243149B414400425E72 /* GTMOAuth2ViewControllerTouch.m in Sources */,
+				97F89EB814A02C7E00A5A975 /* RunKeeperListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
