@@ -32,7 +32,7 @@
 // Returns an array of objects already in the database for the given Entity Name and Predicate
 - (NSArray *)fetchManagedObjectsForEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate;
 
-// Returns an array of objects already in the database for the given Entity Name, Predicate, and Sort Descriptors
+// Returns an array of objects already in the database for the given parameters
 - (NSArray *)fetchManagedObjectsForEntity:(NSString*)entityName
                             withPredicate:(NSPredicate*)predicate
                                 withLimit:(NSUInteger)limit
@@ -41,5 +41,11 @@
 // Returns an NSFetchedResultsController for a given Entity Name and Predicate
 - (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
                                                     withPredicate:(NSPredicate*)predicate;
+
+// Returns an NSFetchedResultsController for the given parameters
+- (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
+                                                    withPredicate:(NSPredicate*)predicate
+                                                        withLimit:(NSUInteger)limit
+                                              withSortDescriptors:(NSArray *)sortDescriptors;
 
 @end

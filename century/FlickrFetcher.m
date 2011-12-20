@@ -10,9 +10,9 @@
 
 @interface FlickrFetcher ()
 
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (NSString *)applicationDocumentsDirectory;
 
@@ -33,7 +33,19 @@
     return master;
 }
 
-- (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName withPredicate:(NSPredicate*)predicate {
+- (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
+                                                    withPredicate:(NSPredicate*)predicate {
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    return [self fetchedResultsControllerForEntity:entityName
+                                     withPredicate:predicate
+                                         withLimit:0
+                               withSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+}
+
+- (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
+                                                    withPredicate:(NSPredicate*)predicate
+                                                        withLimit:(NSUInteger)limit
+                                              withSortDescriptors:(NSArray *)sortDescriptors {
     NSFetchedResultsController *fetchedResultsController;
     /*
 	 Set up the fetched results controller.
@@ -48,9 +60,6 @@
 	[fetchRequest setFetchBatchSize:20];
 	
 	// Edit the sort key as appropriate.
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	
     // Add a predicate if we're filtering by user name
@@ -62,11 +71,7 @@
     // nil for section name key path means "no sections".
 	fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self managedObjectContext] sectionNameKeyPath:nil cacheName:@"Root"];
 	
-	[fetchRequest release];
-	[sortDescriptor release];
-	[sortDescriptors release];
-	
-	return [fetchedResultsController autorelease];
+	return fetchedResultsController;
 }
 
 - (NSManagedObject *)fetchFirstManagedObjectForEntity:(NSString *)entityName
@@ -99,7 +104,6 @@
     request.sortDescriptors = sortDescriptors;
 	
 	NSArray	*results = [context executeFetchRequest:request error:nil];
-	[request release];
 	
 	return results;
 }
@@ -197,18 +201,6 @@
  */
 - (NSString *)applicationDocumentsDirectory {
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-}
-
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-    [managedObjectContext release];
-    [managedObjectModel release];
-    [persistentStoreCoordinator release];
-
-    [super dealloc];
 }
 
 @end

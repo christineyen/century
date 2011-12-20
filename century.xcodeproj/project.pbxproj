@@ -46,7 +46,7 @@
 		97D779A4149702DC005F4CFB /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779A3149702DC005F4CFB /* Person.m */; };
 		97D779A7149702DC005F4CFB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779A6149702DC005F4CFB /* Photo.m */; };
 		97D779A91497035A005F4CFB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D779A81497035A005F4CFB /* CoreData.framework */; };
-		97D779AD14970445005F4CFB /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779AC14970445005F4CFB /* FlickrFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		97D779AD14970445005F4CFB /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D779AC14970445005F4CFB /* FlickrFetcher.m */; };
 		97D779AF149755B1005F4CFB /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97D779AE149755B1005F4CFB /* Photos.plist */; };
 		97D779BD1497563D005F4CFB /* paper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97D779B01497563C005F4CFB /* paper.jpg */; };
 		97D779BE1497563D005F4CFB /* apples.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 97D779B11497563D005F4CFB /* apples.jpg */; };
