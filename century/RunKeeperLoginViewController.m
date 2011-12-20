@@ -80,7 +80,7 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     self.welcomeImageView.layer.borderWidth = 7.0;
     
     if ([self.mAuth canAuthorize]) {
-        [self fetchLatestActivitiesWithNewHUD:YES];
+        [self fetchLatestActivities];
     }
 }
 
@@ -114,7 +114,7 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
 
 - (IBAction)login:(id)sender {
     if ([self.mAuth canAuthorize]) {
-        [self fetchLatestActivitiesWithNewHUD:YES];
+        [self fetchLatestActivities];
         return;
     }
     
@@ -149,7 +149,7 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
         self.mAuth = auth;
         
         [self dismissModalViewControllerAnimated:YES];
-        [self readyToViewRunKeeperView];
+        [self fetchProfileAndInitializeRunKeeperData];
     }
 }
 
@@ -182,7 +182,7 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     return YES;
 }
 
-- (BOOL)runKeeperHandleActivityFetch:(NSData *)data withError:(NSError *)error {
+- (BOOL)runKeeperHandleActivityFetch:(NSData *)data withError:(NSError *)error keepFresh:(BOOL)keepFresh {
     // Step 2 of the data fetching process. The user's profile has been passed in,
     // and SVProgressHUD is still being shown.
     if (error) {
@@ -210,9 +210,10 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     
     for (NSDictionary *activityJSON in items) { // traversed in reverse chronological order
         NSDate *jsonDate = [dateFormatter dateFromString:[activityJSON objectForKey:@"start_time"]];
-        if (lastActivity &&
+        if (keepFresh && lastActivity &&
                 [lastActivity.startTime compare:jsonDate] != NSOrderedAscending) {
             // Break out of JSON parsing if there aren't any fresh activities
+            NSLog(@"Skipping old activities! has: %@, new: %@", lastActivity.startTime, jsonDate);
             break;
         }
         
@@ -227,7 +228,11 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     return YES;
 }
 
-- (void)readyToViewRunKeeperView {
+- (BOOL)runKeeperHandleActivityFetch:(NSData *)data withError:(NSError *)error {
+    return [self runKeeperHandleActivityFetch:data withError:error keepFresh:NO];
+}
+
+- (void)fetchProfileAndInitializeRunKeeperData {
     GTMHTTPFetcher *profileFetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperProfileURI];
     [profileFetcher setAuthorizer:self.mAuth];
     
@@ -239,19 +244,16 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
             return;
         }
         
-        [self fetchLatestActivitiesWithNewHUD:NO];
+        [self fetchAllRunKeeperActivitiesAtURL:kRunKeeperActivitiesURI];
     }];
 }
 
-- (void)fetchLatestActivitiesWithNewHUD:(BOOL)showNewHUD {
-    GTMHTTPFetcher *activityFetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperActivitiesURI];
-    [activityFetcher setAuthorizer:self.mAuth];
+- (void)fetchAllRunKeeperActivitiesAtURL:(NSString *)fetchURL {
+    // Called exclusively by fetchProfileAndInitializeRunKeeperData
+    [SVProgressHUD setStatus:@"Fetching All Activities..."];
     
-    if (showNewHUD) {
-        [SVProgressHUD showWithStatus:@"Fetching Activities..."];
-    } else {
-        [SVProgressHUD setStatus:@"Fetching Activities..."];
-    }
+    GTMHTTPFetcher *activityFetcher = [GTMHTTPFetcher fetcherWithURLString:fetchURL];
+    [activityFetcher setAuthorizer:self.mAuth];
     
     [activityFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
         if (![self runKeeperHandleActivityFetch:data withError:error]) {
@@ -259,8 +261,33 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
             return;
         }
         
+        NSString *nextURL = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil]
+                             objectForKey:@"next"];
+        if (nextURL) {
+            [self fetchAllRunKeeperActivitiesAtURL:
+             [NSString stringWithFormat:@"https://api.runkeeper.com%@", nextURL]];
+        } else {
+            // Success - now we can segue.
+            [SVProgressHUD dismissWithSuccess:@"All set!"];
+            [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
+        }
+    }];
+}
+
+- (void)fetchLatestActivities {
+    [SVProgressHUD showWithStatus:@"Updating Activities..."];
+    
+    GTMHTTPFetcher *activityFetcher = [GTMHTTPFetcher fetcherWithURLString:kRunKeeperActivitiesURI];
+    [activityFetcher setAuthorizer:self.mAuth];
+    
+    [activityFetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+        if (![self runKeeperHandleActivityFetch:data withError:error keepFresh:YES]) {
+            [SVProgressHUD dismissWithError:@"Trouble loading activities."];
+            return;
+        }
+        
         // Success - now we can segue.
-        [SVProgressHUD dismissWithSuccess:@"Hooray!"];
+        [SVProgressHUD dismiss];
         [self performSegueWithIdentifier:kRunKeeperAuthenticatedSegue sender:self];
     }];
 }

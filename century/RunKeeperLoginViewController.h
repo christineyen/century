@@ -18,8 +18,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *welcomeImageView;
 
 - (GTMOAuth2Authentication *)authForRunKeeper;
-- (void)fetchLatestActivitiesWithNewHUD:(BOOL)showNewHUD;
-- (void)readyToViewRunKeeperView;
+- (void)fetchProfileAndInitializeRunKeeperData;
+- (void)fetchAllRunKeeperActivitiesAtURL:(NSString *)fetchURL;
+- (void)fetchLatestActivities;
 
 // OAuth callbacks
 - (BOOL)runKeeperHandleProfileDataFetch:(NSData *)data withError:(NSError *)error;
