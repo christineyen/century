@@ -113,6 +113,9 @@ static NSString *const kRKTypeOtherIcon = @"icon-other.png";
 - (NSString *)pace {
     double minutes = [self.durationInSeconds intValue] / kMinute;
     double miles = [self distanceInMiles];
+    if (miles == 0) {
+        return @" N/A ";
+    }
     int pace = (minutes / miles);
     int remainderSeconds = ((minutes / miles) - pace) * kMinute;
     

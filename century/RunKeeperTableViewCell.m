@@ -36,7 +36,13 @@
     [dateFormatter setDateFormat:@"MMM dd, YYYY (EEE) @ hh:mma"];
     
     self.rkImageView.image = [UIImage imageNamed:[activity imageName]];
-    self.mileLabel.text = [NSString stringWithFormat:@"%.2f miles", [activity distanceInMiles]];
+    
+    double miles = [activity distanceInMiles];
+    if (miles == 0) {
+        self.mileLabel.text = activity.type;
+    } else {
+        self.mileLabel.text = [NSString stringWithFormat:@"%.2f miles", miles];
+    }
     self.durationLabel.text = [NSString stringWithFormat:@"for %@", [activity durationInHHmmss]];
     self.timestampLabel.text = [dateFormatter stringFromDate:activity.startTime];
     self.paceLabel.text = [NSString stringWithFormat:@"(%@)", [activity pace]];
