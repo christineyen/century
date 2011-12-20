@@ -78,6 +78,7 @@
 		97F89EAF14A0290200A5A975 /* icon-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F89EAE14A0290200A5A975 /* icon-calendar.png */; };
 		97F89EB214A0294D00A5A975 /* icon-notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F89EB114A0294D00A5A975 /* icon-notepad.png */; };
 		97F89EB814A02C7E00A5A975 /* RunKeeperListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */; };
+		97F89EC914A0374600A5A975 /* RunKeeperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F89EC814A0374600A5A975 /* RunKeeperTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +183,8 @@
 		97F89EB114A0294D00A5A975 /* icon-notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-notepad.png"; sourceTree = "<group>"; };
 		97F89EB614A02C7E00A5A975 /* RunKeeperListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunKeeperListViewController.h; sourceTree = "<group>"; };
 		97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunKeeperListViewController.m; sourceTree = "<group>"; };
+		97F89EC714A0374600A5A975 /* RunKeeperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunKeeperTableViewCell.h; sourceTree = "<group>"; };
+		97F89EC814A0374600A5A975 /* RunKeeperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunKeeperTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				97CF91F1149843F200425E72 /* RunKeeperTableViewCell.xib */,
+				97F89EC714A0374600A5A975 /* RunKeeperTableViewCell.h */,
+				97F89EC814A0374600A5A975 /* RunKeeperTableViewCell.m */,
 			);
 			name = "View Elements";
 			sourceTree = "<group>";
@@ -554,6 +559,7 @@
 				97CF9242149B414400425E72 /* GTMOAuth2SignIn.m in Sources */,
 				97CF9243149B414400425E72 /* GTMOAuth2ViewControllerTouch.m in Sources */,
 				97F89EB814A02C7E00A5A975 /* RunKeeperListViewController.m in Sources */,
+				97F89EC914A0374600A5A975 /* RunKeeperTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

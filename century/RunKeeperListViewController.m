@@ -51,13 +51,11 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
 {
     [super viewDidLoad];
 
-    NSLog(@"sniff");
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);
     }
-    NSLog(@"what");
     self.fetchedResultsController.delegate = self;
 //    self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
 }
@@ -111,15 +109,14 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
 {
     RKActivity *activity = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRunKeeperCellIdentifier];
+    RunKeeperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRunKeeperCellIdentifier];
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:kRunKeeperCellIdentifier owner:self options:nil];
         cell = self.rkCell;
         self.rkCell = nil;
     }
     
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:500];
-    imageView.image = [UIImage imageNamed:[activity imageName]];
+    [cell configureForActivity:activity];
     return cell;
 }
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "RunKeeperTableViewCell.h"
+
 #import "TKCalendarMonthTableViewController.h"
 #import "GTMOAuth2Authentication.h"
 
@@ -19,5 +21,5 @@
 
 @property (strong, nonatomic) NSDictionary *databaseFetchTemporaryVariable;
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
+@property (weak, nonatomic) IBOutlet RunKeeperTableViewCell *rkCell;
 @end

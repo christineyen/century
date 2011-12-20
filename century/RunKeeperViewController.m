@@ -8,8 +8,8 @@
 
 #import "RunKeeperViewController.h"
 #import "RKActivity.h"
-#import "SVProgressHUD.h"
 
+#import "SVProgressHUD.h"
 #import "GTMHTTPFetcher.h"
 #import "NSDate+TKCategory.h"
 
@@ -92,27 +92,14 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
     NSArray *arr = [self.monthDataDict objectForKey:[self.monthView dateSelected]];
     RKActivity *activity = [arr objectAtIndex:indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRunKeeperCellIdentifier];
+    RunKeeperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRunKeeperCellIdentifier];
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:kRunKeeperCellIdentifier owner:self options:nil];
         cell = self.rkCell;
         self.rkCell = nil;
     }
     
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:500];
-    UILabel *mileLabel = (UILabel *)[cell viewWithTag:501];
-    UILabel *durationLabel = (UILabel *)[cell viewWithTag:502];
-    UILabel *timestampLabel = (UILabel *)[cell viewWithTag:503];
-    UILabel *paceLabel = (UILabel *)[cell viewWithTag:504];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM dd, YYYY (EEE) @ hh:mma"];
-    
-    imageView.image = [UIImage imageNamed:[activity imageName]];
-    mileLabel.text = [NSString stringWithFormat:@"%.2f miles", [activity distanceInMiles]];
-    durationLabel.text = [NSString stringWithFormat:@"for %@", [activity durationInHHmmss]];
-    timestampLabel.text = [dateFormatter stringFromDate:activity.startTime];
-    paceLabel.text = [NSString stringWithFormat:@"(%@)", [activity pace]];
-    
+    [cell configureForActivity:activity];
     return cell;
 }
 

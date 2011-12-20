@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "RunKeeperTableViewCell.h"
 
 @interface RunKeeperListViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (weak, nonatomic) IBOutlet UITableViewCell *rkCell;
+@property (weak, nonatomic) IBOutlet RunKeeperTableViewCell *rkCell;
 @end
