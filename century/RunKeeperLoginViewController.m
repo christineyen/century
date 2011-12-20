@@ -292,4 +292,9 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     }];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Remove self (RunKeeperLoginViewController) as the navigation controller's root viewcontroller
+    self.navigationController.viewControllers = [NSArray arrayWithObject:segue.destinationViewController];
+}
+
 @end

@@ -480,11 +480,87 @@
                     <connections>
                         <outlet property="darkBackgroundView" destination="scb-yH-teE" id="f31-Ws-32G"/>
                         <outlet property="welcomeImageView" destination="PS1-e5-MAt" id="0bl-Jh-52e"/>
-                        <segue destination="TtD-b5-Ylh" kind="push" identifier="RunKeeperAuthenticated" id="fX3-cs-jsZ"/>
+                        <segue destination="0lC-VE-JPn" kind="push" identifier="RunKeeperAuthenticated" id="FAN-CN-Bwu"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1549" y="1191"/>
+        </scene>
+        <scene sceneID="Kmm-8c-gcZ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HOC-vm-9hg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="0lC-VE-JPn" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="tYT-q7-m3o">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="0ee-Sj-yhE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ofq-Dv-dBu" imageView="JAe-UK-H3a" style="IBUITableViewCellStyleDefault" id="lhm-tE-QCv">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Calendar View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ofq-Dv-dBu">
+                                                    <rect key="frame" x="42" y="0.0" width="228" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon-calendar.png" id="JAe-UK-H3a">
+                                                    <rect key="frame" x="9" y="9" width="23" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="TtD-b5-Ylh" kind="push" id="cg9-dN-l4J"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Tvx-BE-Hkb" imageView="eiv-Oy-DO7" style="IBUITableViewCellStyleDefault" id="03R-Kw-BLg">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="List View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tvx-BE-Hkb">
+                                                    <rect key="frame" x="39" y="0.0" width="231" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon-notepad.png" id="eiv-Oy-DO7">
+                                                    <rect key="frame" x="7" y="7" width="22" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="LxU-Xn-da0" kind="push" id="fae-gL-Afw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="0lC-VE-JPn" id="3lQ-Z7-htk"/>
+                            <outlet property="delegate" destination="0lC-VE-JPn" id="eeW-JU-3Hh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="RunKeeper" id="cBd-wD-XBK"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2062" y="1191"/>
         </scene>
         <scene sceneID="AuU-bs-IY5">
             <objects>
@@ -498,7 +574,36 @@
                     <navigationItem key="navigationItem" title="RunKeeper activity" id="580-1d-znf"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2046" y="1191"/>
+            <point key="canvasLocation" x="2566" y="1191"/>
+        </scene>
+        <scene sceneID="zBX-ow-2Ti">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJb-0R-osn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="LxU-Xn-da0" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pem-Js-VaV">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gLJ-Lj-GmF">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LxU-Xn-da0" id="hvy-9s-4cF"/>
+                            <outlet property="delegate" destination="LxU-Xn-da0" id="k5r-FE-WCA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="dBo-SE-kng"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2572" y="1789"/>
         </scene>
         <scene sceneID="e7D-qH-YdM">
             <objects>
@@ -517,9 +622,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon-calendar.png" width="23" height="25"/>
         <image name="icon-city.png" width="23" height="27"/>
         <image name="icon-film-roll.png" width="26" height="22"/>
         <image name="icon-map.png" width="26" height="21"/>
+        <image name="icon-notepad.png" width="22" height="28"/>
         <image name="icon-runkeeper.png" width="16" height="24"/>
         <image name="littleupset.jpg" width="473" height="590"/>
         <image name="runkeeper_login.png" width="300" height="57"/>

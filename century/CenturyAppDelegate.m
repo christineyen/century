@@ -82,6 +82,9 @@
     UINavigationController *recentsNavController = (UINavigationController *)[[tabBarController viewControllers]
                                                                               objectAtIndex:1];
     recentsNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
+    UINavigationController *runKeeperNavController = (UINavigationController *)[[tabBarController viewControllers]
+                                                                                lastObject];
+    runKeeperNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
     
     // Set up Contacts tab
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"name != %@", [Person flickrRecentsName]];

@@ -75,6 +75,8 @@
 		97E432F5149C544F00F827FD /* icon-cycling.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F2149C544F00F827FD /* icon-cycling.png */; };
 		97E432F6149C544F00F827FD /* icon-running.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F3149C544F00F827FD /* icon-running.png */; };
 		97E432F7149C544F00F827FD /* icon-walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 97E432F4149C544F00F827FD /* icon-walking.png */; };
+		97F89EAF14A0290200A5A975 /* icon-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F89EAE14A0290200A5A975 /* icon-calendar.png */; };
+		97F89EB214A0294D00A5A975 /* icon-notepad.png in Resources */ = {isa = PBXBuildFile; fileRef = 97F89EB114A0294D00A5A975 /* icon-notepad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +177,8 @@
 		97E432F2149C544F00F827FD /* icon-cycling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cycling.png"; sourceTree = "<group>"; };
 		97E432F3149C544F00F827FD /* icon-running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-running.png"; sourceTree = "<group>"; };
 		97E432F4149C544F00F827FD /* icon-walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-walking.png"; sourceTree = "<group>"; };
+		97F89EAE14A0290200A5A975 /* icon-calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-calendar.png"; sourceTree = "<group>"; };
+		97F89EB114A0294D00A5A975 /* icon-notepad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-notepad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +331,8 @@
 		97D7797D1496E136005F4CFB /* iconsandsuch */ = {
 			isa = PBXGroup;
 			children = (
+				97F89EB114A0294D00A5A975 /* icon-notepad.png */,
+				97F89EAE14A0290200A5A975 /* icon-calendar.png */,
 				97E432F2149C544F00F827FD /* icon-cycling.png */,
 				97E432F3149C544F00F827FD /* icon-running.png */,
 				97E432F4149C544F00F827FD /* icon-walking.png */,
@@ -502,6 +508,8 @@
 				97E432F5149C544F00F827FD /* icon-cycling.png in Resources */,
 				97E432F6149C544F00F827FD /* icon-running.png in Resources */,
 				97E432F7149C544F00F827FD /* icon-walking.png in Resources */,
+				97F89EAF14A0290200A5A975 /* icon-calendar.png in Resources */,
+				97F89EB214A0294D00A5A975 /* icon-notepad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
