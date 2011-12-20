@@ -48,4 +48,11 @@
                                                         withLimit:(NSUInteger)limit
                                               withSortDescriptors:(NSArray *)sortDescriptors;
 
+// Returns an NSFetchedResultsController for the given parameters
+- (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
+                                                    withPredicate:(NSPredicate*)predicate
+                                                        withLimit:(NSUInteger)limit
+                                              withSortDescriptors:(NSArray *)sortDescriptors
+                                           withSectionNameKeyPath:(NSString *)sectionNameKeyPath;
+
 @end

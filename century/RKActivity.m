@@ -76,6 +76,7 @@
 - (NSDate *)date {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *components = [self.calendar components:unitFlags fromDate:self.startTime];
+    
     return [self.calendar dateFromComponents:components];
 }
 
@@ -112,6 +113,12 @@
     int remainderSeconds = ((minutes / miles) - pace) * kMinute;
     
     return [NSString stringWithFormat:@"%d:%02d min/mi", pace, remainderSeconds];
+}
+
+- (NSString *)monthName {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"MMMM yyyy"];
+    return [dateFormatter stringFromDate:self.startTime];
 }
 
 @end

@@ -34,4 +34,5 @@
 - (NSString *)durationInHHmmss;
 - (NSString *)pace;
 
+- (NSString *)monthName;
 @end

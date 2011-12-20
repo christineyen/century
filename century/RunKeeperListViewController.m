@@ -40,7 +40,8 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
         _fetchedResultsController = [[FlickrFetcher sharedInstance] fetchedResultsControllerForEntity:@"RKActivity"
                                                                                         withPredicate:nil
                                                                                             withLimit:0
-                                                                                  withSortDescriptors:[NSArray arrayWithObject:desc]];
+                                                                                  withSortDescriptors:[NSArray arrayWithObject:desc]
+                                                                               withSectionNameKeyPath:@"monthName"];
     }
     return _fetchedResultsController;
 }
@@ -96,7 +97,11 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

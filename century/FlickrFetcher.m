@@ -39,13 +39,27 @@
     return [self fetchedResultsControllerForEntity:entityName
                                      withPredicate:predicate
                                          withLimit:0
-                               withSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+                               withSortDescriptors:[NSArray arrayWithObject:sortDescriptor]
+                            withSectionNameKeyPath:nil];
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
                                                     withPredicate:(NSPredicate*)predicate
                                                         withLimit:(NSUInteger)limit
                                               withSortDescriptors:(NSArray *)sortDescriptors {
+    return [self fetchedResultsControllerForEntity:entityName
+                                     withPredicate:predicate
+                                         withLimit:limit
+                               withSortDescriptors:sortDescriptors
+                            withSectionNameKeyPath:nil];
+}
+
+
+- (NSFetchedResultsController *)fetchedResultsControllerForEntity:(NSString*)entityName
+                                                    withPredicate:(NSPredicate*)predicate
+                                                        withLimit:(NSUInteger)limit
+                                              withSortDescriptors:(NSArray *)sortDescriptors
+                                           withSectionNameKeyPath:(NSString *)sectionNameKeyPath {
     NSFetchedResultsController *fetchedResultsController;
     /*
 	 Set up the fetched results controller.
@@ -69,7 +83,10 @@
     
 	// Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-	fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self managedObjectContext] sectionNameKeyPath:nil cacheName:@"Root"];
+	fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                   managedObjectContext:[self managedObjectContext]
+                                                                     sectionNameKeyPath:sectionNameKeyPath
+                                                                              cacheName:@"Root"];
 	
 	return fetchedResultsController;
 }
