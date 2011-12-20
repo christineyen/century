@@ -8,7 +8,6 @@
 
 #import "RunKeeperListViewController.h"
 #import "FlickrFetcher.h"
-#import "RKActivity.h"
 
 @implementation RunKeeperListViewController
 @synthesize fetchedResultsController=_fetchedResultsController;
