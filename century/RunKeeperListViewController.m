@@ -99,6 +99,10 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
     return [[self.fetchedResultsController sections] count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
@@ -158,32 +162,6 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
     return YES;
 }
 */
-
-// Section Index methods
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSArray *sections = [self.fetchedResultsController sections];
-    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:[sections count]];
-    
-    NSDateFormatter *fromMMMMyyyy = [[NSDateFormatter alloc] init];
-    [fromMMMMyyyy setDateFormat:@"MMMM yyyy"];
-    
-    NSDateFormatter *toMMyy = [[NSDateFormatter alloc] init];
-    [toMMyy setDateFormat:@"M/yy"];
-    
-    for (id<NSFetchedResultsSectionInfo> info in sections) {
-        NSDate *month = [fromMMMMyyyy dateFromString:[info name]];
-        [arr addObject:[toMMyy stringFromDate:month]];
-    }
-    return arr;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-}
 
 #pragma mark - Table view delegate
 
