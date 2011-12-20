@@ -9,11 +9,6 @@
 #import "PhotoEditViewController.h"
 #import "Person.h"
 
-#define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 \
-    green:((c>>16)&0xFF)/255.0 \
-    blue:((c>>8)&0xFF)/255.0 \
-    alpha:((c)&0xFF)/255.0]
-
 @implementation PhotoEditViewController
 @synthesize photo=_photo;
 @synthesize delegate=_delegate;

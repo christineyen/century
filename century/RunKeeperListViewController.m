@@ -57,7 +57,7 @@ static NSString *const kRunKeeperCellIdentifier = @"RunKeeperTableViewCell";
         exit(-1);
     }
     self.fetchedResultsController.delegate = self;
-//    self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
+    self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
 }
 
 - (void)viewDidUnload
