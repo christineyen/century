@@ -9,10 +9,6 @@
 #import "RKActivity.h"
 #import "FlickrFetcher.h"
 
-#define kRKTypeRunningIcon @"icon-running.png"
-#define kRKTypeWalkingIcon @"icon-walking.png"
-#define kRKTypeCyclingIcon @"icon-cycling.png"
-
 #define kMetersPerMile 1609.344
 #define kHour 3600.0
 #define kMinute 60.0
@@ -25,6 +21,12 @@
 @dynamic durationInSeconds;
 @dynamic rkURI;
 @dynamic fetchedTime;
+
+static NSString *const kRKTypeRunningIcon = @"icon-running.png";
+static NSString *const kRKTypeWalkingIcon = @"icon-walking.png";
+static NSString *const kRKTypeCyclingIcon = @"icon-cycling.png";
+static NSString *const kRKTypeEllipticalIcon = @"icon-elliptical.png";
+static NSString *const kRKTypeOtherIcon = @"icon-other.png";
 
 @synthesize calendar=_calendar;
 
@@ -87,8 +89,10 @@
         return kRKTypeCyclingIcon;
     } else if ([self.type isEqualToString:@"Walking"]) {
         return kRKTypeWalkingIcon;
+    } else if ([self.type isEqualToString:@"Elliptical"]) {
+        return kRKTypeEllipticalIcon;
     }
-    return nil;
+    return kRKTypeOtherIcon;
 }
 - (double)distanceInMiles {
     return [self.distanceInMeters doubleValue] / kMetersPerMile;
