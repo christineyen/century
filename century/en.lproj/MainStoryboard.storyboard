@@ -412,12 +412,23 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="yrY-K7-hgn" id="mhP-z5-9E9"/>
+                            <outlet property="dataSource" destination="eHH-kO-0Hn" id="16A-IS-aPO"/>
                             <outlet property="delegate" destination="yrY-K7-hgn" id="km5-Q1-o4s"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Flickr Users" id="xLk-9m-JV6"/>
+                    <navigationItem key="navigationItem" title="Flickr Users" id="xLk-9m-JV6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="MI6-Bj-0ME">
+                            <connections>
+                                <action selector="refresh:" destination="yrY-K7-hgn" id="rf3-RF-Ty9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dataSource" destination="eHH-kO-0Hn" id="csD-9r-2gi"/>
+                        <outlet property="tableView" destination="AqI-vA-hCq" id="NHI-xe-pB8"/>
+                    </connections>
                 </tableViewController>
+                <customObject id="eHH-kO-0Hn" customClass="PhotoListDataSource"/>
             </objects>
             <point key="canvasLocation" x="1530" y="-58"/>
         </scene>
@@ -621,8 +632,13 @@
         <image name="runkeeper_login.png" width="300" height="57"/>
     </resources>
     <classes>
-        <class className="FlickrListViewController" superclassName="PhotoListViewController">
+        <class className="FlickrListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+                <relationship kind="outlet" name="dataSource" candidateClass="PhotoListDataSource"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="PersonListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonListViewController.h"/>
@@ -647,11 +663,11 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
-        <class className="PhotoListViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoListViewController.h"/>
+        <class className="PhotoListDataSource" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoListDataSource.h"/>
         </class>
-        <class className="PullRefreshTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
+        <class className="PhotoListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoListViewController.h"/>
         </class>
         <class className="RandomMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RandomMapViewController.h"/>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9758868C14A148100052D001 /* icon-elliptical.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758868A14A148100052D001 /* icon-elliptical.png */; };
 		9758868D14A148100052D001 /* icon-other.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758868B14A148100052D001 /* icon-other.png */; };
+		9758869A14A299D90052D001 /* PhotoListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758869914A299D90052D001 /* PhotoListDataSource.m */; };
 		97CF91DE14983AC000425E72 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D114983AC000425E72 /* NSDate+TKCategory.m */; };
 		97CF91DF14983AC000425E72 /* TKCalendarMonthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D314983AC000425E72 /* TKCalendarMonthTableViewController.m */; };
 		97CF91E014983AC000425E72 /* TKCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D514983AC000425E72 /* TKCalendarMonthView.m */; };
@@ -86,6 +87,9 @@
 /* Begin PBXFileReference section */
 		9758868A14A148100052D001 /* icon-elliptical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-elliptical.png"; sourceTree = "<group>"; };
 		9758868B14A148100052D001 /* icon-other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-other.png"; sourceTree = "<group>"; };
+		9758869814A299D90052D001 /* PhotoListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListDataSource.h; sourceTree = "<group>"; };
+		9758869914A299D90052D001 /* PhotoListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListDataSource.m; sourceTree = "<group>"; };
+		9758869B14A29F5A0052D001 /* PhotoListDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListDataSourceProtocol.h; sourceTree = "<group>"; };
 		97CF91D014983AC000425E72 /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TKCategory.h"; sourceTree = "<group>"; };
 		97CF91D114983AC000425E72 /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TKCategory.m"; sourceTree = "<group>"; };
 		97CF91D214983AC000425E72 /* TKCalendarMonthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarMonthTableViewController.h; sourceTree = "<group>"; };
@@ -211,6 +215,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9758869714A2999F0052D001 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9758869814A299D90052D001 /* PhotoListDataSource.h */,
+				9758869914A299D90052D001 /* PhotoListDataSource.m */,
+				9758869B14A29F5A0052D001 /* PhotoListDataSourceProtocol.h */,
+			);
+			name = "Data Sources";
+			sourceTree = "<group>";
+		};
 		97CF91F0149843DB00425E72 /* View Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +301,7 @@
 				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
 				97D779661496DE19005F4CFB /* MainStoryboard.storyboard */,
 				97D779771496DF21005F4CFB /* View Controllers */,
+				9758869714A2999F0052D001 /* Data Sources */,
 				97CF91F0149843DB00425E72 /* View Elements */,
 				97D779AA1497042F005F4CFB /* External Libraries */,
 				97D7795B1496DE19005F4CFB /* Supporting Files */,
@@ -568,6 +583,7 @@
 				97CF9243149B414400425E72 /* GTMOAuth2ViewControllerTouch.m in Sources */,
 				97F89EB814A02C7E00A5A975 /* RunKeeperListViewController.m in Sources */,
 				97F89EC914A0374600A5A975 /* RunKeeperTableViewCell.m in Sources */,
+				9758869A14A299D90052D001 /* PhotoListDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

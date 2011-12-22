@@ -6,8 +6,12 @@
 //  Copyright (c) 2011 MIT. All rights reserved.
 //
 
-#import "PhotoListViewController.h"
+#import "PhotoListDataSource.h"
 
-@interface FlickrListViewController : PhotoListViewController
+@interface FlickrListViewController : UIViewController<UITableViewDelegate>
 
+@property (nonatomic, strong) IBOutlet PhotoListDataSource *dataSource;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+- (IBAction)refresh:(id)sender;
 @end

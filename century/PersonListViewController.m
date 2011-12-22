@@ -160,8 +160,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PickPerson"]) {
         PhotoListViewController *photoViewController = segue.destinationViewController;
-        photoViewController.person = [self.fetchedResultsController objectAtIndexPath:
-                                      [self.tableView indexPathForSelectedRow]];
+        photoViewController.dataSource.person = [self.fetchedResultsController objectAtIndexPath:
+                                                 [self.tableView indexPathForSelectedRow]];
     }
 }
 

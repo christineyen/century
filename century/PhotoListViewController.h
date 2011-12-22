@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullRefreshTableViewController.h"
-#import "Person.h"
+#import "PhotoListDataSourceProtocol.h"
 
-@interface PhotoListViewController : PullRefreshTableViewController
-@property (nonatomic, strong) Person *person;
-@property (nonatomic, weak) UILabel *photoCountLabel;
-
-- (BOOL)isLastCell:(NSIndexPath *)indexPath;
+@interface PhotoListViewController : UITableViewController
+@property (nonatomic, strong) id<UITableViewDataSource,PersonPhotoListDataSource> dataSource;
 @end

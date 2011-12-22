@@ -7,9 +7,13 @@
 //
 
 #import "FlickrListViewController.h"
+#import "PhotoDetailViewController.h"
+#import "PhotoListDataSource.h"
 #import "SVProgressHUD.h"
 
 @implementation FlickrListViewController
+@synthesize dataSource = _dataSource;
+@synthesize tableView=_tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,33 +32,48 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (id<UITableViewDataSource,PersonPhotoListDataSource>)dataSource {
+    if (!_dataSource) {
+        self.dataSource = [[PhotoListDataSource alloc] init];
+    }
+    return _dataSource;
+}
+
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
+- (void)awakeFromNib {
+    self.tableView.dataSource = self.dataSource;
+    self.tableView.delegate = self;
 }
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.person == nil) {
-        self.person = [Person flickrRecentsPerson];
+    self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
+    
+    if (self.dataSource.person == nil) {
+        self.dataSource.person = [Person flickrRecentsPerson];
     }
     
-    if ([self.person.photos count] == 0) {
-        [self refresh];
+    if ([self.dataSource.person.photos count] == 0) {
+        [self refresh:nil];
+        [self.tableView reloadData];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
 }
 
 - (void)viewDidUnload
 {
+    [self setDataSource:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.dataSource = nil;
+    self.tableView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -63,15 +82,13 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - PullToRefresh Overrides
-
-- (void)refresh {
+- (IBAction)refresh:(id)sender {
     [SVProgressHUD show];
     
     dispatch_queue_t person_queue = dispatch_queue_create("Fetch Flickr Person", NULL);
     dispatch_async(person_queue, ^{
         NSError *error;
-        if ([self.person fetchMorePhotosWithError:&error]) {
+        if ([self.dataSource.person fetchMorePhotosWithError:&error]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [SVProgressHUD dismiss];
@@ -83,13 +100,15 @@
         }
     });
     dispatch_release(person_queue);
-    [self stopLoading];
 }
 
-- (void)setupStrings {
-    textPull = [[NSString alloc] initWithString:@"Pull down to PULL FROM FLICKR..."];
-    textRelease = [[NSString alloc] initWithString:@"Release to GET FROM FLICKR..."];
-    textLoading = [[NSString alloc] initWithString:@"Loading FROM FLICKR..."];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PickPhoto"]) {
+        PhotoDetailViewController *photoViewController = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        photoViewController.photo = [self.dataSource photoAtIndex:indexPath.row];
+        photoViewController.wantsFullScreenLayout = YES;
+    }
 }
 
 @end
