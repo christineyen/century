@@ -17,4 +17,5 @@
 @property (weak, nonatomic) UILabel *photoCountLabel;
 
 - (Photo *)photoAtIndex:(NSInteger)index;
+- (NSInteger)dataItemCount;
 @end

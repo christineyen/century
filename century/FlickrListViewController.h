@@ -16,7 +16,9 @@
 
 @property (nonatomic, strong) IBOutlet PhotoListDataSource *dataSource;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIView *emptyView;
 
+- (void)reloadTableOrEmptyView;
 - (IBAction)refreshClicked:(id)sender;
 
 // PullToRefresh members

@@ -15,6 +15,7 @@
 @implementation FlickrListViewController
 @synthesize dataSource = _dataSource;
 @synthesize tableView=_tableView;
+@synthesize emptyView=_emptyView;
 @synthesize refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner;
 
 static NSString *const kPullToRefreshPull = @"Pull down to PULL FROM FLICKR...";
@@ -65,13 +66,13 @@ static NSString *const kPullToRefreshLoading = @"Loading FROM FLICKR...";
     
     if ([self.dataSource.person.photos count] == 0) {
         [self refresh];
-        [self.tableView reloadData];
+        [self reloadTableOrEmptyView];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [self reloadTableOrEmptyView];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
 }
 
@@ -97,7 +98,7 @@ static NSString *const kPullToRefreshLoading = @"Loading FROM FLICKR...";
         NSError *error;
         if ([self.dataSource.person fetchMorePhotosWithError:&error]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
+                [self reloadTableOrEmptyView];
                 [SVProgressHUD dismiss];
             });
         } else {
@@ -108,6 +109,14 @@ static NSString *const kPullToRefreshLoading = @"Loading FROM FLICKR...";
     });
     dispatch_release(person_queue);
     [self stopLoading];
+}
+
+- (void)reloadTableOrEmptyView {
+    [self.tableView reloadData];
+    BOOL hasData = [self.dataSource dataItemCount] > 0;
+    
+    self.emptyView.hidden = hasData;
+    self.tableView.hidden = !hasData;
 }
 
 - (IBAction)refreshClicked:(id)sender {

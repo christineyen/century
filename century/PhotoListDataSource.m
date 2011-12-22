@@ -82,8 +82,13 @@ static NSString *const kPhotoCountCellIdentifier = @"PhotoCountCell";
     }
 }
 
+
 - (Photo *)photoAtIndex:(NSInteger)index {
     return [self.person.photosAsArray objectAtIndex:index];
+}
+
+- (NSInteger)dataItemCount {
+    return [self.person.photos count];
 }
 
 - (void)dealloc {
