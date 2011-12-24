@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CenturyTabBarController : UITabBarController
+@interface CenturyTabBarController : UITabBarController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @end

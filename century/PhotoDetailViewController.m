@@ -98,6 +98,9 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    for (UIGestureRecognizer *recognizer in [self.imageView gestureRecognizers]) {
+        [self.imageView removeGestureRecognizer:recognizer];
+    }
     self.photo.data = nil;
 }
 

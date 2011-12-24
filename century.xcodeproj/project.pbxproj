@@ -235,6 +235,36 @@
 			name = "Data Sources";
 			sourceTree = "<group>";
 		};
+		97C76AA414A5E92600D8090A /* RunKeeper */ = {
+			isa = PBXGroup;
+			children = (
+				97CF920C149ABDE500425E72 /* RunKeeperLoginViewController.h */,
+				97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */,
+				97D779F61498348B005F4CFB /* RunKeeperViewController.h */,
+				97D779F71498348B005F4CFB /* RunKeeperViewController.m */,
+				97F89EB614A02C7E00A5A975 /* RunKeeperListViewController.h */,
+				97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */,
+			);
+			name = RunKeeper;
+			sourceTree = "<group>";
+		};
+		97C76AA614A5E93C00D8090A /* Photo-Related */ = {
+			isa = PBXGroup;
+			children = (
+				97D779831496E571005F4CFB /* PersonListViewController.h */,
+				97D779841496E571005F4CFB /* PersonListViewController.m */,
+				97D779861496E5AA005F4CFB /* PhotoListViewController.h */,
+				97D779871496E5AA005F4CFB /* PhotoListViewController.m */,
+				97D779891496E733005F4CFB /* PhotoDetailViewController.h */,
+				97D7798A1496E733005F4CFB /* PhotoDetailViewController.m */,
+				97D7798C1496E748005F4CFB /* PhotoEditViewController.h */,
+				97D7798D1496E748005F4CFB /* PhotoEditViewController.m */,
+				97D7798F1496E77D005F4CFB /* FlickrListViewController.h */,
+				97D779901496E77D005F4CFB /* FlickrListViewController.m */,
+			);
+			name = "Photo-Related";
+			sourceTree = "<group>";
+		};
 		97CF91F0149843DB00425E72 /* View Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,24 +366,10 @@
 			children = (
 				9758869E14A569880052D001 /* CenturyTabBarController.h */,
 				9758869F14A569880052D001 /* CenturyTabBarController.m */,
-				97D779831496E571005F4CFB /* PersonListViewController.h */,
-				97D779841496E571005F4CFB /* PersonListViewController.m */,
-				97D779861496E5AA005F4CFB /* PhotoListViewController.h */,
-				97D779871496E5AA005F4CFB /* PhotoListViewController.m */,
-				97D779891496E733005F4CFB /* PhotoDetailViewController.h */,
-				97D7798A1496E733005F4CFB /* PhotoDetailViewController.m */,
-				97D7798C1496E748005F4CFB /* PhotoEditViewController.h */,
-				97D7798D1496E748005F4CFB /* PhotoEditViewController.m */,
-				97D7798F1496E77D005F4CFB /* FlickrListViewController.h */,
-				97D779901496E77D005F4CFB /* FlickrListViewController.m */,
+				97C76AA614A5E93C00D8090A /* Photo-Related */,
 				97D779921496E7DC005F4CFB /* RandomMapViewController.h */,
 				97D779931496E7DC005F4CFB /* RandomMapViewController.m */,
-				97CF920C149ABDE500425E72 /* RunKeeperLoginViewController.h */,
-				97CF920D149ABDE500425E72 /* RunKeeperLoginViewController.m */,
-				97D779F61498348B005F4CFB /* RunKeeperViewController.h */,
-				97D779F71498348B005F4CFB /* RunKeeperViewController.m */,
-				97F89EB614A02C7E00A5A975 /* RunKeeperListViewController.h */,
-				97F89EB714A02C7E00A5A975 /* RunKeeperListViewController.m */,
+				97C76AA414A5E92600D8090A /* RunKeeper */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

@@ -51,7 +51,34 @@
 }
 
 - (void)centerButtonClicked {
-    NSLog(@"center button clicked");
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No input source available!"
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    cameraUI.delegate = self;
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    cameraUI.allowsEditing = NO;
+    
+    [self presentModalViewController:cameraUI animated: YES];
+}
+
+#pragma mark - UIImagePickerController delegate methods
+
+- (void)imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
+    NSLog(@"image?! %@", image);
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
