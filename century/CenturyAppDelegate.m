@@ -9,6 +9,7 @@
 #import "CenturyAppDelegate.h"
 #import "FlickrFetcher.h"
 
+#import "CenturyTabBarController.h"
 #import "PersonListViewController.h"
 #import "FlickrListViewController.h"
 #import "RandomMapViewController.h"
@@ -69,7 +70,7 @@
     int loaded = [self loadDatabaseWithDefaults];
     NSLog(@"Read and loaded %d rows from the .plist", loaded);
     
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    UITabBarController *tabBarController = (CenturyTabBarController *)self.window.rootViewController;
     
     UINavigationController *peopleNavController = (UINavigationController *)[[tabBarController viewControllers]
                                                                              objectAtIndex:0];
@@ -78,7 +79,7 @@
                                                                               objectAtIndex:1];
     recentsNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
     UINavigationController *runKeeperNavController = (UINavigationController *)[[tabBarController viewControllers]
-                                                                                objectAtIndex:2];
+                                                                                lastObject];
     runKeeperNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
     
     // Set up Contacts tab

@@ -11,6 +11,11 @@
 		9758868D14A148100052D001 /* icon-other.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758868B14A148100052D001 /* icon-other.png */; };
 		9758869A14A299D90052D001 /* PhotoListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758869914A299D90052D001 /* PhotoListDataSource.m */; };
 		9758869D14A568BF0052D001 /* icon-wiggle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758869C14A568BF0052D001 /* icon-wiggle.png */; };
+		975886A014A569880052D001 /* CenturyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758869F14A569880052D001 /* CenturyTabBarController.m */; };
+		97C76A9014A572DF00D8090A /* tab-icon-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A8E14A572DF00D8090A /* tab-icon-camera.png */; };
+		97C76A9114A572DF00D8090A /* tab-icon-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A8F14A572DF00D8090A /* tab-icon-camera@2x.png */; };
+		97C76A9514A5733B00D8090A /* tab-icon-camera-ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A9314A5733B00D8090A /* tab-icon-camera-ready.png */; };
+		97C76A9614A5733B00D8090A /* tab-icon-camera-ready@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A9414A5733B00D8090A /* tab-icon-camera-ready@2x.png */; };
 		97CF91DE14983AC000425E72 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D114983AC000425E72 /* NSDate+TKCategory.m */; };
 		97CF91DF14983AC000425E72 /* TKCalendarMonthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D314983AC000425E72 /* TKCalendarMonthTableViewController.m */; };
 		97CF91E014983AC000425E72 /* TKCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D514983AC000425E72 /* TKCalendarMonthView.m */; };
@@ -91,6 +96,12 @@
 		9758869914A299D90052D001 /* PhotoListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListDataSource.m; sourceTree = "<group>"; };
 		9758869B14A29F5A0052D001 /* PhotoListDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListDataSourceProtocol.h; sourceTree = "<group>"; };
 		9758869C14A568BF0052D001 /* icon-wiggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-wiggle.png"; sourceTree = "<group>"; };
+		9758869E14A569880052D001 /* CenturyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenturyTabBarController.h; sourceTree = "<group>"; };
+		9758869F14A569880052D001 /* CenturyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenturyTabBarController.m; sourceTree = "<group>"; };
+		97C76A8E14A572DF00D8090A /* tab-icon-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera.png"; sourceTree = "<group>"; };
+		97C76A8F14A572DF00D8090A /* tab-icon-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera@2x.png"; sourceTree = "<group>"; };
+		97C76A9314A5733B00D8090A /* tab-icon-camera-ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera-ready.png"; sourceTree = "<group>"; };
+		97C76A9414A5733B00D8090A /* tab-icon-camera-ready@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera-ready@2x.png"; sourceTree = "<group>"; };
 		97CF91D014983AC000425E72 /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TKCategory.h"; sourceTree = "<group>"; };
 		97CF91D114983AC000425E72 /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TKCategory.m"; sourceTree = "<group>"; };
 		97CF91D214983AC000425E72 /* TKCalendarMonthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarMonthTableViewController.h; sourceTree = "<group>"; };
@@ -323,6 +334,8 @@
 		97D779771496DF21005F4CFB /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9758869E14A569880052D001 /* CenturyTabBarController.h */,
+				9758869F14A569880052D001 /* CenturyTabBarController.m */,
 				97D779831496E571005F4CFB /* PersonListViewController.h */,
 				97D779841496E571005F4CFB /* PersonListViewController.m */,
 				97D779861496E5AA005F4CFB /* PhotoListViewController.h */,
@@ -359,6 +372,10 @@
 		97D7797D1496E136005F4CFB /* iconsandsuch */ = {
 			isa = PBXGroup;
 			children = (
+				97C76A9314A5733B00D8090A /* tab-icon-camera-ready.png */,
+				97C76A9414A5733B00D8090A /* tab-icon-camera-ready@2x.png */,
+				97C76A8E14A572DF00D8090A /* tab-icon-camera.png */,
+				97C76A8F14A572DF00D8090A /* tab-icon-camera@2x.png */,
 				9758869C14A568BF0052D001 /* icon-wiggle.png */,
 				9758868A14A148100052D001 /* icon-elliptical.png */,
 				9758868B14A148100052D001 /* icon-other.png */,
@@ -542,6 +559,10 @@
 				9758868C14A148100052D001 /* icon-elliptical.png in Resources */,
 				9758868D14A148100052D001 /* icon-other.png in Resources */,
 				9758869D14A568BF0052D001 /* icon-wiggle.png in Resources */,
+				97C76A9014A572DF00D8090A /* tab-icon-camera.png in Resources */,
+				97C76A9114A572DF00D8090A /* tab-icon-camera@2x.png in Resources */,
+				97C76A9514A5733B00D8090A /* tab-icon-camera-ready.png in Resources */,
+				97C76A9614A5733B00D8090A /* tab-icon-camera-ready@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +603,7 @@
 				97F89EB814A02C7E00A5A975 /* RunKeeperListViewController.m in Sources */,
 				97F89EC914A0374600A5A975 /* RunKeeperTableViewCell.m in Sources */,
 				9758869A14A299D90052D001 /* PhotoListDataSource.m in Sources */,
+				975886A014A569880052D001 /* CenturyTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
