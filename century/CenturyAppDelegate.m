@@ -78,7 +78,7 @@
                                                                               objectAtIndex:1];
     recentsNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
     UINavigationController *runKeeperNavController = (UINavigationController *)[[tabBarController viewControllers]
-                                                                                lastObject];
+                                                                                objectAtIndex:2];
     runKeeperNavController.navigationBar.tintColor = HEXCOLOR(0x94BA65FF);
     
     // Set up Contacts tab

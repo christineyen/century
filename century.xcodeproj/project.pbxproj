@@ -10,6 +10,7 @@
 		9758868C14A148100052D001 /* icon-elliptical.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758868A14A148100052D001 /* icon-elliptical.png */; };
 		9758868D14A148100052D001 /* icon-other.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758868B14A148100052D001 /* icon-other.png */; };
 		9758869A14A299D90052D001 /* PhotoListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758869914A299D90052D001 /* PhotoListDataSource.m */; };
+		9758869D14A568BF0052D001 /* icon-wiggle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9758869C14A568BF0052D001 /* icon-wiggle.png */; };
 		97CF91DE14983AC000425E72 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D114983AC000425E72 /* NSDate+TKCategory.m */; };
 		97CF91DF14983AC000425E72 /* TKCalendarMonthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D314983AC000425E72 /* TKCalendarMonthTableViewController.m */; };
 		97CF91E014983AC000425E72 /* TKCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CF91D514983AC000425E72 /* TKCalendarMonthView.m */; };
@@ -89,6 +90,7 @@
 		9758869814A299D90052D001 /* PhotoListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListDataSource.h; sourceTree = "<group>"; };
 		9758869914A299D90052D001 /* PhotoListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListDataSource.m; sourceTree = "<group>"; };
 		9758869B14A29F5A0052D001 /* PhotoListDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListDataSourceProtocol.h; sourceTree = "<group>"; };
+		9758869C14A568BF0052D001 /* icon-wiggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-wiggle.png"; sourceTree = "<group>"; };
 		97CF91D014983AC000425E72 /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TKCategory.h"; sourceTree = "<group>"; };
 		97CF91D114983AC000425E72 /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TKCategory.m"; sourceTree = "<group>"; };
 		97CF91D214983AC000425E72 /* TKCalendarMonthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKCalendarMonthTableViewController.h; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 		97D7797D1496E136005F4CFB /* iconsandsuch */ = {
 			isa = PBXGroup;
 			children = (
+				9758869C14A568BF0052D001 /* icon-wiggle.png */,
 				9758868A14A148100052D001 /* icon-elliptical.png */,
 				9758868B14A148100052D001 /* icon-other.png */,
 				97F89EB114A0294D00A5A975 /* icon-notepad.png */,
@@ -538,6 +541,7 @@
 				97F89EB214A0294D00A5A975 /* icon-notepad.png in Resources */,
 				9758868C14A148100052D001 /* icon-elliptical.png in Resources */,
 				9758868D14A148100052D001 /* icon-other.png in Resources */,
+				9758869D14A568BF0052D001 /* icon-wiggle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
