@@ -43,7 +43,7 @@
         for (NSDictionary *photo in db) {
             photoObj = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
             photoObj.name = [photo objectForKey:@"name"];
-            photoObj.path = [photo objectForKey:@"path"];
+            photoObj.path = [[photo objectForKey:@"path"] stringByReplacingOccurrencesOfString:@".jpg" withString:@""];
             personName = [photo objectForKey:@"user"];
             
             person = [namePersonDict objectForKey:personName];

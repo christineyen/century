@@ -18,10 +18,17 @@
 @dynamic name;
 @dynamic person;
 
+- (NSString *)resourcePath {
+    if (self.path) {
+        return [[NSBundle mainBundle] pathForResource:self.path ofType:@"jpg"];
+    }
+    return nil;
+}
+
 - (UIImage *)getUIImage {
-    if (self.path != nil) {
-        return [UIImage imageNamed:self.path];
-    } else if (self.data != nil) {
+    if (self.path) {
+        return [UIImage imageWithContentsOfFile:[self resourcePath]];
+    } else if (self.data) {
         return [UIImage imageWithData:self.data];
     }
     return nil;

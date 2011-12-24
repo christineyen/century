@@ -48,8 +48,10 @@ static NSString *const kPhotoCountCellIdentifier = @"PhotoCountCell";
         UILabel *textLabel = (UILabel *)[cell viewWithTag:100];
         textLabel.text = photo.name;
         
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:102];
-        imageView.image = [UIImage imageNamed:photo.path];
+        if (photo.path) {
+            UIImageView *imageView = (UIImageView *)[cell viewWithTag:102];
+            imageView.image = [UIImage imageWithContentsOfFile:[photo resourcePath]];
+        }
     }
     return cell;
 }

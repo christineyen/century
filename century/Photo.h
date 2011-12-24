@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) Person *person;
 
+- (NSString *)resourcePath;
 - (UIImage *)getUIImage;
 
 @end

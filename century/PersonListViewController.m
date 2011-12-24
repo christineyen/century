@@ -113,7 +113,8 @@
     
     textLabel.text = person.name;
     detailLabel.text = [NSString stringWithFormat:@"%d Photos", [person.photos count]];
-    imageView.image = [UIImage imageNamed:photo.path];
+    
+    imageView.image = [UIImage imageWithContentsOfFile:[photo resourcePath]];
     
     return cell;
 }
