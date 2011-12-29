@@ -34,4 +34,9 @@
     return nil;
 }
 
+- (void)didTurnIntoFault {
+    [super didTurnIntoFault];
+    self.data = nil;
+}
+
 @end
