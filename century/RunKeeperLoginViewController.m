@@ -131,7 +131,7 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
                                                                  keychainItemName:kRunKeeperKeychainItemName
                                                                          delegate:self
                                                                  finishedSelector:@selector(viewController:finishedWithAuth:error:)];
-    [self presentModalViewController:viewController animated:YES];
+    [[self navigationController] pushViewController:viewController animated:YES];
 }
 
 - (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
@@ -148,7 +148,6 @@ static NSString *const kRunKeeperAuthenticatedSegue = @"RunKeeperAuthenticated";
     } else {
         self.mAuth = auth;
         
-        [self dismissModalViewControllerAnimated:YES];
         [self fetchProfileAndInitializeRunKeeperData];
     }
 }
