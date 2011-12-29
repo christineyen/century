@@ -80,11 +80,4 @@
     return YES;
 }
 
-
-- (NSArray *)photosAsArray {
-    NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    return [[self.photos allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
-}
-
-
 @end

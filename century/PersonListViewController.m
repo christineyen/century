@@ -105,7 +105,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPersonCellIdentifier];
     
     Person *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    Photo *photo = [person.photos anyObject];
+    Photo *photo = [person.photos firstObject];
     
     UILabel *textLabel = (UILabel *)[cell viewWithTag:100];
     UILabel *detailLabel = (UILabel *)[cell viewWithTag:101];

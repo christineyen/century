@@ -14,7 +14,7 @@
 @interface Person : NSManagedObject
 
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSSet *photos;
+@property (nonatomic, retain) NSOrderedSet *photos;
 @end
 
 @interface Person (CoreDataGeneratedAccessors)
@@ -23,5 +23,4 @@
 
 - (BOOL)isFlickrUser;
 - (BOOL)fetchMorePhotosWithError:(NSError **)error;
-- (NSArray *)photosAsArray;
 @end

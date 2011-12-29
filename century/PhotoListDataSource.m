@@ -43,7 +43,7 @@ static NSString *const kPhotoCountCellIdentifier = @"PhotoCountCell";
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:kPhotoCellIdentifier];
         
-        Photo *photo = [self.person.photosAsArray objectAtIndex:indexPath.row];
+        Photo *photo = [self.person.photos objectAtIndex:indexPath.row];
         
         UILabel *textLabel = (UILabel *)[cell viewWithTag:100];
         textLabel.text = photo.name;
@@ -72,7 +72,7 @@ static NSString *const kPhotoCountCellIdentifier = @"PhotoCountCell";
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        Photo *photo = [self.person.photosAsArray objectAtIndex:indexPath.row];
+        Photo *photo = [self.person.photos objectAtIndex:indexPath.row];
         
         NSManagedObjectContext *context = [[FlickrFetcher sharedInstance] managedObjectContext];
         [context deleteObject:photo];
@@ -86,7 +86,7 @@ static NSString *const kPhotoCountCellIdentifier = @"PhotoCountCell";
 
 
 - (Photo *)photoAtIndex:(NSInteger)index {
-    return [self.person.photosAsArray objectAtIndex:index];
+    return [self.person.photos objectAtIndex:index];
 }
 
 - (NSInteger)dataItemCount {
