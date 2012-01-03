@@ -59,6 +59,7 @@ static NSString *const kPullToRefreshLoading = @"Loading FROM FLICKR...";
     [super viewDidLoad];
     [self addPullToRefreshHeader];
     self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
+    self.tableView.accessibilityLabel = @"Photo List";
     self.title = @"Flickr Users";
     
     if (self.dataSource.person == nil) {

@@ -17,6 +17,10 @@
 #import "Photo.h"
 #import "Person.h"
 
+#if RUN_KIF_TESTS
+#import "CenturyTestController.h"
+#endif
+
 
 @interface CenturyAppDelegate() {
     FlickrFetcher *fetcher;
@@ -121,6 +125,13 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+#if RUN_KIF_TESTS
+    [[CenturyTestController sharedInstance] startTestingWithCompletionBlock:^{
+        // exit after the tests complete 
+        exit([[CenturyTestController sharedInstance] failureCount]);
+    }];
+#endif
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

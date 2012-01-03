@@ -63,6 +63,8 @@
     self.nameTextField.text = self.photo.name;
     pathLabel.text = self.photo.path;
     personLabel.text = self.photo.person.name;
+    
+    self.nameTextField.accessibilityLabel = @"Photo Name Field";
 }
 
 - (void)viewDidUnload

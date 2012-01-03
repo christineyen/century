@@ -50,6 +50,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
+    self.tableView.accessibilityLabel = @"Photo List";
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }

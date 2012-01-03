@@ -81,6 +81,9 @@
     
     [self.imageView addGestureRecognizer:singleTap];
     [self.imageView addGestureRecognizer:doubleTap];
+    
+    self.imageView.accessibilityLabel = @"Photo View";
+    self.navigationItem.rightBarButtonItem.accessibilityLabel = @"Edit Button";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
