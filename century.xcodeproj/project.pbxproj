@@ -96,6 +96,8 @@
 		97997BD914B29752008EC30B /* CenturyTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97997BD814B29752008EC30B /* CenturyTestController.m */; };
 		97997BE914B298D9008EC30B /* KIFTestScenario+CenturyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 97997BE814B298D9008EC30B /* KIFTestScenario+CenturyAdditions.m */; };
 		97997BEC14B29998008EC30B /* KIFTestStep+CenturyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 97997BEB14B29998008EC30B /* KIFTestStep+CenturyAdditions.m */; };
+		97997C0114B2CC0D008EC30B /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 97997C0014B2CC0D008EC30B /* Constants.m */; };
+		97997C0214B2CC0D008EC30B /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 97997C0014B2CC0D008EC30B /* Constants.m */; };
 		97C76A9014A572DF00D8090A /* tab-icon-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A8E14A572DF00D8090A /* tab-icon-camera.png */; };
 		97C76A9114A572DF00D8090A /* tab-icon-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A8F14A572DF00D8090A /* tab-icon-camera@2x.png */; };
 		97C76A9514A5733B00D8090A /* tab-icon-camera-ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C76A9314A5733B00D8090A /* tab-icon-camera-ready.png */; };
@@ -194,7 +196,7 @@
 		9758869F14A569880052D001 /* CenturyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenturyTabBarController.m; sourceTree = "<group>"; };
 		97997BCA14B293D2008EC30B /* century (Integration Tests).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "century (Integration Tests).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97997BCD14B293D3008EC30B /* century copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "century copy-Info.plist"; path = "/Users/cyen/hacky/iostoy/century/century copy-Info.plist"; sourceTree = "<absolute>"; };
-		97997BCE14B29422008EC30B /* libKIF.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libKIF.a; path = "Frameworks/KIF/build/Release-iphoneos/libKIF.a"; sourceTree = "<group>"; };
+		97997BCE14B29422008EC30B /* libKIF.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKIF.a; path = "Frameworks/KIF/build/Release-iphoneos/libKIF.a"; sourceTree = "<group>"; };
 		97997BD714B29752008EC30B /* CenturyTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenturyTestController.h; sourceTree = "<group>"; };
 		97997BD814B29752008EC30B /* CenturyTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenturyTestController.m; sourceTree = "<group>"; };
 		97997BE014B297E6008EC30B /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KIF.xcodeproj; path = ../Frameworks/KIF/KIF.xcodeproj; sourceTree = "<group>"; };
@@ -202,6 +204,9 @@
 		97997BE814B298D9008EC30B /* KIFTestScenario+CenturyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+CenturyAdditions.m"; sourceTree = "<group>"; };
 		97997BEA14B29998008EC30B /* KIFTestStep+CenturyAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestStep+CenturyAdditions.h"; sourceTree = "<group>"; };
 		97997BEB14B29998008EC30B /* KIFTestStep+CenturyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestStep+CenturyAdditions.m"; sourceTree = "<group>"; };
+		97997BFF14B2CC0D008EC30B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		97997C0014B2CC0D008EC30B /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		97997C0514B2D377008EC30B /* ConstantList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantList.h; sourceTree = "<group>"; };
 		97C76A8E14A572DF00D8090A /* tab-icon-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera.png"; sourceTree = "<group>"; };
 		97C76A8F14A572DF00D8090A /* tab-icon-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera@2x.png"; sourceTree = "<group>"; };
 		97C76A9314A5733B00D8090A /* tab-icon-camera-ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-icon-camera-ready.png"; sourceTree = "<group>"; };
@@ -482,6 +487,9 @@
 		97D7795A1496DE19005F4CFB /* century */ = {
 			isa = PBXGroup;
 			children = (
+				97997C0514B2D377008EC30B /* ConstantList.h */,
+				97997BFF14B2CC0D008EC30B /* Constants.h */,
+				97997C0014B2CC0D008EC30B /* Constants.m */,
 				97D7799E1497023A005F4CFB /* Model */,
 				97D779631496DE19005F4CFB /* CenturyAppDelegate.h */,
 				97D779641496DE19005F4CFB /* CenturyAppDelegate.m */,
@@ -851,6 +859,7 @@
 				97997BD914B29752008EC30B /* CenturyTestController.m in Sources */,
 				97997BE914B298D9008EC30B /* KIFTestScenario+CenturyAdditions.m in Sources */,
 				97997BEC14B29998008EC30B /* KIFTestStep+CenturyAdditions.m in Sources */,
+				97997C0214B2CC0D008EC30B /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,6 +898,7 @@
 				97F89EC914A0374600A5A975 /* RunKeeperTableViewCell.m in Sources */,
 				9758869A14A299D90052D001 /* PhotoListDataSource.m in Sources */,
 				975886A014A569880052D001 /* CenturyTabBarController.m in Sources */,
+				97997C0114B2CC0D008EC30B /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

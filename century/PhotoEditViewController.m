@@ -64,7 +64,7 @@
     pathLabel.text = self.photo.path;
     personLabel.text = self.photo.person.name;
     
-    self.nameTextField.accessibilityLabel = @"Photo Name Field";
+    self.nameTextField.accessibilityLabel = ACC_PhotoEditNameField;
 }
 
 - (void)viewDidUnload

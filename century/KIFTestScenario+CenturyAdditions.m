@@ -15,7 +15,7 @@
 + (id)scenarioToViewPhotos {
     KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that a user can view and edit photos."];
     [scenario addStep:[KIFTestStep stepToReset]];
-    [scenario addStep:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:@"Person List"
+    [scenario addStep:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:ACC_PersonList
                                                                      atIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
     [scenario addStepsFromArray:[KIFTestStep stepsToSelectAndEditPhoto]];
     

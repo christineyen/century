@@ -45,18 +45,18 @@
     NSMutableArray *steps = [NSMutableArray array];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Photo List"]];
-    [steps addObject:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:@"Photo List"
+    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:ACC_PhotoList]];
+    [steps addObject:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:ACC_PhotoList
                                                                     atIndexPath:indexPath]];
-    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Photo View"]];
-    [steps addObject:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Edit Button"]];
+    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:ACC_PhotoDetailImageView]];
+    [steps addObject:[KIFTestStep stepToTapViewWithAccessibilityLabel:ACC_PhotoDetailEditButton]];
     
-    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Photo Name Field"]];
-    [steps addObject:[KIFTestStep stepToClearTextFieldWithAccessibilityLabel:@"Photo Name Field"]];
-    [steps addObject:[KIFTestStep stepToEnterText:@"NEW NAME" intoViewWithAccessibilityLabel:@"Photo Name Field"]];
-    [steps addObject:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Save"]];
+    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:ACC_PhotoEditNameField]];
+    [steps addObject:[KIFTestStep stepToClearTextFieldWithAccessibilityLabel:ACC_PhotoEditNameField]];
+    [steps addObject:[KIFTestStep stepToEnterText:@"NEW NAME" intoViewWithAccessibilityLabel:ACC_PhotoEditNameField]];
+    [steps addObject:[KIFTestStep stepToTapViewWithAccessibilityLabel:ACC_PhotoEditSaveButton]];
     
-    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:@"Photo View"]];
+    [steps addObject:[KIFTestStep stepToWaitForViewWithAccessibilityLabel:ACC_PhotoDetailImageView]];
     
     // find a way to make sure photo edit is saved?
     

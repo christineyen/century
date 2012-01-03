@@ -46,7 +46,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(0xD5D6D0FF);
-    self.tableView.accessibilityLabel = @"Person List";
+    self.tableView.accessibilityLabel = ACC_PersonList;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
