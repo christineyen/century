@@ -7,6 +7,7 @@
 //
 
 #import "RunKeeperViewController.h"
+#import "RunKeeperTableViewCell.h"
 #import "RKActivity.h"
 
 #import "SVProgressHUD.h"

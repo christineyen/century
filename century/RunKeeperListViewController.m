@@ -7,6 +7,7 @@
 //
 
 #import "RunKeeperListViewController.h"
+#import "RunKeeperTableViewCell.h"
 #import "FlickrFetcher.h"
 
 @implementation RunKeeperListViewController

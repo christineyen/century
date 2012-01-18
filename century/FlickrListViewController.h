@@ -6,7 +6,8 @@
 //  Copyright (c) 2011 MIT. All rights reserved.
 //
 
-#import "PhotoListDataSource.h"
+#import <QuartzCore/QuartzCore.h>
+@class PhotoListDataSource;
 
 @interface FlickrListViewController : UIViewController<UITableViewDelegate> {
     // from PullToRefresh

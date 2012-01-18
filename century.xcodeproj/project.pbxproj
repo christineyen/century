@@ -186,6 +186,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9718953114C765EF001B837C /* PhotoEditViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoEditViewControllerDelegate.h; sourceTree = "<group>"; };
 		9758868A14A148100052D001 /* icon-elliptical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-elliptical.png"; sourceTree = "<group>"; };
 		9758868B14A148100052D001 /* icon-other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-other.png"; sourceTree = "<group>"; };
 		9758869814A299D90052D001 /* PhotoListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListDataSource.h; sourceTree = "<group>"; };
@@ -407,6 +408,7 @@
 				97D7798A1496E733005F4CFB /* PhotoDetailViewController.m */,
 				97D7798C1496E748005F4CFB /* PhotoEditViewController.h */,
 				97D7798D1496E748005F4CFB /* PhotoEditViewController.m */,
+				9718953114C765EF001B837C /* PhotoEditViewControllerDelegate.h */,
 				97D7798F1496E77D005F4CFB /* FlickrListViewController.h */,
 				97D779901496E77D005F4CFB /* FlickrListViewController.m */,
 			);

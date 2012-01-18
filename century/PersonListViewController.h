@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "FlickrFetcher.h"
+
+@class FlickrFetcher;
 
 @interface PersonListViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 

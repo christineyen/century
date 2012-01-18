@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RKActivity.h"
+
+@class RKActivity;
 
 @interface RunKeeperTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *rkImageView;

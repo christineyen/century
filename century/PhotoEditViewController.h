@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Photo.h"
+#import "PhotoEditViewControllerDelegate.h"
 
-@protocol PhotoEditViewControllerDelegate;
+@class Photo;
 
 @interface PhotoEditViewController : UIViewController<UITextFieldDelegate> {
     BOOL keyboardVisible;
@@ -30,9 +30,4 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 - (UITextField *)nameTextField;
-@end
-
-@protocol PhotoEditViewControllerDelegate
-- (void)photoEditViewDidSave:(PhotoEditViewController *)editController;
-- (void)photoEditviewDidCancel;
 @end

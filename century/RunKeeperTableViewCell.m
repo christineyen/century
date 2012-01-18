@@ -7,6 +7,7 @@
 //
 
 #import "RunKeeperTableViewCell.h"
+#import "RKActivity.h"
 
 @implementation RunKeeperTableViewCell
 @synthesize rkImageView;

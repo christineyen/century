@@ -8,10 +8,10 @@
 
 #import "RunKeeperLoginViewController.h"
 #import "RunKeeperViewController.h"
+#import "GTMOAuth2Authentication.h"
 #import "FlickrFetcher.h"
 #import "RKActivity.h"
 
-#import <QuartzCore/QuartzCore.h>
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "SVProgressHUD.h"
 

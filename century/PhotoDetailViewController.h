@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoEditViewController.h"
-#import "Photo.h"
+#import "PhotoEditViewControllerDelegate.h"
+
+@class PhotoEditViewController, Photo;
 
 @interface PhotoDetailViewController : UIViewController<UIScrollViewDelegate,
         PhotoEditViewControllerDelegate>

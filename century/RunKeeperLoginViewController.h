@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GTMOAuth2Authentication.h"
-#import "FlickrFetcher.h"
+#import <QuartzCore/QuartzCore.h>
+
+@class FlickrFetcher, GTMOAuth2Authentication;
 
 @interface RunKeeperLoginViewController : UIViewController
 @property (strong, nonatomic) GTMOAuth2Authentication *mAuth;

@@ -9,6 +9,7 @@
 #import "PhotoDetailViewController.h"
 #import "PhotoEditViewController.h"
 #import "SVProgressHUD.h"
+#import "Photo.h"
 
 @implementation PhotoDetailViewController
 @synthesize photo=_photo;

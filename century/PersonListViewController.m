@@ -8,6 +8,7 @@
 
 #import "PersonListViewController.h"
 #import "PhotoListViewController.h"
+#import "FlickrFetcher.h"
 #import "Photo.h"
 
 #define kPersonCellIdentifier @"PersonCell"

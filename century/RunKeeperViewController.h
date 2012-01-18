@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "RunKeeperTableViewCell.h"
-
 #import "TKCalendarMonthTableViewController.h"
-#import "GTMOAuth2Authentication.h"
+
+@class RunKeeperTableViewCell;
 
 @interface RunKeeperViewController : TKCalendarMonthTableViewController<
         TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource, NSFetchedResultsControllerDelegate>

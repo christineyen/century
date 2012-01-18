@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 MIT. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "FlickrListViewController.h"
 #import "PhotoDetailViewController.h"
 #import "PhotoListDataSource.h"
